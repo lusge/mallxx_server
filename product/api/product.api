@@ -163,7 +163,7 @@ service product-api {
 	post /delete (ProductInfoRequest) returns (Response)
 	
 	@handler GetProductApiList
-	get /api/list (ProductApiRequest) returns (ProductListRespone)
+	post /api/list (ProductApiRequest) returns (ProductListRespone)
 	
 }
 

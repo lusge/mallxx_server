@@ -335,8 +335,8 @@ type SkuStockListResponse struct {
 }
 
 type SkuStockRequest struct {
-	ProductId int64  `json:"product_id,optional"`
-	Keyword   string `json:"keyword,optional"`
+	ProductId int64  `json:"product_id,optional" form:"product_id,optional"`
+	Keyword   string `json:"keyword,optional" form:"keyword,optional"`
 }
 
 type SkuStockListRequest struct {

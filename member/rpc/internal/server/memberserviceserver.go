@@ -27,16 +27,6 @@ func (s *MemberServiceServer) GetMemverLevelList(ctx context.Context, in *pb.Emp
 	return l.GetMemverLevelList(in)
 }
 
-func (s *MemberServiceServer) Login(ctx context.Context, in *pb.MemberLoginRequest) (*pb.MemberResponse, error) {
-	l := logic.NewLoginLogic(ctx, s.svcCtx)
-	return l.Login(in)
-}
-
-func (s *MemberServiceServer) Register(ctx context.Context, in *pb.Member) (*pb.MemberResponse, error) {
-	l := logic.NewRegisterLogic(ctx, s.svcCtx)
-	return l.Register(in)
-}
-
 func (s *MemberServiceServer) GetMemberInfo(ctx context.Context, in *pb.MemberRequest) (*pb.MemberResponse, error) {
 	l := logic.NewGetMemberInfoLogic(ctx, s.svcCtx)
 	return l.GetMemberInfo(in)

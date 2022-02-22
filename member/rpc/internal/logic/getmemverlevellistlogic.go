@@ -24,7 +24,11 @@ func NewGetMemverLevelListLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 }
 
 func (l *GetMemverLevelListLogic) GetMemverLevelList(in *pb.EmptyRequest) (*pb.MemverLeveListResponse, error) {
-	// todo: add your logic here and delete this line
+	list := l.svcCtx.MemberLevelModel.FindAll()
 
-	return &pb.MemverLeveListResponse{}, nil
+	return &pb.MemverLeveListResponse{
+		Code:   200,
+		Detail: "ok",
+		Data:   list,
+	}, nil
 }

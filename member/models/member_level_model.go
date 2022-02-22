@@ -23,7 +23,7 @@ func NewMemberLevel(engine *xorm.Engine) *MemberLevel {
 	}
 }
 
-func (m *MemberLevel) FindAll(language string) []*pb.MemberLevel {
+func (m *MemberLevel) FindAll() []*pb.MemberLevel {
 	list := make([]*pb.MemberLevel, 0)
 
 	err := m.engine.Find(&list)

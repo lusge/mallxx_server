@@ -14,7 +14,7 @@ import (
 func adminGetListHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.AdRequest
-		if err := httpx.Parse(r, &req); err != nil {
+		if err := httpx.ParseForm(r, &req); err != nil {
 			fmt.Println(err)
 			httpx.Error(w, err)
 			return

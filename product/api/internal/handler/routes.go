@@ -214,7 +214,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: product.DeleteProductHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodGet,
+				Method:  http.MethodPost,
 				Path:    "/api/list",
 				Handler: product.GetProductApiListHandler(serverCtx),
 			},

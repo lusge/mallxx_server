@@ -24,7 +24,11 @@ func NewApiGetListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ApiGet
 }
 
 func (l *ApiGetListLogic) ApiGetList(in *pb.AdRequest) (*pb.AdResponse, error) {
-	// todo: add your logic here and delete this line
+	list := l.svcCtx.AdvertiseModel.FindAll(in.Pos, in.CategoryId)
 
-	return &pb.AdResponse{}, nil
+	return &pb.AdResponse{
+		Code:   200,
+		Detail: "ok",
+		Data:   list,
+	}, nil
 }

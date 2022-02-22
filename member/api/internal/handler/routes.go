@@ -5,7 +5,6 @@ import (
 	"net/http"
 
 	member "mallxx_server/member/api/internal/handler/member"
-	sign "mallxx_server/member/api/internal/handler/sign"
 	"mallxx_server/member/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
@@ -51,20 +50,5 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			},
 		},
 		rest.WithPrefix("/member"),
-	)
-
-	server.AddRoutes(
-		[]rest.Route{
-			{
-				Method:  http.MethodPost,
-				Path:    "/login",
-				Handler: sign.LoginHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/register",
-				Handler: sign.RegisterHandler(serverCtx),
-			},
-		},
 	)
 }

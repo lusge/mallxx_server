@@ -5,7 +5,9 @@ import (
 
 	"mallxx_server/member/api/internal/svc"
 	"mallxx_server/member/api/internal/types"
+	"mallxx_server/member/rpc/memberservice"
 
+	"github.com/jinzhu/copier"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -23,8 +25,20 @@ func NewGetMemverLevelListLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 	}
 }
 
-func (l *GetMemverLevelListLogic) GetMemverLevelList(req types.EmptyRequest) (resp *types.MemverLeveListResponse, err error) {
-	// todo: add your logic here and delete this line
+func (l *GetMemverLevelListLogic) GetMemverLevelList(req types.EmptyRequest) (*types.MemverLeveListResponse, error) {
+	resp, err := l.svcCtx.MemberRpc.GetMemverLevelList(l.ctx, &memberservice.EmptyRequest{})
 
-	return
+	if err != nil {
+		return nil, err
+	}
+
+	var data []*types.MemberLevel
+
+	copier.Copy(&data, resp.Data)
+
+	return &types.MemverLeveListResponse{
+		Code:   200,
+		Detail: resp.Detail,
+		Data:   data,
+	}, nil
 }

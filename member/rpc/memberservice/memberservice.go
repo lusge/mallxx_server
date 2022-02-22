@@ -33,8 +33,6 @@ type (
 
 	MemberService interface {
 		GetMemverLevelList(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*MemverLeveListResponse, error)
-		Login(ctx context.Context, in *MemberLoginRequest, opts ...grpc.CallOption) (*MemberResponse, error)
-		Register(ctx context.Context, in *Member, opts ...grpc.CallOption) (*MemberResponse, error)
 		GetMemberInfo(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*MemberResponse, error)
 		GetMemberList(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*MemberListResponse, error)
 		GetAddress(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*ReceiveAddressListResponse, error)
@@ -57,16 +55,6 @@ func NewMemberService(cli zrpc.Client) MemberService {
 func (m *defaultMemberService) GetMemverLevelList(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*MemverLeveListResponse, error) {
 	client := pb.NewMemberServiceClient(m.cli.Conn())
 	return client.GetMemverLevelList(ctx, in, opts...)
-}
-
-func (m *defaultMemberService) Login(ctx context.Context, in *MemberLoginRequest, opts ...grpc.CallOption) (*MemberResponse, error) {
-	client := pb.NewMemberServiceClient(m.cli.Conn())
-	return client.Login(ctx, in, opts...)
-}
-
-func (m *defaultMemberService) Register(ctx context.Context, in *Member, opts ...grpc.CallOption) (*MemberResponse, error) {
-	client := pb.NewMemberServiceClient(m.cli.Conn())
-	return client.Register(ctx, in, opts...)
 }
 
 func (m *defaultMemberService) GetMemberInfo(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*MemberResponse, error) {

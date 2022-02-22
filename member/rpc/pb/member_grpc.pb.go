@@ -19,8 +19,6 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MemberServiceClient interface {
 	GetMemverLevelList(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*MemverLeveListResponse, error)
-	Login(ctx context.Context, in *MemberLoginRequest, opts ...grpc.CallOption) (*MemberResponse, error)
-	Register(ctx context.Context, in *Member, opts ...grpc.CallOption) (*MemberResponse, error)
 	GetMemberInfo(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*MemberResponse, error)
 	GetMemberList(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*MemberListResponse, error)
 	GetAddress(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*ReceiveAddressListResponse, error)
@@ -40,24 +38,6 @@ func NewMemberServiceClient(cc grpc.ClientConnInterface) MemberServiceClient {
 func (c *memberServiceClient) GetMemverLevelList(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*MemverLeveListResponse, error) {
 	out := new(MemverLeveListResponse)
 	err := c.cc.Invoke(ctx, "/pb.MemberService/GetMemverLevelList", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *memberServiceClient) Login(ctx context.Context, in *MemberLoginRequest, opts ...grpc.CallOption) (*MemberResponse, error) {
-	out := new(MemberResponse)
-	err := c.cc.Invoke(ctx, "/pb.MemberService/Login", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *memberServiceClient) Register(ctx context.Context, in *Member, opts ...grpc.CallOption) (*MemberResponse, error) {
-	out := new(MemberResponse)
-	err := c.cc.Invoke(ctx, "/pb.MemberService/Register", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -123,8 +103,6 @@ func (c *memberServiceClient) GetFollower(ctx context.Context, in *MemberRequest
 // for forward compatibility
 type MemberServiceServer interface {
 	GetMemverLevelList(context.Context, *EmptyRequest) (*MemverLeveListResponse, error)
-	Login(context.Context, *MemberLoginRequest) (*MemberResponse, error)
-	Register(context.Context, *Member) (*MemberResponse, error)
 	GetMemberInfo(context.Context, *MemberRequest) (*MemberResponse, error)
 	GetMemberList(context.Context, *EmptyRequest) (*MemberListResponse, error)
 	GetAddress(context.Context, *MemberRequest) (*ReceiveAddressListResponse, error)
@@ -140,12 +118,6 @@ type UnimplementedMemberServiceServer struct {
 
 func (UnimplementedMemberServiceServer) GetMemverLevelList(context.Context, *EmptyRequest) (*MemverLeveListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMemverLevelList not implemented")
-}
-func (UnimplementedMemberServiceServer) Login(context.Context, *MemberLoginRequest) (*MemberResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
-}
-func (UnimplementedMemberServiceServer) Register(context.Context, *Member) (*MemberResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
 }
 func (UnimplementedMemberServiceServer) GetMemberInfo(context.Context, *MemberRequest) (*MemberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMemberInfo not implemented")
@@ -192,42 +164,6 @@ func _MemberService_GetMemverLevelList_Handler(srv interface{}, ctx context.Cont
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MemberServiceServer).GetMemverLevelList(ctx, req.(*EmptyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MemberService_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MemberLoginRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MemberServiceServer).Login(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.MemberService/Login",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MemberServiceServer).Login(ctx, req.(*MemberLoginRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MemberService_Register_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Member)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MemberServiceServer).Register(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.MemberService/Register",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MemberServiceServer).Register(ctx, req.(*Member))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -350,14 +286,6 @@ var MemberService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMemverLevelList",
 			Handler:    _MemberService_GetMemverLevelList_Handler,
-		},
-		{
-			MethodName: "Login",
-			Handler:    _MemberService_Login_Handler,
-		},
-		{
-			MethodName: "Register",
-			Handler:    _MemberService_Register_Handler,
 		},
 		{
 			MethodName: "GetMemberInfo",
