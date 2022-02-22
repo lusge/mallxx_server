@@ -46,7 +46,11 @@ func (l *LoginLogic) Login(in *pb.AdminInfo) (*pb.AdminInfoResponse, error) {
 		return nil, merrorx.NewCodeError(500, err.Error())
 	}
 
-	err = l.svcCtx.RedisClient.Setex(token, strconv.FormatInt(adminInfo.Id, 10), int(l.svcCtx.Config.JwtAuth.AccessExpire))
+	err = l.svcCtx.RedisClient.Setex(l.svcCtx.Config.TokenPrefix+token, strconv.FormatInt(adminInfo.Id, 10), int(l.svcCtx.Config.JwtAuth.AccessExpire))
+
+	if err != nil {
+		return nil, merrorx.NewCodeError(500, "登录失败")
+	}
 
 	adminInfo.Token = token
 	return &pb.AdminInfoResponse{

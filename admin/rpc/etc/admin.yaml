@@ -12,6 +12,8 @@ JwtAuth:
   AccessSecret: balkdsjalskjdflklsvlkjlkcvjelrjflas
   AccessExpire: 31536000
 
+TokenPrefix: 'admin:'
+
 Redis:
   Host: 127.0.0.1:6379
   Type: node

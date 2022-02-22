@@ -1,45 +1,35 @@
-package logic
+package sign
 
 import (
 	"context"
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"strings"
 
-	"mallxx_server/admin/api/internal/svc"
-	"mallxx_server/admin/rpc/adminservice"
 	"mallxx_server/common/merrorx"
+	"mallxx_server/sign/api/internal/svc"
+	"mallxx_server/sign/rpc/signservice"
 
-	"github.com/golang-jwt/jwt/v4"
+	"github.com/golang-jwt/jwt"
 	"github.com/zeromicro/go-zero/core/logx"
 	ztoken "github.com/zeromicro/go-zero/rest/token"
 )
 
-type VerifyLogic struct {
+type VerifyTokenLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 }
 
-func NewVerifyLogic(ctx context.Context, svcCtx *svc.ServiceContext) VerifyLogic {
-	return VerifyLogic{
+func NewVerifyTokenLogic(ctx context.Context, svcCtx *svc.ServiceContext) VerifyTokenLogic {
+	return VerifyTokenLogic{
 		Logger: logx.WithContext(ctx),
 		ctx:    ctx,
 		svcCtx: svcCtx,
 	}
 }
 
-func (l *VerifyLogic) Verify(r *http.Request) (resp int64, err error) {
-	requestPath := r.Header.Get("X-Original-Uri")
-	if strings.Contains(requestPath, "?") {
-		requestPath = strings.Split(requestPath, "?")[0]
-	}
-
-	if requestPath == "/admin/login" {
-		return 0, nil
-	}
-
+func (l *VerifyTokenLogic) VerifyToken(r *http.Request) (int64, error) {
 	parser := ztoken.NewTokenParser()
 	tok, err := parser.ParseToken(r, l.svcCtx.Config.JwtAuth.AccessSecret, "")
 
@@ -56,7 +46,7 @@ func (l *VerifyLogic) Verify(r *http.Request) (resp int64, err error) {
 				return 0, merrorx.NewCodeError(500, "token verify failed")
 			}
 
-			verifyResp, err := l.svcCtx.AdminRpc.VerifyToken(l.ctx, &adminservice.AdminTokenRequest{
+			verifyResp, err := l.svcCtx.SignRpc.VerifyToken(l.ctx, &signservice.SignTokenRequest{
 				Token: tok.Raw,
 				Id:    int64(userId),
 			})

@@ -4,9 +4,9 @@ import (
 	"context"
 	"strconv"
 
-	"mallxx_server/admin/rpc/internal/svc"
-	"mallxx_server/admin/rpc/pb"
 	"mallxx_server/common/merrorx"
+	"mallxx_server/sign/rpc/internal/svc"
+	"mallxx_server/sign/rpc/pb"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -25,7 +25,7 @@ func NewVerifyTokenLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Verif
 	}
 }
 
-func (l *VerifyTokenLogic) VerifyToken(in *pb.AdminTokenRequest) (*pb.Response, error) {
+func (l *VerifyTokenLogic) VerifyToken(in *pb.SignTokenRequest) (*pb.Response, error) {
 	uid, err := l.svcCtx.RedisClient.Get(l.svcCtx.Config.TokenPrefix + in.Token)
 	if err != nil {
 		return nil, merrorx.NewCodeError(500, "Token is not found")

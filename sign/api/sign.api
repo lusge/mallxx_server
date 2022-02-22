@@ -1,7 +1,6 @@
 syntax = "v1"
 
-
-type Member struct {
+type Member {
 	// @inject_tag: json:"id"
 	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,optional"`
 	// @inject_tag: json:"username"
@@ -9,33 +8,61 @@ type Member struct {
 	// @inject_tag: json:"password"
 	Password string `protobuf:"bytes,3,opt,name=password,proto3" json:"password"`
 	// @inject_tag: json:"phone"
-	Phone string `protobuf:"bytes,4,opt,name=phone,proto3" json:"phone"`
+	Phone string `protobuf:"bytes,4,opt,name=phone,proto3" json:"phone,optional"`
 	// @inject_tag: json:"email"
-	Email string `protobuf:"bytes,5,opt,name=email,proto3" json:"email"`
+	Email string `protobuf:"bytes,5,opt,name=email,proto3" json:"email,optional"`
 	// @inject_tag: json:"avatar"
-	Avatar string `protobuf:"bytes,6,opt,name=avatar,proto3" json:"avatar"`
+	Avatar string `protobuf:"bytes,6,opt,name=avatar,proto3" json:"avatar,optional"`
 	// @inject_tag: json:"status"
-	Status int32 `protobuf:"varint,7,opt,name=status,proto3" json:"status"`
+	Status int32 `protobuf:"varint,7,opt,name=status,proto3" json:"status,optional"`
 	// @inject_tag: json:"add_time"
-	AddTime int64 `protobuf:"varint,8,opt,name=add_time,json=addTime,proto3" json:"add_time"`
+	AddTime int64 `protobuf:"varint,8,opt,name=add_time,json=addTime,proto3" json:"add_time,optional"`
 	// @inject_tag: json:"member_level"
-	MemberLevel int64 `protobuf:"varint,9,opt,name=member_level,json=memberLevel,proto3" json:"member_level"`
+	MemberLevel int64 `protobuf:"varint,9,opt,name=member_level,json=memberLevel,proto3" json:"member_level,optional"`
 	// @inject_tag: json:"gender"
-	Gender int32 `protobuf:"varint,10,opt,name=gender,proto3" json:"gender"`
+	Gender int32 `protobuf:"varint,10,opt,name=gender,proto3" json:"gender,optional"`
 	// @inject_tag: json:"birthday"
-	Birthday int32 `protobuf:"varint,11,opt,name=birthday,proto3" json:"birthday"`
+	Birthday int32 `protobuf:"varint,11,opt,name=birthday,proto3" json:"birthday,optional"`
 	// @inject_tag: json:"token"  xorm:"-"
-	Token string `protobuf:"bytes,12,opt,name=token,proto3" json:"token" xorm:"-"`
+	Token string `protobuf:"bytes,12,opt,name=token,proto3" json:"token,optional" xorm:"-"`
 	// @inject_tag: json:"integral"
-	Integral int32 `protobuf:"varint,13,opt,name=integral,proto3" json:"integral"`
+	Integral int32 `protobuf:"varint,13,opt,name=integral,proto3" json:"integral,optional"`
 	// @inject_tag: json:"coupon"
-	Coupon int32 `protobuf:"varint,14,opt,name=coupon,proto3" json:"coupon"`
+	Coupon int32 `protobuf:"varint,14,opt,name=coupon,proto3" json:"coupon,optional"`
 	// @inject_tag: json:"followers"
-	Followers int32 `protobuf:"varint,15,opt,name=followers,proto3" json:"followers"`
+	Followers int32 `protobuf:"varint,15,opt,name=followers,proto3" json:"followers,optional"`
 	// @inject_tag: json:"nickname"
-	Nickname string `protobuf:"bytes,16,opt,name=nickname,proto3" json:"nickname"`
+	Nickname string `protobuf:"bytes,16,opt,name=nickname,proto3" json:"nickname,optional"`
 }
 
+type MemberLevel {
+	// @inject_tag: json:"id" db:"id"
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,optional" db:"id"`
+	// @inject_tag: json:"growth_point" db:"growth_point"
+	GrowthPoint int32 `protobuf:"varint,2,opt,name=growth_point,json=growthPoint,proto3" json:"growth_point" db:"growth_point"`
+	// @inject_tag: json:"default_status" db:"default_status"
+	DefaultStatus int32 `protobuf:"varint,3,opt,name=default_status,json=defaultStatus,proto3" json:"default_status" db:"default_status"`
+	// @inject_tag: json:"free_freight_point" db:"free_freight_point"
+	FreeFreightPoint float32 `protobuf:"fixed32,4,opt,name=free_freight_point,json=freeFreightPoint,proto3" json:"free_freight_point" db:"free_freight_point"`
+	// @inject_tag: json:"comment_growth_point" db:"comment_growth_point"
+	CommentGrowthPoint int32 `protobuf:"varint,5,opt,name=comment_growth_point,json=commentGrowthPoint,proto3" json:"comment_growth_point" db:"comment_growth_point"`
+	// @inject_tag: json:"priviledge_free_freight" db:"priviledge_free_freight"
+	PriviledgeFreeFreight int32 `protobuf:"varint,6,opt,name=priviledge_free_freight,json=priviledgeFreeFreight,proto3" json:"priviledge_free_freight" db:"priviledge_free_freight"`
+	// @inject_tag: json:"priviledge_sign_in" db:"priviledge_sign_in"
+	PriviledgeSignIn int32 `protobuf:"varint,7,opt,name=priviledge_sign_in,json=priviledgeSignIn,proto3" json:"priviledge_sign_in" db:"priviledge_sign_in"`
+	// @inject_tag: json:"priviledge_comment" db:"priviledge_comment"
+	PriviledgeComment int32 `protobuf:"varint,8,opt,name=priviledge_comment,json=priviledgeComment,proto3" json:"priviledge_comment" db:"priviledge_comment"`
+	// @inject_tag: json:"priviledge_promotion" db:"priviledge_promotion"
+	PriviledgePromotion int32 `protobuf:"varint,9,opt,name=priviledge_promotion,json=priviledgePromotion,proto3" json:"priviledge_promotion" db:"priviledge_promotion"`
+	// @inject_tag: json:"priviledge_member_price" db:"priviledge_member_price"
+	PriviledgeMemberPrice int32 `protobuf:"varint,10,opt,name=priviledge_member_price,json=priviledgeMemberPrice,proto3" json:"priviledge_member_price" db:"priviledge_member_price"`
+	// @inject_tag: json:"priviledge_birthday" db:"priviledge_birthday"
+	PriviledgeBirthday int32 `protobuf:"varint,11,opt,name=priviledge_birthday,json=priviledgeBirthday,proto3" json:"priviledge_birthday" db:"priviledge_birthday"`
+	// @inject_tag: json:"note" db:"note"
+	Note string `protobuf:"bytes,12,opt,name=note,proto3" json:"note" db:"note"`
+	// @inject_tag: json:"name" db:"name"
+	Name string `protobuf:"bytes,13,opt,name=name,proto3" json:"name" db:"name"`
+}
 
 type MemberData {
 	// @inject_tag: json:"member"
@@ -43,7 +70,6 @@ type MemberData {
 	// @inject_tag: json:"member_level"
 	MemberLevel *MemberLevel `protobuf:"bytes,2,opt,name=member_level,json=memberLevel,proto3" json:"member_level"`
 }
-
 
 type MemberResponse {
 	// @inject_tag: json:"code"
@@ -56,15 +82,14 @@ type MemberResponse {
 
 type MemberLoginRequest {
 	// @inject_tag: json:"username"
-	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username"`
+	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,optional"`
 	// @inject_tag: json:"password"
-	Password string `protobuf:"bytes,2,opt,name=password,proto3" json:"password"`
+	Password string `protobuf:"bytes,2,opt,name=password,proto3" json:"password,optional"`
 	// @inject_tag: json:"phone"
-	Phone string `protobuf:"bytes,3,opt,name=phone,proto3" json:"phone"`
+	Phone string `protobuf:"bytes,3,opt,name=phone,proto3" json:"phone,optional"`
 	// @inject_tag: json:"email"
-	Email string `protobuf:"bytes,4,opt,name=email,proto3" json:"email"`
+	Email string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,optional"`
 }
-
 
 type Response {
 	Code   int32  `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
@@ -73,11 +98,15 @@ type Response {
 
 @server(
 	group: sign
+	prefix: sign
 )
-service member-api {
+service sign-api {
 	@handler Login
 	post /login (MemberLoginRequest) returns (MemberResponse)
 	
 	@handler Register
 	post /register (Member) returns (MemberResponse)
+	
+	@handler VerifyToken
+	get /verify/token returns (int64)
 }

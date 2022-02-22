@@ -1,0 +1,12 @@
+Name: sign-api
+Host: 0.0.0.0
+Port: 8893
+
+JwtAuth:
+  AccessSecret: sdoiwowjjxcjksjlkjlkj
+
+SignRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: sign.rpc

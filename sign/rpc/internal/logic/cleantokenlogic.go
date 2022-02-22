@@ -3,9 +3,9 @@ package logic
 import (
 	"context"
 
-	"mallxx_server/admin/rpc/internal/svc"
-	"mallxx_server/admin/rpc/pb"
 	"mallxx_server/common/merrorx"
+	"mallxx_server/sign/rpc/internal/svc"
+	"mallxx_server/sign/rpc/pb"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -24,7 +24,7 @@ func NewCleanTokenLogic(ctx context.Context, svcCtx *svc.ServiceContext) *CleanT
 	}
 }
 
-func (l *CleanTokenLogic) CleanToken(in *pb.AdminTokenRequest) (*pb.Response, error) {
+func (l *CleanTokenLogic) CleanToken(in *pb.SignTokenRequest) (*pb.Response, error) {
 	if _, err := l.svcCtx.RedisClient.Del(l.svcCtx.Config.TokenPrefix + in.Token); err != nil {
 		return nil, merrorx.NewCodeError(500, "Delete token is Failed")
 	}

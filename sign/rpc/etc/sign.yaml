@@ -1,0 +1,21 @@
+Name: sign.rpc
+ListenOn: 127.0.0.1:8083
+Etcd:
+  Hosts:
+  - 127.0.0.1:2379
+  Key: sign.rpc
+
+JwtAuth:
+  AccessSecret: sdoiwowjjxcjksjlkjlkj
+  AccessExpire: 31536000
+
+
+TokenPrefix: 'sign:'
+
+Redis:
+  Host: 127.0.0.1:6379
+  Type: node
+  Pass:
+
+Mysql:
+  DataSource: root:luxixi1990@tcp(127.0.0.1:3306)/mallxx_member?charset=utf8mb4&interpolateParams=true
