@@ -1,0 +1,16 @@
+Name: api-api
+Host: 127.0.0.1
+Port: 8888
+
+AdminRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: admin.rpc
+
+#jwtAuth
+JwtAuth:
+  AccessSecret: balkdsjalskjdflklsvlkjlkcvjelrjflas
+
+NoAuthUrls:
+  - "/admin/login"

@@ -1,0 +1,56 @@
+syntax = "v1"
+
+//商品属性
+type ProductAttribute {
+	Id int64 `json:"id,optional"`
+    
+	CategoryAttributeId int64 `json:"category_attribute_id,optional"`
+    
+	SelectType int32 `json:"select_type,optional"`
+    
+	InputType int32 `json:"input_type,optional"`
+    
+	Sort int32 `json:"sort,optional"`
+    
+	FilterType int32 `json:"filter_type,optional"`
+    
+	SearchType int32 `json:"search_type,optional"`
+    
+	RelatedStatus int32 `json:"related_status,optional"`
+    
+	HandAddStatus int32 `json:"hand_add_status,optional"`
+    
+	Type int32 `json:"type,optional"`
+    
+	Name string `json:"name,optional"`
+    
+	InputList string `json:"input_list,optional"`
+}
+
+
+type ProductAttributeListResponse  {
+	Code int32 `protobuf:"varint,1,opt,name=code,proto3" json:"code"`
+	// @inject_tag: json:"data"
+	Data   []*ProductAttribute `protobuf:"bytes,2,rep,name=data,proto3" json:"data"`
+	Detail string              `protobuf:"bytes,4,opt,name=detail,proto3" json:"detail"`
+	Total  int64               `protobuf:"varint,5,opt,name=total,proto3" json:"total"`
+}
+
+
+type ProductAttributeInfoResponse  {
+	Code int32 `protobuf:"varint,1,opt,name=code,proto3" json:"code"`
+	// @inject_tag: json:"data"
+	Data   *ProductAttribute `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
+	Detail string            `protobuf:"bytes,4,opt,name=detail,proto3" json:"detail"`
+}
+
+
+type AttrRequest  {
+	PageNum  int32  `json:"page_num,optional" form:"page_num,optional"`
+	PageSize int32  `json:"page_size,optional" form:"page_size,optional"`
+	Keyword  string `json:"keyword,optional" form:"keyword,optional"`
+	Cid      int64  `json:"cid,optional" form:"cid,optional"`
+	Type     int32  `json:"type,optional" form:"type,optional"`
+	Language string `json:"language,optional" form:"language,optional"`
+}
+

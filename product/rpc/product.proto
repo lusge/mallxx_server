@@ -1,0 +1,622 @@
+syntax = "proto3";
+
+package pb;
+option go_package = "./pb";
+
+
+message Brand {
+    // @inject_tag: json:"id" db:"id"
+    int64 id = 1;
+    // @inject_tag: json:"first_letter" db:"first_letter"
+    string first_letter = 2;
+    // @inject_tag: json:"sort" db:"sort"
+    int32 sort = 3;
+    // @inject_tag: json:"factory_status" db:"factory_status"
+    int32 factory_status = 4;
+    // @inject_tag: json:"show_status" db:"show_status"
+    int32 show_status = 5;
+    // @inject_tag: json:"product_count" db:"product_count"
+    int64 product_count = 6;
+    // @inject_tag: json:"product_comment_count" db:"product_comment_count"
+    int64 product_comment_count = 7;
+    // @inject_tag: json:"logo" db:"logo"
+    string logo =  8;
+    // @inject_tag: json:"big_pic" db:"big_pic"
+    string big_pic = 9;
+    // @inject_tag: json:"brand_story" db:"brand_story"
+    string brand_story = 10;
+    // @inject_tag: json:"name" db:"name"
+    string name = 11;
+    // @inject_tag: json:"url" db:"url"
+    string url = 12;
+}
+
+message BrandRequest {
+     // @inject_tag: form:"pageNum"
+     int32 page_num = 1;
+     // @inject_tag: form:"pageSize"
+     int32 page_size = 2;
+     // @inject_tag: form:"keyword"
+     string keyword = 3;
+     // @inject_tag: form:"id"
+     int64 id = 5;
+}
+
+message BrandStatusRequest {
+    int64 id = 1;
+    int32 status = 2;
+}
+
+message BrandListResponse {
+    // @inject_tag: json:"code"
+    int32 code = 1;
+    // @inject_tag: json:"data"
+    repeated Brand data = 2;
+    // @inject_tag: json:"detail"
+    string detail = 3;
+    // @inject_tag: "total"
+    int64 total = 4;
+}
+
+message BrandOneResponse {
+    // @inject_tag: json:"code"
+    int32 code = 1;
+    // @inject_tag: json:"data"
+    Brand data = 2;
+    // @inject_tag: json:"detail"
+    string detail = 3;
+}
+
+
+message CategoryAttribute {
+    // @inject_tag: json:"id" form:"id" db:"id"
+    int64 id = 1;
+    // @inject_tag: json:"name" form:"name" db:"name"
+    string name = 2;
+    // @inject_tag: json:"attribute_count" db:"attribute_count"
+    int32 attribute_count = 3; 
+    // @inject_tag: json:"param_count" db:"param_count"
+    int32 param_count = 4;
+}
+
+message CategoryAttributeListResponse {
+    int32 code = 1;
+    repeated CategoryAttribute data = 2;
+    int64 total = 3;
+    string detail = 4;
+}
+
+message CategoryAttributeInfoResponse {
+    int32 code = 1;
+    CategoryAttribute data = 2;
+    string detail = 3;
+}
+
+message CategoryAttrAndProductAttr {
+    // @inject_tag: json:"category_attr"
+    CategoryAttribute category_attr = 1;
+    // @inject_tag: json:"children"
+    repeated ProductAttribute children = 2;
+}
+
+message CategoryAttrAndProductAttrListResponse {
+    // @inject_tag: json:"code"
+    int32 code = 1;
+    // @inject_tag: json:"data"
+    repeated CategoryAttrAndProductAttr data = 2;
+    // @inject_tag: json:"detail"
+    string detail = 3;
+}
+
+
+message Category {
+    // @inject_tag: json:"id" db:"id"
+    int64 id = 1;
+    // @inject_tag: json:"parent_id"  db:"parent_id"
+    int64 parent_id = 2;
+    // @inject_tag: json:"level" db:"level"
+    int32 level = 3;
+    // @inject_tag: json:"product_count" db:"product_count"
+    int32 product_count = 4;
+    // @inject_tag: json:"product_unit" db:"product_unit"
+    string product_unit = 5;
+    // @inject_tag: json:"nav_status" db:"nav_status"
+    int32 nav_status = 6;
+    // @inject_tag: json:"show_status" db:"show_status"
+    int32 show_status = 7;
+    // @inject_tag: json:"sort" db:"sort"
+    int32 sort = 8;
+    // @inject_tag: json:"icon" db:"icon"
+    string icon = 9;
+    // @inject_tag: json:"name" db:"name"
+    string name = 10;
+    // @inject_tag: json:"keywords" db:"keywords"
+    string keywords = 11;
+    // @inject_tag: json:"description" db:"description"
+    string description = 12;
+    // @inject_tag: json:"product_attribute_ids" xorm:"-"
+    repeated int64 product_attribute_ids = 13;
+}
+
+message CategoryResponse {
+    // @inject_tag: json:"code"
+    int32 code = 1;
+    // @inject_tag: json:"data"
+    repeated Category data = 2;
+    // @inject_tag: json:"detail"
+    string detail = 3;
+    // @inject_tag: json:"total"
+    int64 total = 4;
+}
+
+message CategoryInfoResponse {
+    // @inject_tag: json:"code"
+    int32 code = 1;
+    // @inject_tag: json:"data"
+    Category data = 2;
+    // @inject_tag: json:"detail"
+    string detail = 3;
+}
+
+message CategoryChangeStatus {
+    // @inject_tag: json:"id"
+    int64 id = 1;
+    // @inject_tag: json:"status"
+    int32 status = 2;
+}
+
+
+message MemberPrice {
+    // @inject_tag: json:"id" db:"id"
+    int64 id = 1;
+    // @inject_tag: json:"product_id" db:"product_id"
+    int64 product_id = 2;
+    // @inject_tag: json:"member_level_id" db:"member_level_id"
+    int64 member_level_id = 3;
+    // @inject_tag: json:"member_price" db:"member_price"
+    float member_price = 4;
+    // @inject_tag: json:"member_level_name" db:"member_level_name"
+    string member_level_name = 5;
+}
+
+message ProductAttributeValue {
+    // @inject_tag: json:"id" db:"id"
+    int64 id = 1;
+    // @inject_tag: json:"product_id" db:"product_id"
+    int64 product_id = 2;
+    // @inject_tag: json:"product_attribute_id" db:"product_attribute_id"
+    int64 product_attribute_id = 3;
+    // @inject_tag: json:"value" db:"value"
+    string value = 4;
+}
+
+
+/**
+* 产品属性，绑定分类ID，用户根据分类熟悉搜索产品
+**/
+
+//商品属性
+message ProductAttribute {
+    // @inject_tag: json:"id" form:"id" db:"id"
+    int64 id = 1;
+    // @inject_tag: json:"category_attribute_id" db:"category_attribute_id"
+    int64 category_attribute_id = 2;
+    // @inject_tag: json:"select_type" db:"select_type"
+    int32 select_type = 3;
+    // @inject_tag: json:"input_type" db:"input_type"
+    int32 input_type = 4;
+    // @inject_tag: json:"sort" db:"sort"
+    int32 sort = 5;
+    // @inject_tag: json:"filter_type" db:"filter_type"
+    int32 filter_type = 6;
+    // @inject_tag: json:"search_type" db:"search_type"
+    int32 search_type = 7;
+    // @inject_tag: json:"related_status" db:"related_status"
+    int32 related_status = 8;
+    // @inject_tag: json:"hand_add_status" db:"hand_add_status"
+    int32 hand_add_status = 9; 
+    // @inject_tag: json:"type" db:"type"
+    int32 type = 10;
+    // @inject_tag: json:"name" db:"name"
+    string name = 12;
+    // @inject_tag: json:"input_list" db:"input_list"
+    string input_list = 13;
+}
+
+message ProductAttributeListResponse {
+    int32 code = 1;
+    // @inject_tag: json:"data"
+    repeated ProductAttribute data = 2;
+    string detail = 4;
+    int64 total = 5;
+}
+
+message ProductAttributeInfoResponse {
+    int32 code = 1;
+    // @inject_tag: json:"data"
+    ProductAttribute data = 2;
+    string detail = 4;
+}
+
+message AttrRequest {
+    
+    // @inject_tag: form:"page_num"
+    int32 page_num = 1;
+    // @inject_tag: form:"page_size"
+    int32 page_size = 2;
+    // @inject_tag: form:"keyword"
+    string keyword = 3;
+    // @inject_tag: form:"cid"
+    int64 cid = 4;
+    // @inject_tag: form:"type"
+    int32 type = 5;
+    // @inject_tag: json:"language" form:"language"
+    string language = 6;
+}
+
+
+message ProductFullReduction {
+    // @inject_tag: json:"id" db:"id"
+    int64 id = 1;
+    // @inject_tag: json:"product_id" db:"product_id"
+    int64 product_id = 2;
+    // @inject_tag: json:"full_price" db:"full_price"
+    float full_price = 3;
+    // @inject_tag: json:"reduce_price" db:"reduce_price"
+    float reduce_price = 4;
+}
+
+
+message ProductLadder {
+    // @inject_tag: json:"id" db:"id"
+    int64 id = 1;
+    // @inject_tag: json:"product_id" db:"product_id"
+    int64 product_id = 2;
+    // @inject_tag: json:"count" db:"count"
+    int32 count = 3;
+    // @inject_tag: json:"discount" db:"discount"
+    float discount = 4;
+    // @inject_tag: json:"price" db:"price"
+    float price = 5;
+}
+
+
+message ProductRecommend  {
+    // @inject_tag: json:"id"
+	int64 id = 1;   
+    // @inject_tag: json:"product_id"   
+	int64 product_id = 2; 
+    // @inject_tag: json:"product_name" 
+	string product_name = 3;
+    // @inject_tag: json:"sort"
+	int32 sort = 4;    
+}
+
+//insert and delete
+message RecommendRequest {
+    repeated int64 product_ids = 1;
+}
+
+message RecommendSetSortRequest {
+    int64 id = 1;
+    int32 sort = 2;
+}
+
+message RecommendListResponse {
+    // @inject_tag: json:"code"
+    int32 code = 1;
+    // @inject_tag: json:"data"
+    repeated ProductRecommend data = 2;
+    // @inject_tag: json:"total"
+    int64 total = 3;
+    // @inject_tag: json:"detail"
+    string detail = 4;
+}
+
+
+
+message Product {
+    // @inject_tag: json:"id" db:"id"
+    int64 id = 1;
+    // @inject_tag: json:"brand_id" db:"brand_id"
+    int64 brand_id = 2;
+    // @inject_tag: json:"product_category_id" db:"product_category_id"
+    int64 product_category_id = 3;
+    // @inject_tag: json:"feight_template_id" db:"feight_template_id"
+    int64 feight_template_id = 4;
+    // @inject_tag: json:"product_attribute_category_id" db:"product_attribute_category_id"
+    int64 product_attribute_category_id = 5;
+    // @inject_tag: json:"product_sn" db:"product_sn"
+    string product_sn = 6;
+    // @inject_tag: json:"delete_status" db:"delete_status"
+    int32 delete_status = 7;
+    // @inject_tag: json:"publish_status" db:"publish_status"
+    int32 publish_status = 8;
+    // @inject_tag: json:"new_status" db:"new_status"
+    int32 new_status = 9;
+    // @inject_tag: json:"recommend_status" db:"recommend_status"
+    int32 recommend_status = 10;
+    // @inject_tag: json:"verify_status" db:"verify_status"
+    int32 verify_status = 11;
+    // @inject_tag: json:"sort" db:"sort"
+    int32 sort = 12;
+    // @inject_tag: json:"sale" db:"sale"
+    int64 sale = 13;
+    // @inject_tag: json:"price" db:"price"
+    double price = 14;
+    // @inject_tag: json:"promotion_price" db:"promotion_price"
+    double promotion_price = 15;
+    // @inject_tag: json:"gift_growth" db:"gift_growth"
+    int64 gift_growth = 16;
+    // @inject_tag: json:"gift_point" db:"gift_point"
+    int64 gift_point = 17;
+    // @inject_tag: json:"use_point_limit" db:"use_point_limit"
+    int64 use_point_limit = 18;
+    // @inject_tag: json:"original_price" db:"original_price"
+    double original_price = 19;
+    // @inject_tag: json:"stock" db:"stock"
+    int64 stock = 20;
+    // @inject_tag: json:"low_stock" db:"low_stock"
+    int64 low_stock = 21;
+    // @inject_tag: json:"unit" db:"unit"
+    string unit = 22;
+    // @inject_tag: json:"weight" db:"weight"
+    double weight = 23;
+    // @inject_tag: json:"preview_status" db:"preview_status"
+    int32 preview_status = 24;
+    // @inject_tag: json:"service_ids" db:"service_ids"
+    string service_ids = 25;
+    // @inject_tag: json:"pic" db:"pic"
+    string pic = 26;
+    // @inject_tag: json:"album_pics" db:"album_pics"
+    string album_pics = 27;
+    // @inject_tag: json:"promotion_start_time" db:"promotion_start_time"
+    string promotion_start_time = 28;
+    // @inject_tag: json:"promotion_end_time" db:"promotion_end_time"
+    string promotion_end_time = 29;
+    // @inject_tag: json:"promotion_per_limit" db:"promotion_per_limit"
+    int32 promotion_per_limit = 30;
+    // @inject_tag: json:"promotion_type" db:"promotion_type"
+    int32 promotion_type = 31;
+    // @inject_tag: json:"name" db:"name"
+    string name = 32;
+    // @inject_tag: json:"sub_title" db:"sub_title"
+    string sub_title = 33;
+    // @inject_tag: json:"description" db:"description"
+    string description = 34;
+    // @inject_tag: json:"keywords" db:"keywords"
+    string keywords = 35;
+    // @inject_tag: json:"note" db:"note"
+    string note = 36;
+    // @inject_tag: json:"detail_title" db:"detail_title"
+    string detail_title = 37;
+    // @inject_tag: json:"detail_desc" db:"detail_desc"
+    string detail_desc = 38;
+    // @inject_tag: json:"detail_html" db:"detail_html"
+    string detail_html = 39;
+    // @inject_tag: json:"detail_mobile_html" db:"detail_mobile_html"
+    string detail_mobile_html = 40;
+    // @inject_tag: json:"product_category_name" db:"product_category_name"
+    string product_category_name = 41;
+    // @inject_tag: json:"brand_name" db:"brand_name"
+    string brand_name = 42;
+
+
+    // @inject_tag: json:"sku_stock" xorm:"-"
+    repeated SkuStock sku_stock = 43;
+    // @inject_tag: json:"product_ladder" xorm:"-"
+    repeated ProductLadder product_ladder = 44;
+    // @inject_tag: json:"product_full_reduction" xorm:"-"
+    repeated ProductFullReduction product_full_reduction = 45;
+    // @inject_tag: json:"product_attr_value" xorm:"-"
+    repeated ProductAttributeValue product_attr_value = 46;
+    // @inject_tag: json:"member_price" xorm:"-"
+    repeated MemberPrice member_price = 47;
+    // @inject_tag: json:"product_attribute" xorm:"-"
+    repeated ProductAttribute product_attribute = 48;
+    // @inject_tag: json:"comment_number" db:"comment_number"
+    int64 comment_number = 49;
+    // @inject_tag: json:"parameters" xorm:"-"
+    repeated ProductParameters parameters = 50;
+}
+
+message ProductListRequest {
+    // @inject_tag: form:"page_num"
+    int32 page_num = 1;
+    // @inject_tag: form:"page_size"
+    int32 page_size = 2;
+    // @inject_tag: form:"name"
+    string name = 3;
+    // @inject_tag: form:"sn"
+    string sn = 5;
+    // @inject_tag: form:"category_id"
+    int64 category_id = 6;
+    // @inject_tag: form:"brand_id"
+    int64 brand_id = 7;
+    // @inject_tag: form:"publish_status"
+    int32 publish_status = 8;
+    // @inject_tag: form:"verify_status"
+    int32 verify_status = 9;
+    // @inject_tag: form:"recommend_status"
+    int32 recommend_status = 10;
+    // @inject_tag: form:"new_status"
+    int32 new_status = 11;
+}
+
+message ProductInfoRequest {
+    // @inject_tag: form:"id"
+    int64 id = 1;
+}
+
+message ProductChangeStatusRequest {
+    // @inject_tag: json:"id"
+    int64 id = 1;
+    // @inject_tag: json:"status"
+    int32 status = 2;
+}
+
+message ProductInfoResponse {
+    // @inject_tag: json:"code"
+    int32 code = 1;
+    // @inject_tag: json:"data"
+    Product data = 2;
+    // @inject_tag: json:"detail"
+    string detail = 8;
+}
+
+message ProductListRespone {
+    // @inject_tag: json:"code"
+    int32 code = 1;
+    // @inject_tag: json:"data"
+    repeated Product data = 2;
+    // @inject_tag: json:"detail"
+    string detail = 3;
+    // @inject_tag: json:"total"
+    int64 total = 4;
+}
+
+message ProductApiRequest {
+    // @inject_tag: json:"category_ids"
+    repeated int64 category_ids = 1;
+    // @inject_tag: json:"sort"
+    string sort = 2;
+    // @inject_tag: json:"brand_ids"
+    repeated int64 brand_ids = 3;
+    // @inject_tag: json:"min_price"
+    double min_price = 4;
+    // @inject_tag: json:"mix_price"
+    double mix_price = 5;
+    // @inject_tag: json:"page_num"
+    int32 page_num = 6;
+    // @inject_tag: json:"page_size"
+    int32 page_size = 7;
+}
+
+message ProductParameters {
+    // @inject_tag: json:"key"
+    string key = 1;
+    // @inject_tag: json:"value"
+    string value = 2;
+}
+
+
+message ListRequest {
+    
+    // @inject_tag: form:"pageNum"
+    int32 page_num = 1;
+    // @inject_tag: form:"pageSize"
+    int32 page_size = 2;
+    // @inject_tag: form:"keyword"
+    string keyword = 3;
+    // @inject_tag: form:"pid"
+    int64 pid = 4;
+}
+
+
+message SkuStock {
+    // @inject_tag: json:"id" db:"id"
+    int64 id = 1;
+    // @inject_tag: json:"product_id" db:"product_id"
+    int64 product_id = 2;
+    // @inject_tag: json:"sku_code" db:"sku_code"
+    string sku_code = 3;
+    // @inject_tag: json:"price" db:"price"
+    float price = 4;
+    // @inject_tag: json:"stock" db:"stock"
+    int32 stock = 5;
+    // @inject_tag: json:"low_stock" db:"low_stock"
+    int32 low_stock = 6;
+    // @inject_tag: json:"sp_data" db:"sp_data"
+    string sp_data = 7;
+    // @inject_tag: json:"pic" db:"pic"
+    string pic = 8;
+    // @inject_tag: json:"sale" db:"sale"
+    int32 sale = 9;
+    // @inject_tag: json:"lock_stock" db:"lock_stock"
+    int32 lock_stock = 10;
+}
+
+message SkuStockListResponse {
+    int32 code = 1;
+    repeated SkuStock data = 2;
+    string detail = 3;
+}
+
+message SkuStockRequest {
+    //@inject_tag: form:"product_id"
+    int64 product_id = 1;
+    //@inject_tag: form:"keyword"
+    string keyword = 2;
+}
+
+message SkuStockListRequest {
+    repeated SkuStock list = 1;
+}
+
+message Response {
+    int32 code = 1;
+    string detail = 2;
+}
+
+message EmptyRequest {
+}
+
+service ProductServices {
+    //Brand
+    rpc GetBrandList (BrandRequest) returns (BrandListResponse);
+    rpc GetBrandInfo (BrandRequest) returns (BrandOneResponse);
+    rpc UpdateBrandShowStatus(BrandStatusRequest) returns (Response);
+    rpc UpdateBrandFactoryStatus(BrandStatusRequest) returns (Response);
+    rpc DeleteBrand(BrandRequest) returns (Response);
+    rpc UpdateBrand(Brand) returns (Response);
+    rpc AddBrand(Brand) returns (Response);
+
+    //CategoryAttribute
+    //---------------------分类属性-------------------------------------------------
+    rpc GetCategoryAttributeList (ListRequest) returns (CategoryAttributeListResponse);
+    rpc GetCategoryAttributeInfo (CategoryAttribute) returns (CategoryAttributeInfoResponse);
+    rpc EditCategoryAttribute (CategoryAttribute) returns (Response);
+    rpc DelCategoryAttribute(CategoryAttribute) returns (Response);
+    rpc GetCategoryAttributeAndProductAttribute (EmptyRequest) returns (CategoryAttrAndProductAttrListResponse);
+    //---------------------end------------------------------------------------------
+
+    //Category
+    rpc GetCategoryList (ListRequest) returns (CategoryResponse);
+    rpc GetCategoryInfo (Category) returns (CategoryInfoResponse);
+    rpc CreateCategory (Category) returns (Response);
+    rpc UpdateCategory (Category) returns (Response);
+    rpc DelCategory (Category) returns (Response);
+    rpc ChangeCategoryNavStatus (CategoryChangeStatus) returns (Response);
+    rpc ChangeCategoryShowStatus (CategoryChangeStatus) returns (Response);
+    rpc GetCategoryListWithChildren (EmptyRequest) returns (CategoryResponse);
+
+    //ProductAttribute
+    rpc GetProductAttributeList (AttrRequest) returns (ProductAttributeListResponse);
+    rpc AddProductAttribute (ProductAttribute) returns (Response);
+    rpc UpdateProductAttribute (ProductAttribute) returns (Response);
+    rpc DeleteProductAttribute (ProductAttribute) returns (Response);
+    rpc GetProductAttributeInfo (ProductAttribute) returns (ProductAttributeInfoResponse);
+
+    //Product
+    rpc GetProductList (ProductListRequest) returns (ProductListRespone);
+    rpc GetProductInfo (ProductInfoRequest) returns (ProductInfoResponse);
+    rpc ChangeProductPublishStatus (ProductChangeStatusRequest) returns (Response);
+    rpc ChangeProductVerifyStatus (ProductChangeStatusRequest) returns (Response);
+    rpc ChangeProductNewStatus (ProductChangeStatusRequest) returns (Response);
+    rpc ChangeProductRecommendStatus (ProductChangeStatusRequest) returns (Response);
+    rpc AddProduct (Product) returns (Response);
+    rpc UpdateProduct (Product) returns (Response);
+    rpc DeleteProduct (ProductInfoRequest) returns (Response);
+    rpc GetProductApiList(ProductApiRequest) returns (ProductListRespone);
+
+    //sku
+    rpc UpdateSku (SkuStockListRequest) returns (Response);
+    rpc GetSku (SkuStockRequest) returns (SkuStockListResponse);
+    
+    // product recommend
+    rpc GetApiRecommendList(ProductListRequest) returns (ProductListRespone);
+    rpc GetRecommendList(ProductListRequest) returns (RecommendListResponse);
+    rpc SetRecommendSort(RecommendSetSortRequest) returns (Response);
+    rpc AddRecommend(RecommendRequest) returns (Response);
+    rpc DeleteRecommend(RecommendRequest) returns (Response);
+}

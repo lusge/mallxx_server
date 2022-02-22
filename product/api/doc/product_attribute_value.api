@@ -1,0 +1,13 @@
+syntax = "v1"
+
+
+type ProductAttributeValue {
+    
+	Id int64 `json:"id,optional"`
+    
+	ProductId int64 `json:"product_id,optional"`
+    
+	ProductAttributeId int64 `json:"product_attribute_id,optional"`
+    
+	Value string `json:"value,optional"`
+}

@@ -1,0 +1,59 @@
+syntax = "v1"
+
+
+type Category {
+	Id int64 `json:"id,optional"`
+    
+	ParentId int64 `json:"parent_id,optional"`
+    
+	Level int32 `json:"level,optional"`
+    
+	ProductCount int32 `json:"product_count,optional"`
+    
+	ProductUnit string `json:"product_unit,optional"`
+    
+	NavStatus int32 `json:"nav_status,optional"`
+    
+	ShowStatus int32 `json:"show_status,optional"`
+    
+	Sort int32 `json:"sort,optional"`
+    
+	Icon string `json:"icon,optional"`
+    
+	Name string `json:"name,optional"`
+    
+	Keywords string `json:"keywords,optional"`
+    
+	Description string `json:"description,optional"`
+    
+	ProductAttributeIds []int64 `json:"product_attribute_ids,optional"`
+}
+
+
+type CategoryResponse  {
+	Code int32 `json:"code"`
+    
+	Data []*Category `json:"data"`
+    
+	Detail string `json:"detail"`
+    
+	Total int64 `json:"total"`
+}
+
+
+type CategoryInfoResponse {
+	Code int32 `json:"code"`
+    
+	Data *Category `json:"data"`
+    
+	Detail string `json:"detail"`
+}
+
+
+type CategoryChangeStatus {
+	Id int64 `json:"id"`
+    
+	Status int32 `json:"status"`
+}
+
+

@@ -1,0 +1,10 @@
+Name: product-api
+Host: 0.0.0.0
+Port: 8891
+
+
+ProductRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: product.rpc

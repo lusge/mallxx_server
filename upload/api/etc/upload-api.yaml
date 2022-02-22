@@ -1,0 +1,9 @@
+Name: upload-api
+Host: 0.0.0.0
+Port: 8890
+
+Qiniu:
+  AccessKey: FvN9VuP5fDQnXytW9u7TkboQuMuX3PkKsrsXyvUb
+  SecretKey: 3ux9-_j2bByr43kY4dZMUDgEQ9UltjsiMOEqoYUD
+  Bucket: mallxximage
+  Host: http://static.a22c.com

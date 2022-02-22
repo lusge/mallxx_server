@@ -1,0 +1,115 @@
+syntax = "proto3";
+
+package pb;
+option go_package = "./pb";
+
+
+message Member {
+    // @inject_tag: json:"id" 
+    int64 id = 1;
+    // @inject_tag: json:"username" 
+    string username = 2;
+    // @inject_tag: json:"password" 
+    string password = 3;
+    // @inject_tag: json:"phone" 
+    string phone = 4;
+    // @inject_tag: json:"email" 
+    string email = 5;
+    // @inject_tag: json:"avatar" 
+    string avatar = 6;
+    // @inject_tag: json:"status" 
+    int32 status = 7;
+    // @inject_tag: json:"add_time" 
+    int64 add_time = 8;
+    // @inject_tag: json:"member_level" 
+    int64 member_level = 9;
+    // @inject_tag: json:"gender" 
+    int32 gender = 10;
+    // @inject_tag: json:"birthday" 
+    int32 birthday = 11;
+    // @inject_tag: json:"token"  xorm:"-"
+    string token = 12;
+    // @inject_tag: json:"integral" 
+    int32 integral = 13;
+    // @inject_tag: json:"coupon" 
+    int32 coupon = 14;
+    // @inject_tag: json:"followers" 
+    int32 followers = 15;
+    // @inject_tag: json:"nickname" 
+    string nickname = 16;
+}
+
+message MemberLoginRequest {
+    // @inject_tag: json:"username"
+    string username = 1;
+    // @inject_tag: json:"password"
+    string password = 2;
+    // @inject_tag: json:"phone"
+    string phone = 3;
+    // @inject_tag: json:"email"
+    string email = 4;
+}
+
+message MemberResponse {
+    // @inject_tag: json:"code"
+    int32 code = 1;
+    // @inject_tag: json:"data"
+    MemberData data = 2;
+    // @inject_tag: json:"detail"
+    string detail = 3;
+}
+
+
+message MemberLevel {
+    // @inject_tag: json:"id" db:"id"
+    int64 id = 1;
+    // @inject_tag: json:"growth_point" db:"growth_point"
+    int32 growth_point = 2;
+    // @inject_tag: json:"default_status" db:"default_status"
+    int32 default_status = 3;
+    // @inject_tag: json:"free_freight_point" db:"free_freight_point"
+    float free_freight_point = 4;
+    // @inject_tag: json:"comment_growth_point" db:"comment_growth_point"
+    int32 comment_growth_point = 5;
+    // @inject_tag: json:"priviledge_free_freight" db:"priviledge_free_freight"
+    int32 priviledge_free_freight = 6;
+    // @inject_tag: json:"priviledge_sign_in" db:"priviledge_sign_in"
+    int32 priviledge_sign_in = 7;
+    // @inject_tag: json:"priviledge_comment" db:"priviledge_comment"
+    int32 priviledge_comment = 8;
+    // @inject_tag: json:"priviledge_promotion" db:"priviledge_promotion"
+    int32 priviledge_promotion = 9;
+    // @inject_tag: json:"priviledge_member_price" db:"priviledge_member_price"
+    int32 priviledge_member_price = 10;
+    // @inject_tag: json:"priviledge_birthday" db:"priviledge_birthday"
+    int32 priviledge_birthday = 11;
+    // @inject_tag: json:"note" db:"note"
+    string note = 12;
+    // @inject_tag: json:"name" db:"name"
+    string name = 13;
+}
+
+message MemberData {
+    // @inject_tag: json:"member" 
+    Member member = 1;
+    // @inject_tag: json:"member_level" 
+    MemberLevel member_level =2;
+}
+
+message SignTokenRequest {
+    string token = 1;
+    int64 id = 2;
+}
+
+
+message Response {
+    int32 code = 1;
+    string detail = 2;
+}
+
+service SignService {
+    rpc Login (MemberLoginRequest) returns (MemberResponse);
+    rpc Register (Member) returns (MemberResponse);
+    rpc VerifyToken (SignTokenRequest) returns (Response);
+    rpc CleanToken (SignTokenRequest) returns (Response);
+}

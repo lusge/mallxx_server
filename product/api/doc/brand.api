@@ -1,0 +1,62 @@
+syntax = "v1"
+
+type Brand {
+	Id int64 `json:"id,optional"`
+	
+	FirstLetter string `json:"first_letter,optional"`
+    
+	Sort int32 `json:"sort,optional"`
+    
+	FactoryStatus int32 `json:"factory_status,optional"`
+    
+	ShowStatus int32 `json:"show_status,optional"`
+    
+	ProductCount int64 `json:"product_count,optional"`
+    
+	ProductCommentCount int64 `json:"product_comment_count,optional"`
+    
+	Logo string `json:"logo,optional"`
+    
+	BigPic string `json:"big_pic,optional"`
+    
+	BrandStory string `json:"brand_story,optional"`
+    
+	Name string `json:"name,optional"`
+    
+	Url string `json:"url,optional"`
+}
+
+
+type BrandRequest  {
+	PageNum  int32  `json:"page_num,optional" form:"page_num,optional"`
+	PageSize int32  `json:"page_size,optional" form:"page_size,optional"`
+	Keyword  string `json:"keyword,optional" form:"keyword,optional"`
+	Id       int64  `json:"id,optional" form:"id,optional"`
+}
+
+
+type BrandStatusRequest {
+	Id     int64 `json:"id,optional"`
+	Status int32 `json:"status,optional"`
+}
+
+type BrandListResponse  {
+    
+	Code int32 `json:"code,optional"`
+    
+	Data []*Brand `json:"data,optional"`
+    
+	Detail string `json:"detail"`
+    
+	Total int64 `json:"total"`
+}
+
+
+type BrandOneResponse  {
+	Code int32 `json:"code"`
+    
+	Data *Brand `json:"data"`
+    
+	Detail string `json:"detail"`
+}
+

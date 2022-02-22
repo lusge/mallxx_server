@@ -1,0 +1,14 @@
+syntax = "v1"
+
+type MemberPrice {
+	Id int64 `json:"id,optional"`
+    
+	ProductId int64 `json:"product_id,optional"`
+    
+	MemberLevelId int64 `json:"member_level_id,optional"`
+    
+	MemberPrice float32 `json:"member_price,optional"`
+    
+	MemberLevelName string `json:"member_level_name,optional"`
+}
+

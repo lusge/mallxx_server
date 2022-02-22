@@ -1,0 +1,46 @@
+syntax = "v1"
+
+
+type CategoryAttribute  {
+	Id int64 `json:"id,optional"`
+    
+	Name string `json:"name,optional"`
+    
+	AttributeCount int32 `json:"attribute_count,optional"`
+    
+	ParamCount int32 `json:"param_count,optional"`
+}
+
+
+type CategoryAttributeListResponse  {
+	Code   int32                `json:"code"`
+	Data   []*CategoryAttribute `json:"data"`
+	Total  int64                `json:"total"`
+	Detail string               `json:"detail"`
+}
+
+
+type CategoryAttributeInfoResponse struct {
+	Code   int32              `json:"code"`
+	Data   *CategoryAttribute `json:"data"`
+	Detail string             `json:"detail"`
+}
+
+
+type CategoryAttrAndProductAttr  {
+    
+	CategoryAttr *CategoryAttribute `json:"category_attr,optional"`
+    
+	Children []*ProductAttribute `json:"children,optional"`
+}
+
+
+type CategoryAttrAndProductAttrListResponse  {
+    
+	Code int32 `json:"code"`
+    
+	Data []*CategoryAttrAndProductAttr `json:"data"`
+    
+	Detail string `json:"detail"`
+}
+

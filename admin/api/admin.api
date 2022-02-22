@@ -1,0 +1,46 @@
+syntax = "v1"
+
+type (
+	AdminInfo {
+		Roles string `json:"roles"`
+
+		Introduction string `json:"introduction"`
+
+		Avatar string `json:"avatar"`
+
+		Name string `json:"name,omitempty"`
+
+		Id int64 `json:"id"`
+
+		Username string `json:"username"`
+
+		Password string `json:"password"`
+
+		Token string `json:"token" xorm:"-"`
+	}
+
+	AdminInfoResponse {
+		Code   int32      `json:"code"`
+		Data   *AdminInfo `json:"data"`
+		Detail string     `json:"detail"`
+	}
+
+	AdmminLoginReqeust {
+		Username string `json:"username"`
+		Password string `json:"password"`
+	}
+)
+
+@server(
+	prefix: /admin
+)
+service admin-api {
+	@handler Login
+	post /login (AdmminLoginReqeust) returns (AdminInfoResponse)
+	
+	@handler verify
+	get /token/verify returns (int64)
+	
+	@handler GetInfo
+	get /info returns (AdminInfoResponse)
+}

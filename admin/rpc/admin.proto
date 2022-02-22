@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package pb;
+option go_package = "./pb";
+
+message Response {
+    int32 code = 1;
+    string detail = 2;
+}
+
+message EmptyRequest {
+}
+
+message AdminInfo {
+    // @inject_tag: json:"roles" db:"roles"
+    string roles = 1;
+    // @inject_tag: json:"introduction" db:"introduction"
+    string introduction = 2;
+    // @inject_tag: json:"avatar" db:"avatar"
+    string avatar = 3;
+    // @inject_tag: json:"name" db:"name"
+    string name = 4;
+    // @inject_tag: json:"id" db:"id"
+    int64 id = 5;
+    // @inject_tag: json:"username" db:"username"
+    string username = 6;
+    // @inject_tag: json:"password" db:"password"
+    string password = 7;
+    // @inject_tag: json:"token" xorm:"-"
+    string token = 8;
+}
+
+message AdminInfoResponse {
+    int32 code = 1;
+    AdminInfo data = 2;
+    string detail = 3;
+}
+
+message AdminTokenRequest {
+    string token = 1;
+    int64 id = 2;
+}
+
+service AdminService {
+    rpc Login(AdminInfo) returns(AdminInfoResponse);
+    rpc GetInfo(AdminInfo) returns(AdminInfoResponse);
+    rpc Create (AdminInfo) returns (AdminInfoResponse);
+    rpc Update (AdminInfo) returns (Response);
+    rpc Delete (AdminInfo) returns (Response);
+    rpc VerifyToken (AdminTokenRequest) returns (Response);
+    rpc CleanToken (AdminTokenRequest) returns (Response);
+}

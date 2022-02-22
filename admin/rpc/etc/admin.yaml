@@ -1,0 +1,19 @@
+Name: admin.rpc
+ListenOn: 127.0.0.1:8080
+Etcd:
+  Hosts:
+  - 127.0.0.1:2379
+  Key: admin.rpc
+
+Mysql:
+  DataSource: root:luxixi1990@tcp(127.0.0.1:3306)/mallxx_admin?charset=utf8mb4&parseTime=true
+
+JwtAuth:
+  AccessSecret: balkdsjalskjdflklsvlkjlkcvjelrjflas
+  AccessExpire: 31536000
+
+Redis:
+  Host: 127.0.0.1:6379
+  Type: node
+  Pass: 
+

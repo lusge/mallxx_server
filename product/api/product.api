@@ -1,0 +1,201 @@
+syntax = "v1"
+
+import (
+	"doc/brand.api"
+	"doc/category_attribute.api"
+	"doc/category.api"
+	"doc/member_price.api"
+	"doc/product_attribute_value.api"
+	"doc/product_attribute.api"
+	"doc/product_full_reduction.api"
+	"doc/product_ladder.api"
+	"doc/product_recommend.api"
+	"doc/product.api"
+	"doc/sku_stock.api"
+)
+
+type ListRequest {
+	PageNum  int32  `json:"page_num,optional" form:"page_num,optional"`
+	PageSize int32  `json:"page_size,optional" form:"page_size,optional"`
+	Keyword  string `json:"keyword,optional" form:"keyword,optional"`
+	Pid      int64  `json:"pid,optional" form:"pid,optional"`
+}
+
+type Response {
+	Code   int32  `json:"code,optional"`
+	Detail string `json:"detail,optional"`
+}
+
+@server(
+	group: brand
+	prefix: /product/brand
+)
+service product-api {
+	@handler GetBrandList
+	get /list (BrandRequest) returns (BrandListResponse)
+	
+	@handler GetBrandInfo
+	get /info (BrandRequest) returns (BrandOneResponse)
+	
+	@handler UpdateBrandShowStatus
+	post /update/show/status (BrandStatusRequest) returns (Response)
+	
+	@handler UpdateBrandFactoryStatus
+	post /update/factory/status (BrandStatusRequest) returns (Response)
+	
+	@handler DeleteBrand
+	post /delete (BrandRequest) returns (Response)
+	
+	@handler UpdateBrand
+	post /update (Brand) returns (Response)
+	
+	@handler AddBrand
+	post /add (Brand) returns (Response)
+	
+}
+
+@server(
+	group: categoryAttribute
+	prefix: /product/categoryAttribute
+)
+service product-api {
+	@handler GetCategoryAttributeList
+	get /list (ListRequest) returns (CategoryAttributeListResponse)
+	
+	@handler GetCategoryAttributeInfo
+	get /info (CategoryAttribute) returns (CategoryAttributeListResponse)
+	
+	@handler EditCategoryAttribute
+	post /edit (CategoryAttribute) returns (Response)
+	
+	@handler DelCategoryAttribute
+	post /delete (CategoryAttribute) returns (Response)
+	
+	@handler GetCategoryAttributeAndProductAttribute
+	get /and/product/attr returns (CategoryAttrAndProductAttrListResponse)
+}
+
+type IdRequest {
+	Id int64 `json:"id" form:"id"`
+}
+
+@server (
+	group: category
+	prefix: /product/category
+)
+service product-api {
+	@handler GetCategoryList
+	get /list (ListRequest) returns (CategoryResponse)
+	
+	@handler GetCategoryInfo
+	get /info (IdRequest) returns (CategoryInfoResponse)
+	
+	@handler AddCategory
+	post /add (Category) returns (Response)
+	
+	@handler UpdateCategory
+	post /update (Category) returns (Response)
+	
+	@handler DelCategory
+	post /delete (IdRequest) returns (Response)
+	
+	@handler ChangeCategoryNavStatus
+	post /change/nav/status (CategoryChangeStatus) returns (Response)
+	
+	@handler ChangeCategoryShowStatus
+	post /change/show/status (CategoryChangeStatus) returns (Response)
+	
+	@handler GetCategoryListWithChildren
+	get /list/children returns (CategoryResponse)
+}
+
+@server(
+	group: productAttribute
+	prefix: /product/productAttribute
+)
+service product-api {
+	@handler GetProductAttributeList
+	get /list (AttrRequest) returns (ProductAttributeListResponse)
+	
+	@handler AddProductAttribute
+	post /add (ProductAttribute) returns (Response)
+	
+	@handler UpdateProductAttribute
+	post /update (ProductAttribute) returns (Response)
+	
+	@handler DeleteProductAttribute
+	post /delete (IdRequest) returns (Response)
+	
+	@handler GetProductAttributeInfo
+	get /info (IdRequest) returns (ProductAttributeInfoResponse)
+}
+
+@server(
+	group: product
+	prefix: /product/product
+)
+service product-api {
+	@handler GetProductList
+	get /list (ProductListRequest) returns (ProductListRespone)
+	
+	@handler GetProductInfo
+	get /info (ProductInfoRequest) returns (ProductInfoResponse)
+	
+	@handler ChangeProductPublishStatus
+	post /change/publish-status (ProductChangeStatusRequest) returns (Response)
+	
+	@handler ChangeProductVerifyStatus
+	post /change/verify-status (ProductChangeStatusRequest) returns (Response)
+	
+	@handler ChangeProductNewStatus
+	post /change/new-status (ProductChangeStatusRequest) returns (Response)
+	
+	@handler ChangeProductRecommendStatus
+	post /change/recommend-status (ProductChangeStatusRequest) returns (Response)
+	
+	@handler AddProduct
+	post /add (Product) returns (Response)
+	
+	@handler UpdateProduct
+	post /update (Product) returns (Response)
+	
+	@handler DeleteProduct
+	post /delete (ProductInfoRequest) returns (Response)
+	
+	@handler GetProductApiList
+	get /api/list (ProductApiRequest) returns (ProductListRespone)
+	
+}
+
+@server (
+	group: sku
+	prefix: /product/sku
+)
+service product-api {
+	@handler UpdateSku
+	post /update (SkuStockListRequest) returns (Response)
+	
+	@handler GetSku
+	get /list (SkuStockRequest) returns (SkuStockListResponse)
+}
+
+@server (
+	group: recommend
+	prefix: /product/recommend
+)
+service product-api {
+	@handler GetApiRecommendList
+	get /api/list (ProductListRequest) returns (ProductListRespone)
+	
+	@handler GetRecommendList
+	get /list (ProductListRequest) returns (RecommendListResponse)
+	
+	@handler SetRecommendSort
+	post /set/sort (RecommendSetSortRequest) returns (Response)
+	
+	@handler AddRecommend
+	post /add (RecommendRequest) returns (Response)
+	
+	@handler DeleteRecommend
+	post /delete (RecommendRequest) returns (Response)
+}

@@ -1,0 +1,38 @@
+syntax = "v1"
+
+
+type ProductRecommend  {
+	// @inject_tag: json:"id"
+	Id int64 `json:"id,optional"`
+	// @inject_tag: json:"product_id"
+	ProductId int64 `protobuf:"varint,2,opt,name=product_id,json=productId,proto3" json:"product_id,optional"`
+	// @inject_tag: json:"product_name"
+	ProductName string `protobuf:"bytes,3,opt,name=product_name,json=productName,proto3" json:"product_name,optional"`
+	// @inject_tag: json:"sort"
+	Sort int32 `protobuf:"varint,4,opt,name=sort,proto3" json:"sort,optional"`
+}
+
+
+//insert and delete
+type RecommendRequest {
+	ProductIds []int64 `protobuf:"varint,1,rep,packed,name=product_ids,json=productIds,proto3" json:"product_ids,optional"`
+}
+
+
+type RecommendSetSortRequest {
+	Id   int64 `json:"id,optional"`
+	Sort int32 `protobuf:"varint,2,opt,name=sort,proto3" json:"sort,optional"`
+}
+
+
+type RecommendListResponse {
+	// @inject_tag: json:"code"
+	Code int32 `protobuf:"varint,1,opt,name=code,proto3" json:"code"`
+	// @inject_tag: json:"data"
+	Data []*ProductRecommend `protobuf:"bytes,2,rep,name=data,proto3" json:"data"`
+	// @inject_tag: json:"total"
+	Total int64 `protobuf:"varint,3,opt,name=total,proto3" json:"total"`
+	// @inject_tag: json:"detail"
+	Detail string `protobuf:"bytes,4,opt,name=detail,proto3" json:"detail"`
+}
+

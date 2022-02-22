@@ -1,0 +1,10 @@
+Name: member-api
+Host: 0.0.0.0
+Port: 8892
+
+
+MemberRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: member.rpc

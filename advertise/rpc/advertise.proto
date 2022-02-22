@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+package pb;
+option go_package = "./pb";
+
+message Advertise {
+    // @inject_tag: json:"id" db:"id"
+    int64 id = 1;
+    // @inject_tag: json:"name" db:"name"
+    string name = 2;
+    // @inject_tag: json:"img" db:"img"
+    string img = 3;
+    // @inject_tag: json:"pos" db:"pos"
+    int32 pos = 4;
+    // @inject_tag: json:"category_id" db:"category_id"
+    int64 category_id = 5;
+    // @inject_tag: json:"type" db:"type"
+    int32 type = 6;
+    // @inject_tag: json:"url" db:"url"
+    string url = 7;
+    // @inject_tag: json:"go_id" db:"go_id"
+    int32 go_id = 8;
+    // @inject_tag: json:"status" db:"status"
+    int32 status = 9;
+    // @inject_tag: json:"start_time" db:"start_time"
+    string start_time = 10; 
+    // @inject_tag: json:"end_time" db:"end_time"
+    string end_time = 11;
+    // @inject_tag: json:"add_time" db:"add_time"
+    string add_time = 12;
+}
+
+message AdRequest {
+    // @inject_tag: form:"pos"
+    int32 pos = 1; //
+    // @inject_tag: form:"category_id"
+    int64 category_id = 2;
+    // @inject_tag: form:"status"
+    int32 status = 3;
+    // @inject_tag: form:"page_size"
+    int32 page_size = 4;
+    // @inject_tag: form:"page_num"
+    int32 page_num = 5;
+    // @inject_tag: form:"start_time"
+    string start_time = 6;
+    // @inject_tag: form:"end_time"
+    string end_time = 7;
+    // @inject_tag: form:"name"
+    string name = 8;
+}
+
+message AdOneRequest {
+    // @inject_tag: form:"id"
+    int64 id = 1;
+}
+
+message AdResponse {
+    // @inject_tag: json:"code"
+    int32 code = 1;
+    // @inject_tag: json:"data"
+    repeated Advertise data = 2;
+    // @inject_tag: json:"total"
+    int64 total = 3;
+    // @inject_tag: json:"detail"
+    string detail = 4;
+}
+
+message AdInfoResponse {
+    // @inject_tag: json:"code"
+    int32 code = 1;
+    // @inject_tag: json:"data"
+    Advertise data = 2;
+    // @inject_tag: json:"detail"
+    string detail = 3;
+}
+
+message Response {
+    // @inject_tag: json:"code"
+    int32 code = 1;
+    // @inject_tag: json:"detail"
+    string detail = 3;
+}
+
+service AdvertiseService {
+    rpc AdminGetList (AdRequest) returns (AdResponse);
+    rpc ApiGetList (AdRequest) returns (AdResponse);
+    rpc GetInfo (AdOneRequest) returns (AdInfoResponse);
+    rpc Add (Advertise) returns (Response);
+    rpc Delete (AdOneRequest) returns (Response);
+    rpc Update (Advertise) returns (Response);
+}

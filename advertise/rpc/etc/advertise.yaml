@@ -1,0 +1,15 @@
+Name: advertise.rpc
+ListenOn: 127.0.0.1:8081
+
+Redis:
+  Host: 127.0.0.1:6379
+  Type: node
+  Pass:
+
+Mysql:
+  DataSource: root:luxixi1990@tcp(127.0.0.1:3306)/mallxx_advertise?charset=utf8mb4&interpolateParams=true
+
+Etcd:
+  Hosts:
+  - 127.0.0.1:2379
+  Key: advertise.rpc

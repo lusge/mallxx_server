@@ -1,0 +1,54 @@
+syntax = "v1"
+
+import (
+	"doc/follower.api"
+	"doc/member_level.api"
+	"doc/member.api"
+	"doc/receive_address.api"
+)
+
+type ListRequest {
+	// @inject_tag: form:"pageNum"
+	PageNum int32 `protobuf:"varint,1,opt,name=page_num,json=pageNum,proto3" json:"page_num,omitempty" form:"pageNum"`
+	// @inject_tag: form:"pageSize"
+	PageSize int32 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty" form:"pageSize"`
+	// @inject_tag: form:"keyword"
+	Keyword string `protobuf:"bytes,3,opt,name=keyword,proto3" json:"keyword,omitempty" form:"keyword"`
+	// @inject_tag: form:"pid"
+	Pid int64 `protobuf:"varint,4,opt,name=pid,proto3" json:"pid,omitempty" form:"pid"`
+}
+
+type Response {
+	Code   int32  `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Detail string `protobuf:"bytes,2,opt,name=detail,proto3" json:"detail,omitempty"`
+}
+
+type EmptyRequest {
+}
+
+@server(
+	group: member
+	prefix: /member
+)
+service member-api{
+	@handler GetMemverLevelList
+	get /level/list (EmptyRequest) returns (MemverLeveListResponse)
+	
+	@handler GetMemberInfo
+	get /info (MemberRequest) returns (MemberResponse)
+	
+	@handler GetMemberList
+	get /list (MemberRequest) returns (MemberResponse)
+	
+	@handler GetAddressList
+	get /address/list (MemberRequest) returns (ReceiveAddressListResponse)
+	
+	@handler AddAddress
+	post /address/add  (ReceiveAddress) returns (ReceiveAddressResponse)
+	
+	@handler DelAddress
+	post /address/del (ReceiveAddressRequest) returns (Response)
+	
+	@handler GetFollower
+	get /follower/list (MemberRequest) returns (FollowerResponse)
+}
