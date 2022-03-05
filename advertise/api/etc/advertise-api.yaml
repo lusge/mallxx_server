@@ -1,0 +1,9 @@
+Name: advertise
+Host: 0.0.0.0
+Port: 8889
+
+AdvertiseRpc:
+  Etcd:
+    Hosts:
+      - etcd-server:2379
+    Key: advertise.rpc

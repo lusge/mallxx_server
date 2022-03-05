@@ -1,0 +1,222 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: db
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=luxixi1990
+    networks:
+      - mallxx_net
+
+  etcd-server:
+    image: bitnami/etcd:latest
+    container_name: etcd-server
+    ports:
+      - 2379:2379
+      - 2380:2380
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd-server:2379
+    networks:
+      - mallxx_net
+
+  redis:
+    image: redis
+    container_name: redis
+    restart: always
+    ports:
+      - 6379:6379
+    networks:
+      - mallxx_net
+      
+  admin-rpc:
+    image: cosmtrek/air:latest
+    container_name: admin-rpc
+    environment:
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /go/src/mallxx_server/admin/rpc
+    volumes:
+      - ./../../:/go/src/mallxx_server
+    privileged: true
+    restart: always
+    links:
+      - db
+      - etcd-server
+      - redis
+    depends_on:
+      - db
+      - etcd-server
+      - redis
+    networks:
+      - mallxx_net
+      
+  admin-api:
+    image: cosmtrek/air:latest
+    container_name: admin-api
+    environment:
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /go/src/mallxx_server/admin/api
+    volumes:
+      - ./../../:/go/src/mallxx_server
+    privileged: true
+    restart: always
+    ports:
+      - 8888:8888
+    links:
+      - etcd-server
+    depends_on:
+      - admin-rpc
+    networks:
+      - mallxx_net
+
+  advertise-rpc:
+    image: cosmtrek/air:latest
+    container_name: advertise-rpc
+    environment:
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /go/src/mallxx_server/advertise/rpc
+    volumes:
+      - ./../../:/go/src/mallxx_server
+    privileged: true
+    restart: always
+    links:
+      - db
+      - etcd-server
+      - redis
+    depends_on:
+      - db
+      - etcd-server
+      - redis
+    networks:
+      - mallxx_net
+
+  advertise-api:
+    image: cosmtrek/air:latest
+    container_name: advertise-api
+    environment:
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /go/src/mallxx_server/advertise/api
+    volumes:
+      - ./../../:/go/src/mallxx_server
+    privileged: true
+    restart: always
+    ports:
+      - 8889:8889
+    links:
+      - etcd-server
+    depends_on:
+      - advertise-rpc
+    networks:
+      - mallxx_net
+  
+  upload-api:
+    image: cosmtrek/air:latest
+    container_name: upload-api
+    environment:
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /go/src/mallxx_server/upload/api
+    volumes:
+      - ./../../:/go/src/mallxx_server
+    privileged: true
+    restart: always
+    ports:
+      - 8890:8890
+    networks:
+      - mallxx_net
+
+  product-rpc:
+    image: cosmtrek/air:latest
+    container_name: product-rpc
+    environment:
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /go/src/mallxx_server/product/rpc
+    volumes:
+      - ./../../:/go/src/mallxx_server
+    privileged: true
+    restart: always
+    links:
+      - db
+      - etcd-server
+      - redis
+    depends_on:
+      - db
+      - etcd-server
+      - redis
+    networks:
+      - mallxx_net
+
+  product-api:
+    image: cosmtrek/air:latest
+    container_name: product-api
+    environment:
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /go/src/mallxx_server/product/api
+    volumes:
+      - ./../../:/go/src/mallxx_server
+    privileged: true
+    restart: always
+    ports:
+      - 8891:8891
+    links:
+      - etcd-server
+    depends_on:
+      - product-rpc
+    networks:
+      - mallxx_net
+
+  member-rpc:
+    image: cosmtrek/air:latest
+    container_name: member-rpc
+    environment:
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /go/src/mallxx_server/member/rpc
+    volumes:
+      - ./../../:/go/src/mallxx_server
+    privileged: true
+    restart: always
+    links:
+      - db
+      - etcd-server
+      - redis
+    depends_on:
+      - db
+      - etcd-server
+      - redis
+    networks:
+      - mallxx_net
+
+  member-api:
+    image: cosmtrek/air:latest
+    container_name: member-api
+    environment:
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /go/src/mallxx_server/member/api
+    volumes:
+      - ./../../:/go/src/mallxx_server
+    privileged: true
+    restart: always
+    ports:
+      - 8892:8892
+    links:
+      - etcd-server
+    depends_on:
+      - member-rpc
+    networks:
+      - mallxx_net
+
+networks:
+  mallxx_net:
+    driver: bridge

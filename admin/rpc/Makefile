@@ -3,7 +3,7 @@ run:
 	go run admin.go -f etc/admin.yaml
 
 build:
-	go build .
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o admin .
 
 proto:
 	goctl rpc protoc admin.proto --go_out=./ --go-grpc_out=./ --zrpc_out=.

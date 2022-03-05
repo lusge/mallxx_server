@@ -14,7 +14,7 @@ import (
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 
-var configFile = flag.String("f", "etc/advertise.yaml", "the config file")
+var configFile = flag.String("f", "etc/advertise-api.yaml", "the config file")
 
 func main() {
 	flag.Parse()

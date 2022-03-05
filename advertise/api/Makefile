@@ -1,6 +1,6 @@
 .PHONY: run build proto
 run:
-	go run advertise.go -f etc/advertise.yaml
+	go run advertise.go -f etc/advertise-api.yaml
 
 build:
 	go build .

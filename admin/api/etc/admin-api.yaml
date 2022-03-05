@@ -1,11 +1,11 @@
 Name: api-api
-Host: 127.0.0.1
+Host: 0.0.0.0
 Port: 8888
 
 AdminRpc:
   Etcd:
     Hosts:
-      - 127.0.0.1:2379
+      - etcd-server:2379
     Key: admin.rpc
 
 #jwtAuth

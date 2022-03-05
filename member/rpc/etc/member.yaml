@@ -1,15 +1,15 @@
 Name: member.rpc
-ListenOn: 127.0.0.1:8084
+ListenOn: 0.0.0.0:8084
 Etcd:
   Hosts:
-  - 127.0.0.1:2379
+  - etcd-server:2379
   Key: member.rpc
 
 Redis:
-  Host: 127.0.0.1:6379
+  Host: redis:6379
   Type: node
   Pass:
 
 Mysql:
-  DataSource: root:luxixi1990@tcp(127.0.0.1:3306)/mallxx_member?charset=utf8mb4&interpolateParams=true
+  DataSource: root:luxixi1990@tcp(db:3306)/mallxx_member?charset=utf8mb4&interpolateParams=true
 

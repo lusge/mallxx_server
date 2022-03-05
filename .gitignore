@@ -1,1 +1,13 @@
 .DS_Store
+advertise/advertise
+advertise/rpc/tmp
+advertise/api/tmp
+admin/rpc/tmp
+admin/api/tmp
+product/rpc/tmp
+product/api/tmp
+member/rpc/tmp
+member/api/tmp
+
+upload/rpc/tmp
+upload/api/tmp
