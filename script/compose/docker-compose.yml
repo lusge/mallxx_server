@@ -217,6 +217,49 @@ services:
     networks:
       - mallxx_net
 
+
+  sign-rpc:
+    image: cosmtrek/air:latest
+    container_name: sign-rpc
+    environment:
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /go/src/mallxx_server/sign/rpc
+    volumes:
+      - ./../../:/go/src/mallxx_server
+    privileged: true
+    restart: always
+    links:
+      - db
+      - etcd-server
+      - redis
+    depends_on:
+      - db
+      - etcd-server
+      - redis
+    networks:
+      - mallxx_net
+
+  sign-api:
+    image: cosmtrek/air:latest
+    container_name: sign-api
+    environment:
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /go/src/mallxx_server/sign/api
+    volumes:
+      - ./../../:/go/src/mallxx_server
+    privileged: true
+    restart: always
+    ports:
+      - 8893:8893
+    links:
+      - etcd-server
+    depends_on:
+      - sign-rpc
+    networks:
+      - mallxx_net
+
 networks:
   mallxx_net:
     driver: bridge

@@ -11,3 +11,6 @@ member/api/tmp
 
 upload/rpc/tmp
 upload/api/tmp
+
+sign/rpc/tmp
+sign/api/tmp

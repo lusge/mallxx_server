@@ -270,16 +270,16 @@ type ProductInfoRequest struct {
 }
 
 type ProductListRequest struct {
-	PageNum         int32  `json:"page_num,optional" from:"page_num,optional"`
-	PageSize        int32  `json:"page_size,optional" from:"page_size,optional"`
-	Name            string `json:"name,optional" from:"name,optional"`
-	Sn              string `json:"sn,optional" from:"sn,optional"`
-	CategoryId      int64  `json:"category_id,optional" from:"category_id,optional"`
-	BrandId         int64  `json:"brand_id,optional" from:"brand_id,optional"` 
-	PublishStatus   int32  `json:"publish_status,optional" from:"publish_status,optional"`
-	VerifyStatus    int32  `json:"verify_status,optional" from:"verify_status,optional"`
-	RecommendStatus int32  `json:"recommend_status,optional" from:"recommend_status,optional"`
-	NewStatus       int32  `json:"new_status,optional" from:"new_status,optional"`
+	PageNum         int32  `json:"page_num,optional" form:"page_num,optional"`
+	PageSize        int32  `json:"page_size,optional" form:"page_size,optional"`
+	Name            string `json:"name,optional" form:"name,optional"`
+	Sn              string `json:"sn,optional" form:"sn,optional"`
+	CategoryId      int64  `json:"category_id,optional" form:"category_id,optional"`
+	BrandId         int64  `json:"brand_id,optional" form:"brand_id,optional"` 
+	PublishStatus   int32  `json:"publish_status,optional" form:"publish_status,optional"`
+	VerifyStatus    int32  `json:"verify_status,optional" form:"verify_status,optional"`
+	RecommendStatus int32  `json:"recommend_status,optional" form:"recommend_status,optional"`
+	NewStatus       int32  `json:"new_status,optional" form:"new_status,optional"`
 }
 
 type ProductChangeStatusRequest struct {
