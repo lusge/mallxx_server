@@ -34,6 +34,8 @@ func (l *VerifyTokenLogic) VerifyToken(in *pb.SignTokenRequest) (*pb.Response, e
 	if uid != strconv.FormatInt(in.Id, 10) {
 		return nil, merrorx.NewCodeError(401, "Verify totken is Failed")
 	}
+
+	// fmt.Println(uid, err, strconv.FormatInt(in.Id, 10))
 	return &pb.Response{
 		Code:   200,
 		Detail: "ok",

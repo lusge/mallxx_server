@@ -1,10 +1,10 @@
-package member
+package follower
 
 import (
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
-	"mallxx_server/member/api/internal/logic/member"
+	"mallxx_server/member/api/internal/logic/follower"
 	"mallxx_server/member/api/internal/svc"
 	"mallxx_server/member/api/internal/types"
 )
@@ -17,7 +17,7 @@ func GetFollowerHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		l := member.NewGetFollowerLogic(r.Context(), svcCtx)
+		l := follower.NewGetFollowerLogic(r.Context(), svcCtx)
 		resp, err := l.GetFollower(req)
 		if err != nil {
 			httpx.Error(w, err)

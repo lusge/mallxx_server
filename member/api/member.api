@@ -31,8 +31,6 @@ type EmptyRequest {
 	prefix: /member
 )
 service member-api{
-	@handler GetMemverLevelList
-	get /level/list (EmptyRequest) returns (MemverLeveListResponse)
 	
 	@handler GetMemberInfo
 	get /info (MemberRequest) returns (MemberResponse)
@@ -40,15 +38,43 @@ service member-api{
 	@handler GetMemberList
 	get /list (MemberRequest) returns (MemberResponse)
 	
+}
+
+@server(
+	group:address
+	prefix: /member/address
+)
+service member-api {
 	@handler GetAddressList
-	get /address/list (MemberRequest) returns (ReceiveAddressListResponse)
+	get /list (MemberRequest) returns (ReceiveAddressListResponse)
 	
 	@handler AddAddress
-	post /address/add  (ReceiveAddress) returns (ReceiveAddressResponse)
+	post /add  (ReceiveAddress) returns (Response)
 	
 	@handler DelAddress
-	post /address/del (ReceiveAddressRequest) returns (Response)
+	post /del (ReceiveAddressRequest) returns (Response)
 	
+	@handler SetDefault
+	post /default (ReceiveAddressRequest) returns (Response)
+	
+	@handler Update
+	post /update (ReceiveAddress) returns (Response)
+}
+
+@server(
+	group:level
+	prefix: /member/level
+)
+service member-api {
+	@handler GetMemverLevelList
+	get /level/list (EmptyRequest) returns (MemverLeveListResponse)
+}
+
+@server(
+	group:follower
+	prefix: /member/follower
+)
+service member-api {
 	@handler GetFollower
 	get /follower/list (MemberRequest) returns (FollowerResponse)
 }

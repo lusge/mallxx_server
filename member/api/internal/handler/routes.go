@@ -4,6 +4,9 @@ package handler
 import (
 	"net/http"
 
+	address "mallxx_server/member/api/internal/handler/address"
+	follower "mallxx_server/member/api/internal/handler/follower"
+	level "mallxx_server/member/api/internal/handler/level"
 	member "mallxx_server/member/api/internal/handler/member"
 	"mallxx_server/member/api/internal/svc"
 
@@ -15,11 +18,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		[]rest.Route{
 			{
 				Method:  http.MethodGet,
-				Path:    "/level/list",
-				Handler: member.GetMemverLevelListHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodGet,
 				Path:    "/info",
 				Handler: member.GetMemberInfoHandler(serverCtx),
 			},
@@ -28,27 +26,60 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/list",
 				Handler: member.GetMemberListHandler(serverCtx),
 			},
+		},
+		rest.WithPrefix("/member"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
 			{
 				Method:  http.MethodGet,
-				Path:    "/address/list",
-				Handler: member.GetAddressListHandler(serverCtx),
+				Path:    "/list",
+				Handler: address.GetAddressListHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodPost,
-				Path:    "/address/add",
-				Handler: member.AddAddressHandler(serverCtx),
+				Path:    "/add",
+				Handler: address.AddAddressHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodPost,
-				Path:    "/address/del",
-				Handler: member.DelAddressHandler(serverCtx),
+				Path:    "/del",
+				Handler: address.DelAddressHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/default",
+				Handler: address.SetDefaultHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/update",
+				Handler: address.UpdateHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/member/address"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodGet,
+				Path:    "/level/list",
+				Handler: level.GetMemverLevelListHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/member/level"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
 			{
 				Method:  http.MethodGet,
 				Path:    "/follower/list",
-				Handler: member.GetFollowerHandler(serverCtx),
+				Handler: follower.GetFollowerHandler(serverCtx),
 			},
 		},
-		rest.WithPrefix("/member"),
+		rest.WithPrefix("/member/follower"),
 	)
 }

@@ -1,10 +1,10 @@
-package member
+package address
 
 import (
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
-	"mallxx_server/member/api/internal/logic/member"
+	"mallxx_server/member/api/internal/logic/address"
 	"mallxx_server/member/api/internal/svc"
 	"mallxx_server/member/api/internal/types"
 )
@@ -17,7 +17,7 @@ func DelAddressHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		l := member.NewDelAddressLogic(r.Context(), svcCtx)
+		l := address.NewDelAddressLogic(r.Context(), svcCtx)
 		resp, err := l.DelAddress(req)
 		if err != nil {
 			httpx.Error(w, err)

@@ -69,7 +69,7 @@ type MemberListResponse {
 
 type MemberRequest {
 	// @inject_tag: json:"uid" form:"uid"
-	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid" form:"uid"`
+	Uid int64 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid" form:"uid"`
 }
 
 type MemberLoginRequest {

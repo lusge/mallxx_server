@@ -1,4 +1,4 @@
-package member
+package address
 
 import (
 	"context"
@@ -9,21 +9,21 @@ import (
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-type AddAddressLogic struct {
+type UpdateLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 }
 
-func NewAddAddressLogic(ctx context.Context, svcCtx *svc.ServiceContext) AddAddressLogic {
-	return AddAddressLogic{
+func NewUpdateLogic(ctx context.Context, svcCtx *svc.ServiceContext) UpdateLogic {
+	return UpdateLogic{
 		Logger: logx.WithContext(ctx),
 		ctx:    ctx,
 		svcCtx: svcCtx,
 	}
 }
 
-func (l *AddAddressLogic) AddAddress(req types.ReceiveAddress) (resp *types.ReceiveAddressResponse, err error) {
+func (l *UpdateLogic) Update(req types.ReceiveAddress) (resp *types.Response, err error) {
 	// todo: add your logic here and delete this line
 
 	return

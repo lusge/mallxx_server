@@ -7,14 +7,16 @@ import (
 )
 
 type ServiceContext struct {
-	Config           config.Config
-	MemberLevelModel *models.MemberLevel
+	Config              config.Config
+	MemberLevelModel    *models.MemberLevel
+	ReceiveAddressModel *models.ReceiveAddress
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
 	engine := mysqlx.InitMysql(c.Mysql.DataSource)
 	return &ServiceContext{
-		Config:           c,
-		MemberLevelModel: models.NewMemberLevel(engine),
+		Config:              c,
+		MemberLevelModel:    models.NewMemberLevel(engine),
+		ReceiveAddressModel: models.NewReceiveAddress(engine),
 	}
 }

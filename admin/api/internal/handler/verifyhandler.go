@@ -19,8 +19,8 @@ func verifyHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 
 		if err != nil {
 			httpx.WriteJson(w, http.StatusUnauthorized, err.Error())
+		} else {
+			httpx.WriteJson(w, http.StatusOK, "ok")
 		}
-
-		httpx.WriteJson(w, http.StatusOK, "ok")
 	}
 }

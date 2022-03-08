@@ -10,7 +10,7 @@ import (
 	"mallxx_server/sign/api/internal/svc"
 	"mallxx_server/sign/rpc/signservice"
 
-	"github.com/golang-jwt/jwt"
+	"github.com/golang-jwt/jwt/v4"
 	"github.com/zeromicro/go-zero/core/logx"
 	ztoken "github.com/zeromicro/go-zero/rest/token"
 )
@@ -34,16 +34,23 @@ func (l *VerifyTokenLogic) VerifyToken(r *http.Request) (int64, error) {
 	tok, err := parser.ParseToken(r, l.svcCtx.Config.JwtAuth.AccessSecret, "")
 
 	if err != nil {
-		return 0, merrorx.NewCodeError(500, "token verify failed")
+		return 0, merrorx.NewCodeError(500, err.Error())
 	}
+
 	if tok.Valid {
 		claims, ok := tok.Claims.(jwt.MapClaims) // 解析token中对内容
+
 		if ok {
-			fmt.Print(claims)
-			userId, _ := claims["uid"].(json.Number).Int64()
+			userId, err := claims["uid"].(json.Number).Int64()
+
+			fmt.Println(userId, claims)
+
+			if err != nil {
+				return 0, merrorx.NewCodeError(500, err.Error())
+			}
 
 			if userId <= 0 {
-				return 0, merrorx.NewCodeError(500, "token verify failed")
+				return 0, merrorx.NewCodeError(500, "not found user id")
 			}
 
 			verifyResp, err := l.svcCtx.SignRpc.VerifyToken(l.ctx, &signservice.SignTokenRequest{
@@ -58,6 +65,8 @@ func (l *VerifyTokenLogic) VerifyToken(r *http.Request) (int64, error) {
 			if verifyResp.Code == 200 {
 				return int64(userId), nil
 			}
+		} else {
+			return 0, merrorx.NewCodeError(500, "token Claims failed")
 		}
 	}
 

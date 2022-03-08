@@ -20,6 +20,7 @@ type ReceiveAddress {
 	Region string `protobuf:"bytes,8,opt,name=region,proto3" json:"region"`
 	// @inject_tag: json:"detail"
 	Detail string `protobuf:"bytes,9,opt,name=detail,proto3" json:"detail"`
+	Name	string `json:"name"`
 }
 
 

@@ -3,7 +3,7 @@ package utils
 import (
 	"time"
 
-	"github.com/golang-jwt/jwt"
+	"github.com/golang-jwt/jwt/v4"
 )
 
 func CreateJwtToken(uid, seconds int64, accessSecret string) (string, error) {

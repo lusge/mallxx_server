@@ -3,7 +3,6 @@ package logic
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strings"
 
@@ -49,7 +48,7 @@ func (l *VerifyLogic) Verify(r *http.Request) (resp int64, err error) {
 	if tok.Valid {
 		claims, ok := tok.Claims.(jwt.MapClaims) // 解析token中对内容
 		if ok {
-			fmt.Print(claims)
+
 			userId, _ := claims["uid"].(json.Number).Int64()
 
 			if userId <= 0 {

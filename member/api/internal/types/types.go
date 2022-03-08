@@ -86,7 +86,7 @@ type MemberListResponse struct {
 }
 
 type MemberRequest struct {
-	Uid string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid" form:"uid"`
+	Uid int64 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid" form:"uid"`
 }
 
 type MemberLoginRequest struct {
@@ -106,6 +106,7 @@ type ReceiveAddress struct {
 	City          string `protobuf:"bytes,7,opt,name=city,proto3" json:"city"`
 	Region        string `protobuf:"bytes,8,opt,name=region,proto3" json:"region"`
 	Detail        string `protobuf:"bytes,9,opt,name=detail,proto3" json:"detail"`
+	Name          string `json:"name"`
 }
 
 type ReceiveAddressResponse struct {

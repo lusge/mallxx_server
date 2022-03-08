@@ -30,7 +30,7 @@ func (l *LoginLogic) Login(in *pb.MemberLoginRequest) (*pb.MemberResponse, error
 	member := l.svcCtx.MemberModel.FindOneByUsername(in.Username)
 
 	if member == nil {
-		return nil, merrorx.NewCodeError(500, "登录失败")
+		return nil, merrorx.NewCodeError(500, "账户或密码错误")
 	}
 
 	if utils.MD5(in.Password) != member.Password {
@@ -52,6 +52,7 @@ func (l *LoginLogic) Login(in *pb.MemberLoginRequest) (*pb.MemberResponse, error
 		return nil, merrorx.NewCodeError(500, "登录失败")
 	}
 
+	member.Token = token
 	data := &pb.MemberData{
 		Member:      member,
 		MemberLevel: l.svcCtx.MemberLevelModel.FindOneById(member.MemberLevel),

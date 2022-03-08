@@ -1,4 +1,4 @@
-package member
+package follower
 
 import (
 	"context"
@@ -9,21 +9,21 @@ import (
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-type GetAddressListLogic struct {
+type GetFollowerLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 }
 
-func NewGetAddressListLogic(ctx context.Context, svcCtx *svc.ServiceContext) GetAddressListLogic {
-	return GetAddressListLogic{
+func NewGetFollowerLogic(ctx context.Context, svcCtx *svc.ServiceContext) GetFollowerLogic {
+	return GetFollowerLogic{
 		Logger: logx.WithContext(ctx),
 		ctx:    ctx,
 		svcCtx: svcCtx,
 	}
 }
 
-func (l *GetAddressListLogic) GetAddressList(req types.MemberRequest) (resp *types.ReceiveAddressListResponse, err error) {
+func (l *GetFollowerLogic) GetFollower(req types.MemberRequest) (resp *types.FollowerResponse, err error) {
 	// todo: add your logic here and delete this line
 
 	return
