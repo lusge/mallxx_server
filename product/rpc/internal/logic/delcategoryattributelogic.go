@@ -24,11 +24,11 @@ func NewDelCategoryAttributeLogic(ctx context.Context, svcCtx *svc.ServiceContex
 	}
 }
 
-func (l *DelCategoryAttributeLogic) DelCategoryAttribute(in *pb.CategoryAttribute) (*pb.Response, error) {
+func (l *DelCategoryAttributeLogic) DelCategoryAttribute(in *pb.CategoryAttribute) (*pb.ProductResponse, error) {
 	if !l.svcCtx.CategoryAttributeModel.Delete(in.Id) {
 		return nil, merrorx.NewCodeError(500, "删除失败")
 	}
-	return &pb.Response{
+	return &pb.ProductResponse{
 		Code:   200,
 		Detail: "删除成功",
 	}, nil

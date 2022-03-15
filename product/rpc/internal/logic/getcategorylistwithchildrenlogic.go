@@ -23,7 +23,7 @@ func NewGetCategoryListWithChildrenLogic(ctx context.Context, svcCtx *svc.Servic
 	}
 }
 
-func (l *GetCategoryListWithChildrenLogic) GetCategoryListWithChildren(in *pb.EmptyRequest) (*pb.CategoryResponse, error) {
+func (l *GetCategoryListWithChildrenLogic) GetCategoryListWithChildren(in *pb.ProductEmptyRequest) (*pb.CategoryResponse, error) {
 	// todo: add your logic here and delete this line
 	list := l.svcCtx.CategoryModel.FindListWithChildren()
 	return &pb.CategoryResponse{

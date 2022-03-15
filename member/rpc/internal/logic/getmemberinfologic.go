@@ -3,6 +3,7 @@ package logic
 import (
 	"context"
 
+	"mallxx_server/common/merrorx"
 	"mallxx_server/member/rpc/internal/svc"
 	"mallxx_server/member/rpc/pb"
 
@@ -23,8 +24,19 @@ func NewGetMemberInfoLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Get
 	}
 }
 
-func (l *GetMemberInfoLogic) GetMemberInfo(in *pb.MemberRequest) (*pb.MemberResponse, error) {
-	// todo: add your logic here and delete this line
+func (l *GetMemberInfoLogic) GetMemberInfo(in *pb.MemberRequest) (*pb.MemberInfoResponse, error) {
+	info := l.svcCtx.MemberModel.FindById(in.Uid)
 
-	return &pb.MemberResponse{}, nil
+	if info == nil {
+		return nil, merrorx.NewCodeError(500, "用户不存在")
+	}
+	data := &pb.MemberData{
+		Member:      info,
+		MemberLevel: l.svcCtx.MemberLevelModel.FindOneById(info.MemberLevel),
+	}
+	return &pb.MemberInfoResponse{
+		Code:   200,
+		Detail: "ok",
+		Data:   data,
+	}, nil
 }

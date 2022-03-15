@@ -24,12 +24,12 @@ func NewAddProductAttributeLogic(ctx context.Context, svcCtx *svc.ServiceContext
 	}
 }
 
-func (l *AddProductAttributeLogic) AddProductAttribute(in *pb.ProductAttribute) (*pb.Response, error) {
+func (l *AddProductAttributeLogic) AddProductAttribute(in *pb.ProductAttribute) (*pb.ProductResponse, error) {
 	if l.svcCtx.ProductAttributeModel.Insert(in) == false {
 		return nil, merrorx.NewCodeError(500, "新增失败")
 	}
 
-	return &pb.Response{
+	return &pb.ProductResponse{
 		Code:   200,
 		Detail: "新增成功",
 	}, nil

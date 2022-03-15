@@ -1,0 +1,98 @@
+syntax = "proto3";
+package pb;
+option go_package = "./pb";
+
+message Cart {
+    // @inject_tag: json:"id"
+    int64 id = 1;
+    // @inject_tag: json:"product_id"
+    int64 product_id = 2;
+    // @inject_tag: json:"sku_id"
+    int64 sku_id = 3;
+    // @inject_tag: json:"member_id"
+    int64 member_id = 4;
+    // @inject_tag: json:"quantity"
+    int32 quantity = 5;
+    // @inject_tag: json:"price"
+    double price = 6;
+    // @inject_tag: json:"product_pic"
+    string product_pic = 7;
+    // @inject_tag: json:"product_name"
+    string product_name = 8;
+    // @inject_tag: json:"product_sub_title"
+    string product_sub_title = 9;
+    // @inject_tag: json:"sku_code"
+    string sku_code = 10;
+    // @inject_tag: json:"member_nickname"
+    string member_nickname = 11;
+    // @inject_tag: json:"create_date"
+    string create_date = 12;
+    // @inject_tag: json:"modify_date"
+    string modify_date = 13;
+    // @inject_tag: json:"delete_status"
+    int32 delete_status = 14;
+    // @inject_tag: json:"category_id"
+    int64 category_id = 15;
+    // @inject_tag: json:"brand_name"
+    string brand_name = 16;
+    // @inject_tag: json:"product_sn"
+    string product_sn = 17;
+    // @inject_tag: json:"product_attr"
+    string product_attr = 18;
+}
+
+
+message CartAddRequest {
+    // @inject_tag: json:"product_id"
+    int64 product_id = 1;
+    // @inject_tag: json:"quantity"
+    int32 quantity = 2;
+    // @inject_tag: json:"member_id"
+    int64 member_id = 3;
+    //@inject_tag: json:"sku_id"
+    int64 sku_id = 4;
+    //@inject_tag: json:"member_nickname"
+    string member_nickname = 5;
+}
+
+message CartDelRequest {
+    // @inject_tag: json:"id"
+    int64 id = 1;
+    // @inject_tag: json:"member_id"
+    int64 member_id = 2;
+}
+
+message CartModiyRequest {
+    // @inject_tag: json:"id"
+    int64 id = 1;
+    // @inject_tag: json:"quantity"
+    int32 quantity = 2;
+    // @inject_tag: json:"member_id"
+    int64 member_id = 3;
+}
+
+message CartListRequest {
+    // @inject_tag: json:"member_id"
+    int64 member_id = 1;
+}
+
+message CartListResponse {
+    // @inject_tag: json:"code"
+    int32 code = 1;
+    // @inject_tag: json:"data"
+    repeated Cart data = 2;
+    // @inject_tag: json:"detail"
+    string detail = 3;
+}
+
+message CartResponse {
+    int32 code = 1;
+    string detail = 2;
+}
+
+service CartService {
+    rpc AddCart (CartAddRequest) returns (CartResponse);
+    rpc DelCart (CartDelRequest) returns (CartResponse);
+    rpc ModiryCart(CartModiyRequest) returns (CartResponse);
+    rpc GetCartList (CartListRequest) returns (CartListResponse);
+}

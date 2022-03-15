@@ -107,6 +107,9 @@ service sign-api {
 	@handler Register
 	post /register (Member) returns (MemberResponse)
 	
+	@handler SignOut
+	post /signout returns (Response)
+	
 	@handler VerifyToken
 	get /verify/token returns (int64)
 }

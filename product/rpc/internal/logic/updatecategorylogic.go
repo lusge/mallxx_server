@@ -24,7 +24,7 @@ func NewUpdateCategoryLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Up
 	}
 }
 
-func (l *UpdateCategoryLogic) UpdateCategory(in *pb.Category) (*pb.Response, error) {
+func (l *UpdateCategoryLogic) UpdateCategory(in *pb.Category) (*pb.ProductResponse, error) {
 	isOk, err := l.svcCtx.CategoryModel.Update(in)
 	if !isOk {
 		return nil, merrorx.NewCodeError(500, "更新失败")
@@ -34,7 +34,7 @@ func (l *UpdateCategoryLogic) UpdateCategory(in *pb.Category) (*pb.Response, err
 		return nil, merrorx.NewCodeError(500, err.Error())
 	}
 
-	return &pb.Response{
+	return &pb.ProductResponse{
 		Code:   200,
 		Detail: "ok",
 	}, nil

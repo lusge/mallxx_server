@@ -24,9 +24,9 @@ func NewDelCategoryLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DelCa
 	}
 }
 
-func (l *DelCategoryLogic) DelCategory(in *pb.Category) (*pb.Response, error) {
+func (l *DelCategoryLogic) DelCategory(in *pb.Category) (*pb.ProductResponse, error) {
 	if l.svcCtx.CategoryModel.Delete(in.Id) {
-		return &pb.Response{
+		return &pb.ProductResponse{
 			Code:   200,
 			Detail: "删除成功",
 		}, nil

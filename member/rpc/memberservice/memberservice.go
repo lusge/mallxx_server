@@ -13,12 +13,13 @@ import (
 )
 
 type (
-	EmptyRequest               = pb.EmptyRequest
 	FollowerResponse           = pb.FollowerResponse
-	ListRequest                = pb.ListRequest
 	Member                     = pb.Member
 	MemberData                 = pb.MemberData
+	MemberEmptyRequest         = pb.MemberEmptyRequest
+	MemberInfoResponse         = pb.MemberInfoResponse
 	MemberLevel                = pb.MemberLevel
+	MemberListRequest          = pb.MemberListRequest
 	MemberListResponse         = pb.MemberListResponse
 	MemberLoginRequest         = pb.MemberLoginRequest
 	MemberRequest              = pb.MemberRequest
@@ -29,15 +30,16 @@ type (
 	ReceiveAddressListResponse = pb.ReceiveAddressListResponse
 	ReceiveAddressRequest      = pb.ReceiveAddressRequest
 	ReceiveAddressResponse     = pb.ReceiveAddressResponse
-	Response                   = pb.Response
 
 	MemberService interface {
-		GetMemverLevelList(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*MemverLeveListResponse, error)
-		GetMemberInfo(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*MemberResponse, error)
-		GetMemberList(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*MemberListResponse, error)
+		GetMemverLevelList(ctx context.Context, in *MemberEmptyRequest, opts ...grpc.CallOption) (*MemverLeveListResponse, error)
+		GetMemberInfo(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*MemberInfoResponse, error)
+		GetMemberList(ctx context.Context, in *MemberEmptyRequest, opts ...grpc.CallOption) (*MemberListResponse, error)
 		GetAddress(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*ReceiveAddressListResponse, error)
 		AddAddress(ctx context.Context, in *ReceiveAddress, opts ...grpc.CallOption) (*ReceiveAddressResponse, error)
-		DelAddress(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*Response, error)
+		DelAddress(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*MemberResponse, error)
+		SetDefaultAddress(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*MemberResponse, error)
+		UpdateAddress(ctx context.Context, in *ReceiveAddress, opts ...grpc.CallOption) (*MemberResponse, error)
 		GetFollower(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*FollowerResponse, error)
 	}
 
@@ -52,17 +54,17 @@ func NewMemberService(cli zrpc.Client) MemberService {
 	}
 }
 
-func (m *defaultMemberService) GetMemverLevelList(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*MemverLeveListResponse, error) {
+func (m *defaultMemberService) GetMemverLevelList(ctx context.Context, in *MemberEmptyRequest, opts ...grpc.CallOption) (*MemverLeveListResponse, error) {
 	client := pb.NewMemberServiceClient(m.cli.Conn())
 	return client.GetMemverLevelList(ctx, in, opts...)
 }
 
-func (m *defaultMemberService) GetMemberInfo(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*MemberResponse, error) {
+func (m *defaultMemberService) GetMemberInfo(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*MemberInfoResponse, error) {
 	client := pb.NewMemberServiceClient(m.cli.Conn())
 	return client.GetMemberInfo(ctx, in, opts...)
 }
 
-func (m *defaultMemberService) GetMemberList(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*MemberListResponse, error) {
+func (m *defaultMemberService) GetMemberList(ctx context.Context, in *MemberEmptyRequest, opts ...grpc.CallOption) (*MemberListResponse, error) {
 	client := pb.NewMemberServiceClient(m.cli.Conn())
 	return client.GetMemberList(ctx, in, opts...)
 }
@@ -77,9 +79,19 @@ func (m *defaultMemberService) AddAddress(ctx context.Context, in *ReceiveAddres
 	return client.AddAddress(ctx, in, opts...)
 }
 
-func (m *defaultMemberService) DelAddress(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultMemberService) DelAddress(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*MemberResponse, error) {
 	client := pb.NewMemberServiceClient(m.cli.Conn())
 	return client.DelAddress(ctx, in, opts...)
+}
+
+func (m *defaultMemberService) SetDefaultAddress(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*MemberResponse, error) {
+	client := pb.NewMemberServiceClient(m.cli.Conn())
+	return client.SetDefaultAddress(ctx, in, opts...)
+}
+
+func (m *defaultMemberService) UpdateAddress(ctx context.Context, in *ReceiveAddress, opts ...grpc.CallOption) (*MemberResponse, error) {
+	client := pb.NewMemberServiceClient(m.cli.Conn())
+	return client.UpdateAddress(ctx, in, opts...)
 }
 
 func (m *defaultMemberService) GetFollower(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*FollowerResponse, error) {

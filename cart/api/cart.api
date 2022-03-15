@@ -1,0 +1,96 @@
+syntax = "v1"
+
+type Cart {
+	Id int64 `json:"id,optional"`
+
+	ProductId int64 `json:"product_id"`
+
+	SkuId int64 `json:"sku_id"`
+
+	MemberId int64 `json:"member_id,optional"`
+
+	Quantity int32 `json:"quantity"`
+
+	Price float64 `json:"price,optional"`
+
+	ProductPic string `json:"product_pic,optional"`
+
+	ProductName string `json:"product_name,optional"`
+
+	ProductSubTitle string `json:"product_sub_title,optional"`
+
+	SkuCode string `json:"sku_code,optional"`
+
+	MemberNickname string `json:"member_nickname,optional"`
+
+	CreateDate string `json:"create_date,optional"`
+
+	ModifyDate string `json:"modify_date,optional"`
+
+	DeleteStatus int32 `json:"delete_status,optional"`
+
+	CategoryId int64 `json:"category_id,optional"`
+
+	BrandName string `json:"brand_name,optional"`
+
+	ProductSn string `json:"product_sn,optional"`
+
+	ProductAttr string `json:"product_attr,optional"`
+}
+
+type CartAddRequest {
+	ProductId int64 `json:"product_id"`
+
+	Quantity int32 `json:"quantity"`
+
+	MemberId int64 `json:"member_id,optional"`
+
+	SkuId int64 `json:"sku_id"`
+
+	MemberNickname string `json:"member_nicknam,optionale"`
+}
+
+type CartDelRequest {
+	Id int64 `json:"id"`
+}
+
+type CartModiyRequest {
+	Id int64 `json:"id"`
+
+	Quantity int32 `json:"quantity"`
+}
+
+type CartResponse {
+	Code int32 `json:"code"`
+
+	Data []*Cart `json:"data"`
+
+	Detail string `json:"detail"`
+}
+
+type Response {
+	Code   int32  `json:"code"`
+	Detail string `json:"detail"`
+}
+
+type CartListRequest {
+	MemberId int64 `json:"member_id" form:"member_id"`
+}
+
+@server(
+	group: cart
+	prefix: /cart
+)
+service cart-api {
+	@handler Add
+	post /add (CartAddRequest) returns (Response)
+	
+	@handler Delete
+	post /delete (CartDelRequest) returns (Response)
+	
+	@handler Modify
+	post /modify (CartModiyRequest) returns (Response)
+	
+	@handler GetList
+	get /list (CartListRequest) returns (CartResponse)
+}

@@ -26,7 +26,7 @@ func NewGetCategoryAttributeAndProductAttributeLogic(ctx context.Context, svcCtx
 }
 
 func (l *GetCategoryAttributeAndProductAttributeLogic) GetCategoryAttributeAndProductAttribute() (*types.CategoryAttrAndProductAttrListResponse, error) {
-	resp, err := l.svcCtx.ProductRpc.GetCategoryAttributeAndProductAttribute(l.ctx, &productservices.EmptyRequest{})
+	resp, err := l.svcCtx.ProductRpc.GetCategoryAttributeAndProductAttribute(l.ctx, &productservices.ProductEmptyRequest{})
 
 	if err != nil {
 		return nil, err

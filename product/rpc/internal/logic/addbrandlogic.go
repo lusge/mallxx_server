@@ -24,13 +24,13 @@ func NewAddBrandLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AddBrand
 	}
 }
 
-func (l *AddBrandLogic) AddBrand(in *pb.Brand) (*pb.Response, error) {
+func (l *AddBrandLogic) AddBrand(in *pb.Brand) (*pb.ProductResponse, error) {
 	isOk := l.svcCtx.BrandModel.Insert(in)
 	if !isOk {
 		return nil, merrorx.NewCodeError(500, "新增失败")
 	}
 
-	return &pb.Response{
+	return &pb.ProductResponse{
 		Code:   200,
 		Detail: "ok",
 	}, nil

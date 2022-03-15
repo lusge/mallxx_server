@@ -25,13 +25,13 @@ func NewUpdateSkuLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UpdateS
 }
 
 // sku
-func (l *UpdateSkuLogic) UpdateSku(in *pb.SkuStockListRequest) (*pb.Response, error) {
+func (l *UpdateSkuLogic) UpdateSku(in *pb.SkuStockListRequest) (*pb.ProductResponse, error) {
 	isOk := l.svcCtx.SkuStockModel.UpdateList(in.List)
 	if !isOk {
 		return nil, merrorx.NewCodeError(500, "更新失败")
 	}
 
-	return &pb.Response{
+	return &pb.ProductResponse{
 		Code:   200,
 		Detail: "ok",
 	}, nil

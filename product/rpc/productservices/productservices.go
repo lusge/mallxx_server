@@ -28,7 +28,6 @@ type (
 	CategoryChangeStatus                   = pb.CategoryChangeStatus
 	CategoryInfoResponse                   = pb.CategoryInfoResponse
 	CategoryResponse                       = pb.CategoryResponse
-	EmptyRequest                           = pb.EmptyRequest
 	ListRequest                            = pb.ListRequest
 	MemberPrice                            = pb.MemberPrice
 	Product                                = pb.Product
@@ -38,6 +37,7 @@ type (
 	ProductAttributeListResponse           = pb.ProductAttributeListResponse
 	ProductAttributeValue                  = pb.ProductAttributeValue
 	ProductChangeStatusRequest             = pb.ProductChangeStatusRequest
+	ProductEmptyRequest                    = pb.ProductEmptyRequest
 	ProductFullReduction                   = pb.ProductFullReduction
 	ProductInfoRequest                     = pb.ProductInfoRequest
 	ProductInfoResponse                    = pb.ProductInfoResponse
@@ -46,10 +46,10 @@ type (
 	ProductListRespone                     = pb.ProductListRespone
 	ProductParameters                      = pb.ProductParameters
 	ProductRecommend                       = pb.ProductRecommend
+	ProductResponse                        = pb.ProductResponse
 	RecommendListResponse                  = pb.RecommendListResponse
 	RecommendRequest                       = pb.RecommendRequest
 	RecommendSetSortRequest                = pb.RecommendSetSortRequest
-	Response                               = pb.Response
 	SkuStock                               = pb.SkuStock
 	SkuStockListRequest                    = pb.SkuStockListRequest
 	SkuStockListResponse                   = pb.SkuStockListResponse
@@ -59,52 +59,52 @@ type (
 		// Brand
 		GetBrandList(ctx context.Context, in *BrandRequest, opts ...grpc.CallOption) (*BrandListResponse, error)
 		GetBrandInfo(ctx context.Context, in *BrandRequest, opts ...grpc.CallOption) (*BrandOneResponse, error)
-		UpdateBrandShowStatus(ctx context.Context, in *BrandStatusRequest, opts ...grpc.CallOption) (*Response, error)
-		UpdateBrandFactoryStatus(ctx context.Context, in *BrandStatusRequest, opts ...grpc.CallOption) (*Response, error)
-		DeleteBrand(ctx context.Context, in *BrandRequest, opts ...grpc.CallOption) (*Response, error)
-		UpdateBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*Response, error)
-		AddBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*Response, error)
+		UpdateBrandShowStatus(ctx context.Context, in *BrandStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error)
+		UpdateBrandFactoryStatus(ctx context.Context, in *BrandStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error)
+		DeleteBrand(ctx context.Context, in *BrandRequest, opts ...grpc.CallOption) (*ProductResponse, error)
+		UpdateBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*ProductResponse, error)
+		AddBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*ProductResponse, error)
 		// CategoryAttribute
 		GetCategoryAttributeList(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*CategoryAttributeListResponse, error)
 		GetCategoryAttributeInfo(ctx context.Context, in *CategoryAttribute, opts ...grpc.CallOption) (*CategoryAttributeInfoResponse, error)
-		EditCategoryAttribute(ctx context.Context, in *CategoryAttribute, opts ...grpc.CallOption) (*Response, error)
-		DelCategoryAttribute(ctx context.Context, in *CategoryAttribute, opts ...grpc.CallOption) (*Response, error)
-		GetCategoryAttributeAndProductAttribute(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*CategoryAttrAndProductAttrListResponse, error)
+		EditCategoryAttribute(ctx context.Context, in *CategoryAttribute, opts ...grpc.CallOption) (*ProductResponse, error)
+		DelCategoryAttribute(ctx context.Context, in *CategoryAttribute, opts ...grpc.CallOption) (*ProductResponse, error)
+		GetCategoryAttributeAndProductAttribute(ctx context.Context, in *ProductEmptyRequest, opts ...grpc.CallOption) (*CategoryAttrAndProductAttrListResponse, error)
 		// Category
 		GetCategoryList(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*CategoryResponse, error)
 		GetCategoryInfo(ctx context.Context, in *Category, opts ...grpc.CallOption) (*CategoryInfoResponse, error)
-		CreateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*Response, error)
-		UpdateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*Response, error)
-		DelCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*Response, error)
-		ChangeCategoryNavStatus(ctx context.Context, in *CategoryChangeStatus, opts ...grpc.CallOption) (*Response, error)
-		ChangeCategoryShowStatus(ctx context.Context, in *CategoryChangeStatus, opts ...grpc.CallOption) (*Response, error)
-		GetCategoryListWithChildren(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*CategoryResponse, error)
+		CreateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*ProductResponse, error)
+		UpdateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*ProductResponse, error)
+		DelCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*ProductResponse, error)
+		ChangeCategoryNavStatus(ctx context.Context, in *CategoryChangeStatus, opts ...grpc.CallOption) (*ProductResponse, error)
+		ChangeCategoryShowStatus(ctx context.Context, in *CategoryChangeStatus, opts ...grpc.CallOption) (*ProductResponse, error)
+		GetCategoryListWithChildren(ctx context.Context, in *ProductEmptyRequest, opts ...grpc.CallOption) (*CategoryResponse, error)
 		// ProductAttribute
 		GetProductAttributeList(ctx context.Context, in *AttrRequest, opts ...grpc.CallOption) (*ProductAttributeListResponse, error)
-		AddProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*Response, error)
-		UpdateProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*Response, error)
-		DeleteProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*Response, error)
+		AddProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*ProductResponse, error)
+		UpdateProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*ProductResponse, error)
+		DeleteProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*ProductResponse, error)
 		GetProductAttributeInfo(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*ProductAttributeInfoResponse, error)
 		// Product
 		GetProductList(ctx context.Context, in *ProductListRequest, opts ...grpc.CallOption) (*ProductListRespone, error)
 		GetProductInfo(ctx context.Context, in *ProductInfoRequest, opts ...grpc.CallOption) (*ProductInfoResponse, error)
-		ChangeProductPublishStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*Response, error)
-		ChangeProductVerifyStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*Response, error)
-		ChangeProductNewStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*Response, error)
-		ChangeProductRecommendStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*Response, error)
-		AddProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*Response, error)
-		UpdateProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*Response, error)
-		DeleteProduct(ctx context.Context, in *ProductInfoRequest, opts ...grpc.CallOption) (*Response, error)
+		ChangeProductPublishStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error)
+		ChangeProductVerifyStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error)
+		ChangeProductNewStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error)
+		ChangeProductRecommendStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error)
+		AddProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*ProductResponse, error)
+		UpdateProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*ProductResponse, error)
+		DeleteProduct(ctx context.Context, in *ProductInfoRequest, opts ...grpc.CallOption) (*ProductResponse, error)
 		GetProductApiList(ctx context.Context, in *ProductApiRequest, opts ...grpc.CallOption) (*ProductListRespone, error)
 		// sku
-		UpdateSku(ctx context.Context, in *SkuStockListRequest, opts ...grpc.CallOption) (*Response, error)
+		UpdateSku(ctx context.Context, in *SkuStockListRequest, opts ...grpc.CallOption) (*ProductResponse, error)
 		GetSku(ctx context.Context, in *SkuStockRequest, opts ...grpc.CallOption) (*SkuStockListResponse, error)
 		//  product recommend
 		GetApiRecommendList(ctx context.Context, in *ProductListRequest, opts ...grpc.CallOption) (*ProductListRespone, error)
 		GetRecommendList(ctx context.Context, in *ProductListRequest, opts ...grpc.CallOption) (*RecommendListResponse, error)
-		SetRecommendSort(ctx context.Context, in *RecommendSetSortRequest, opts ...grpc.CallOption) (*Response, error)
-		AddRecommend(ctx context.Context, in *RecommendRequest, opts ...grpc.CallOption) (*Response, error)
-		DeleteRecommend(ctx context.Context, in *RecommendRequest, opts ...grpc.CallOption) (*Response, error)
+		SetRecommendSort(ctx context.Context, in *RecommendSetSortRequest, opts ...grpc.CallOption) (*ProductResponse, error)
+		AddRecommend(ctx context.Context, in *RecommendRequest, opts ...grpc.CallOption) (*ProductResponse, error)
+		DeleteRecommend(ctx context.Context, in *RecommendRequest, opts ...grpc.CallOption) (*ProductResponse, error)
 	}
 
 	defaultProductServices struct {
@@ -129,27 +129,27 @@ func (m *defaultProductServices) GetBrandInfo(ctx context.Context, in *BrandRequ
 	return client.GetBrandInfo(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) UpdateBrandShowStatus(ctx context.Context, in *BrandStatusRequest, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) UpdateBrandShowStatus(ctx context.Context, in *BrandStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.UpdateBrandShowStatus(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) UpdateBrandFactoryStatus(ctx context.Context, in *BrandStatusRequest, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) UpdateBrandFactoryStatus(ctx context.Context, in *BrandStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.UpdateBrandFactoryStatus(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) DeleteBrand(ctx context.Context, in *BrandRequest, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) DeleteBrand(ctx context.Context, in *BrandRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.DeleteBrand(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) UpdateBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) UpdateBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.UpdateBrand(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) AddBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) AddBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.AddBrand(ctx, in, opts...)
 }
@@ -165,17 +165,17 @@ func (m *defaultProductServices) GetCategoryAttributeInfo(ctx context.Context, i
 	return client.GetCategoryAttributeInfo(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) EditCategoryAttribute(ctx context.Context, in *CategoryAttribute, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) EditCategoryAttribute(ctx context.Context, in *CategoryAttribute, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.EditCategoryAttribute(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) DelCategoryAttribute(ctx context.Context, in *CategoryAttribute, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) DelCategoryAttribute(ctx context.Context, in *CategoryAttribute, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.DelCategoryAttribute(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) GetCategoryAttributeAndProductAttribute(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*CategoryAttrAndProductAttrListResponse, error) {
+func (m *defaultProductServices) GetCategoryAttributeAndProductAttribute(ctx context.Context, in *ProductEmptyRequest, opts ...grpc.CallOption) (*CategoryAttrAndProductAttrListResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.GetCategoryAttributeAndProductAttribute(ctx, in, opts...)
 }
@@ -191,32 +191,32 @@ func (m *defaultProductServices) GetCategoryInfo(ctx context.Context, in *Catego
 	return client.GetCategoryInfo(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) CreateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) CreateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.CreateCategory(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) UpdateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) UpdateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.UpdateCategory(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) DelCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) DelCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.DelCategory(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) ChangeCategoryNavStatus(ctx context.Context, in *CategoryChangeStatus, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) ChangeCategoryNavStatus(ctx context.Context, in *CategoryChangeStatus, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.ChangeCategoryNavStatus(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) ChangeCategoryShowStatus(ctx context.Context, in *CategoryChangeStatus, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) ChangeCategoryShowStatus(ctx context.Context, in *CategoryChangeStatus, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.ChangeCategoryShowStatus(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) GetCategoryListWithChildren(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*CategoryResponse, error) {
+func (m *defaultProductServices) GetCategoryListWithChildren(ctx context.Context, in *ProductEmptyRequest, opts ...grpc.CallOption) (*CategoryResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.GetCategoryListWithChildren(ctx, in, opts...)
 }
@@ -227,17 +227,17 @@ func (m *defaultProductServices) GetProductAttributeList(ctx context.Context, in
 	return client.GetProductAttributeList(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) AddProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) AddProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.AddProductAttribute(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) UpdateProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) UpdateProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.UpdateProductAttribute(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) DeleteProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) DeleteProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.DeleteProductAttribute(ctx, in, opts...)
 }
@@ -258,37 +258,37 @@ func (m *defaultProductServices) GetProductInfo(ctx context.Context, in *Product
 	return client.GetProductInfo(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) ChangeProductPublishStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) ChangeProductPublishStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.ChangeProductPublishStatus(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) ChangeProductVerifyStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) ChangeProductVerifyStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.ChangeProductVerifyStatus(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) ChangeProductNewStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) ChangeProductNewStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.ChangeProductNewStatus(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) ChangeProductRecommendStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) ChangeProductRecommendStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.ChangeProductRecommendStatus(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) AddProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) AddProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.AddProduct(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) UpdateProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) UpdateProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.UpdateProduct(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) DeleteProduct(ctx context.Context, in *ProductInfoRequest, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) DeleteProduct(ctx context.Context, in *ProductInfoRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.DeleteProduct(ctx, in, opts...)
 }
@@ -299,7 +299,7 @@ func (m *defaultProductServices) GetProductApiList(ctx context.Context, in *Prod
 }
 
 // sku
-func (m *defaultProductServices) UpdateSku(ctx context.Context, in *SkuStockListRequest, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) UpdateSku(ctx context.Context, in *SkuStockListRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.UpdateSku(ctx, in, opts...)
 }
@@ -320,17 +320,17 @@ func (m *defaultProductServices) GetRecommendList(ctx context.Context, in *Produ
 	return client.GetRecommendList(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) SetRecommendSort(ctx context.Context, in *RecommendSetSortRequest, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) SetRecommendSort(ctx context.Context, in *RecommendSetSortRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.SetRecommendSort(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) AddRecommend(ctx context.Context, in *RecommendRequest, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) AddRecommend(ctx context.Context, in *RecommendRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.AddRecommend(ctx, in, opts...)
 }
 
-func (m *defaultProductServices) DeleteRecommend(ctx context.Context, in *RecommendRequest, opts ...grpc.CallOption) (*Response, error) {
+func (m *defaultProductServices) DeleteRecommend(ctx context.Context, in *RecommendRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
 	client := pb.NewProductServicesClient(m.cli.Conn())
 	return client.DeleteRecommend(ctx, in, opts...)
 }

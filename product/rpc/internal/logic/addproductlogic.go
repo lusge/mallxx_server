@@ -24,12 +24,12 @@ func NewAddProductLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AddPro
 	}
 }
 
-func (l *AddProductLogic) AddProduct(in *pb.Product) (*pb.Response, error) {
+func (l *AddProductLogic) AddProduct(in *pb.Product) (*pb.ProductResponse, error) {
 	isOk := l.svcCtx.ProductModel.Insert(in)
 	if !isOk {
 		return nil, merrorx.NewCodeError(500, "新增失败")
 	}
-	return &pb.Response{
+	return &pb.ProductResponse{
 		Code:   200,
 		Detail: "新增成功",
 	}, nil

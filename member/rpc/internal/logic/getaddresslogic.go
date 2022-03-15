@@ -24,7 +24,7 @@ func NewGetAddressLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetAdd
 }
 
 func (l *GetAddressLogic) GetAddress(in *pb.MemberRequest) (*pb.ReceiveAddressListResponse, error) {
-	data := l.svcCtx.ReceiveAddressModel.FindAll(in.Uid)
+	data := l.svcCtx.ReceiveAddressModel.FindAllByMemberId(in.Uid)
 
 	return &pb.ReceiveAddressListResponse{
 		Data:   data,

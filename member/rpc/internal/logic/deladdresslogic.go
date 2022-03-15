@@ -3,6 +3,7 @@ package logic
 import (
 	"context"
 
+	"mallxx_server/common/merrorx"
 	"mallxx_server/member/rpc/internal/svc"
 	"mallxx_server/member/rpc/pb"
 
@@ -23,8 +24,12 @@ func NewDelAddressLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DelAdd
 	}
 }
 
-func (l *DelAddressLogic) DelAddress(in *pb.ReceiveAddressRequest) (*pb.Response, error) {
-	// todo: add your logic here and delete this line
-
-	return &pb.Response{}, nil
+func (l *DelAddressLogic) DelAddress(in *pb.ReceiveAddressRequest) (*pb.MemberResponse, error) {
+	if !l.svcCtx.ReceiveAddressModel.Delete(in.MemberId, in.Id) {
+		return nil, merrorx.NewCodeError(500, "删除失败")
+	}
+	return &pb.MemberResponse{
+		Code:   200,
+		Detail: "删除成功",
+	}, nil
 }

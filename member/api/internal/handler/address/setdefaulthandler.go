@@ -3,10 +3,11 @@ package address
 import (
 	"net/http"
 
-	"github.com/zeromicro/go-zero/rest/httpx"
 	"mallxx_server/member/api/internal/logic/address"
 	"mallxx_server/member/api/internal/svc"
 	"mallxx_server/member/api/internal/types"
+
+	"github.com/zeromicro/go-zero/rest/httpx"
 )
 
 func SetDefaultHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {

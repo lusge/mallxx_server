@@ -10,6 +10,7 @@ type ServiceContext struct {
 	Config              config.Config
 	MemberLevelModel    *models.MemberLevel
 	ReceiveAddressModel *models.ReceiveAddress
+	MemberModel         *models.Member
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
@@ -18,5 +19,6 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		Config:              c,
 		MemberLevelModel:    models.NewMemberLevel(engine),
 		ReceiveAddressModel: models.NewReceiveAddress(engine),
+		MemberModel:         models.NewMember(engine),
 	}
 }

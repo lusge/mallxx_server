@@ -24,12 +24,12 @@ func NewDeleteRecommendLogic(ctx context.Context, svcCtx *svc.ServiceContext) *D
 	}
 }
 
-func (l *DeleteRecommendLogic) DeleteRecommend(in *pb.RecommendRequest) (*pb.Response, error) {
+func (l *DeleteRecommendLogic) DeleteRecommend(in *pb.RecommendRequest) (*pb.ProductResponse, error) {
 	if l.svcCtx.ProductRecommendModel.Delete(in.ProductIds) == false {
 		return nil, merrorx.NewCodeError(500, "删除失败")
 	}
 
-	return &pb.Response{
+	return &pb.ProductResponse{
 		Code:   200,
 		Detail: "删除成功",
 	}, nil

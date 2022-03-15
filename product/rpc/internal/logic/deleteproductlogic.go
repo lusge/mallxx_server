@@ -24,7 +24,7 @@ func NewDeleteProductLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Del
 	}
 }
 
-func (l *DeleteProductLogic) DeleteProduct(in *pb.ProductInfoRequest) (*pb.Response, error) {
+func (l *DeleteProductLogic) DeleteProduct(in *pb.ProductInfoRequest) (*pb.ProductResponse, error) {
 	isOk := l.svcCtx.ProductModel.ChangeStatus(in.Id, map[string]interface{}{
 		"delete_status": 1,
 	})
@@ -32,7 +32,7 @@ func (l *DeleteProductLogic) DeleteProduct(in *pb.ProductInfoRequest) (*pb.Respo
 	if !isOk {
 		return nil, merrorx.NewCodeError(500, "删除失败")
 	}
-	return &pb.Response{
+	return &pb.ProductResponse{
 		Code:   200,
 		Detail: "删除成功",
 	}, nil

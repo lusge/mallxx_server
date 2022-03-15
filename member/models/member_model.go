@@ -52,3 +52,14 @@ func (m *Member) Register(username, password string) (bool, *pb.Member) {
 
 	return true, info
 }
+
+func (m *Member) FindById(id int64) *pb.Member {
+	info := new(pb.Member)
+	_, err := m.engine.Where("id = ?", id).Get(info)
+	if err != nil {
+		logx.Error(err)
+		return nil
+	}
+
+	return info
+}

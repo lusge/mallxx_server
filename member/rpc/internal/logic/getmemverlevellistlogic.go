@@ -23,7 +23,7 @@ func NewGetMemverLevelListLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 	}
 }
 
-func (l *GetMemverLevelListLogic) GetMemverLevelList(in *pb.EmptyRequest) (*pb.MemverLeveListResponse, error) {
+func (l *GetMemverLevelListLogic) GetMemverLevelList(in *pb.MemberEmptyRequest) (*pb.MemverLeveListResponse, error) {
 	list := l.svcCtx.MemberLevelModel.FindAll()
 
 	return &pb.MemverLeveListResponse{

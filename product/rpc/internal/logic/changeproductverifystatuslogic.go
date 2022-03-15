@@ -24,13 +24,13 @@ func NewChangeProductVerifyStatusLogic(ctx context.Context, svcCtx *svc.ServiceC
 	}
 }
 
-func (l *ChangeProductVerifyStatusLogic) ChangeProductVerifyStatus(in *pb.ProductChangeStatusRequest) (*pb.Response, error) {
+func (l *ChangeProductVerifyStatusLogic) ChangeProductVerifyStatus(in *pb.ProductChangeStatusRequest) (*pb.ProductResponse, error) {
 	if l.svcCtx.ProductModel.ChangeStatus(in.Id, map[string]interface{}{
 		"verify_status": in.Status,
 	}) == false {
 		return nil, merrorx.NewCodeError(500, "更新失败")
 	}
-	return &pb.Response{
+	return &pb.ProductResponse{
 		Code:   200,
 		Detail: "更新成功",
 	}, nil

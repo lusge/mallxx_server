@@ -23,7 +23,7 @@ func NewGetMemberListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Get
 	}
 }
 
-func (l *GetMemberListLogic) GetMemberList(in *pb.EmptyRequest) (*pb.MemberListResponse, error) {
+func (l *GetMemberListLogic) GetMemberList(in *pb.MemberEmptyRequest) (*pb.MemberListResponse, error) {
 	// todo: add your logic here and delete this line
 
 	return &pb.MemberListResponse{}, nil

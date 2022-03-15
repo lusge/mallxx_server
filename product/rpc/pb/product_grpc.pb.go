@@ -21,53 +21,53 @@ type ProductServicesClient interface {
 	//Brand
 	GetBrandList(ctx context.Context, in *BrandRequest, opts ...grpc.CallOption) (*BrandListResponse, error)
 	GetBrandInfo(ctx context.Context, in *BrandRequest, opts ...grpc.CallOption) (*BrandOneResponse, error)
-	UpdateBrandShowStatus(ctx context.Context, in *BrandStatusRequest, opts ...grpc.CallOption) (*Response, error)
-	UpdateBrandFactoryStatus(ctx context.Context, in *BrandStatusRequest, opts ...grpc.CallOption) (*Response, error)
-	DeleteBrand(ctx context.Context, in *BrandRequest, opts ...grpc.CallOption) (*Response, error)
-	UpdateBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*Response, error)
-	AddBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*Response, error)
+	UpdateBrandShowStatus(ctx context.Context, in *BrandStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error)
+	UpdateBrandFactoryStatus(ctx context.Context, in *BrandStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error)
+	DeleteBrand(ctx context.Context, in *BrandRequest, opts ...grpc.CallOption) (*ProductResponse, error)
+	UpdateBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*ProductResponse, error)
+	AddBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*ProductResponse, error)
 	//CategoryAttribute
 	//---------------------分类属性-------------------------------------------------
 	GetCategoryAttributeList(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*CategoryAttributeListResponse, error)
 	GetCategoryAttributeInfo(ctx context.Context, in *CategoryAttribute, opts ...grpc.CallOption) (*CategoryAttributeInfoResponse, error)
-	EditCategoryAttribute(ctx context.Context, in *CategoryAttribute, opts ...grpc.CallOption) (*Response, error)
-	DelCategoryAttribute(ctx context.Context, in *CategoryAttribute, opts ...grpc.CallOption) (*Response, error)
-	GetCategoryAttributeAndProductAttribute(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*CategoryAttrAndProductAttrListResponse, error)
+	EditCategoryAttribute(ctx context.Context, in *CategoryAttribute, opts ...grpc.CallOption) (*ProductResponse, error)
+	DelCategoryAttribute(ctx context.Context, in *CategoryAttribute, opts ...grpc.CallOption) (*ProductResponse, error)
+	GetCategoryAttributeAndProductAttribute(ctx context.Context, in *ProductEmptyRequest, opts ...grpc.CallOption) (*CategoryAttrAndProductAttrListResponse, error)
 	//Category
 	GetCategoryList(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*CategoryResponse, error)
 	GetCategoryInfo(ctx context.Context, in *Category, opts ...grpc.CallOption) (*CategoryInfoResponse, error)
-	CreateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*Response, error)
-	UpdateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*Response, error)
-	DelCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*Response, error)
-	ChangeCategoryNavStatus(ctx context.Context, in *CategoryChangeStatus, opts ...grpc.CallOption) (*Response, error)
-	ChangeCategoryShowStatus(ctx context.Context, in *CategoryChangeStatus, opts ...grpc.CallOption) (*Response, error)
-	GetCategoryListWithChildren(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*CategoryResponse, error)
+	CreateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*ProductResponse, error)
+	UpdateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*ProductResponse, error)
+	DelCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*ProductResponse, error)
+	ChangeCategoryNavStatus(ctx context.Context, in *CategoryChangeStatus, opts ...grpc.CallOption) (*ProductResponse, error)
+	ChangeCategoryShowStatus(ctx context.Context, in *CategoryChangeStatus, opts ...grpc.CallOption) (*ProductResponse, error)
+	GetCategoryListWithChildren(ctx context.Context, in *ProductEmptyRequest, opts ...grpc.CallOption) (*CategoryResponse, error)
 	//ProductAttribute
 	GetProductAttributeList(ctx context.Context, in *AttrRequest, opts ...grpc.CallOption) (*ProductAttributeListResponse, error)
-	AddProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*Response, error)
-	UpdateProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*Response, error)
-	DeleteProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*Response, error)
+	AddProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*ProductResponse, error)
+	UpdateProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*ProductResponse, error)
+	DeleteProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*ProductResponse, error)
 	GetProductAttributeInfo(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*ProductAttributeInfoResponse, error)
 	//Product
 	GetProductList(ctx context.Context, in *ProductListRequest, opts ...grpc.CallOption) (*ProductListRespone, error)
 	GetProductInfo(ctx context.Context, in *ProductInfoRequest, opts ...grpc.CallOption) (*ProductInfoResponse, error)
-	ChangeProductPublishStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*Response, error)
-	ChangeProductVerifyStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*Response, error)
-	ChangeProductNewStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*Response, error)
-	ChangeProductRecommendStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*Response, error)
-	AddProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*Response, error)
-	UpdateProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*Response, error)
-	DeleteProduct(ctx context.Context, in *ProductInfoRequest, opts ...grpc.CallOption) (*Response, error)
+	ChangeProductPublishStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error)
+	ChangeProductVerifyStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error)
+	ChangeProductNewStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error)
+	ChangeProductRecommendStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error)
+	AddProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*ProductResponse, error)
+	UpdateProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*ProductResponse, error)
+	DeleteProduct(ctx context.Context, in *ProductInfoRequest, opts ...grpc.CallOption) (*ProductResponse, error)
 	GetProductApiList(ctx context.Context, in *ProductApiRequest, opts ...grpc.CallOption) (*ProductListRespone, error)
 	//sku
-	UpdateSku(ctx context.Context, in *SkuStockListRequest, opts ...grpc.CallOption) (*Response, error)
+	UpdateSku(ctx context.Context, in *SkuStockListRequest, opts ...grpc.CallOption) (*ProductResponse, error)
 	GetSku(ctx context.Context, in *SkuStockRequest, opts ...grpc.CallOption) (*SkuStockListResponse, error)
 	// product recommend
 	GetApiRecommendList(ctx context.Context, in *ProductListRequest, opts ...grpc.CallOption) (*ProductListRespone, error)
 	GetRecommendList(ctx context.Context, in *ProductListRequest, opts ...grpc.CallOption) (*RecommendListResponse, error)
-	SetRecommendSort(ctx context.Context, in *RecommendSetSortRequest, opts ...grpc.CallOption) (*Response, error)
-	AddRecommend(ctx context.Context, in *RecommendRequest, opts ...grpc.CallOption) (*Response, error)
-	DeleteRecommend(ctx context.Context, in *RecommendRequest, opts ...grpc.CallOption) (*Response, error)
+	SetRecommendSort(ctx context.Context, in *RecommendSetSortRequest, opts ...grpc.CallOption) (*ProductResponse, error)
+	AddRecommend(ctx context.Context, in *RecommendRequest, opts ...grpc.CallOption) (*ProductResponse, error)
+	DeleteRecommend(ctx context.Context, in *RecommendRequest, opts ...grpc.CallOption) (*ProductResponse, error)
 }
 
 type productServicesClient struct {
@@ -96,8 +96,8 @@ func (c *productServicesClient) GetBrandInfo(ctx context.Context, in *BrandReque
 	return out, nil
 }
 
-func (c *productServicesClient) UpdateBrandShowStatus(ctx context.Context, in *BrandStatusRequest, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) UpdateBrandShowStatus(ctx context.Context, in *BrandStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/UpdateBrandShowStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -105,8 +105,8 @@ func (c *productServicesClient) UpdateBrandShowStatus(ctx context.Context, in *B
 	return out, nil
 }
 
-func (c *productServicesClient) UpdateBrandFactoryStatus(ctx context.Context, in *BrandStatusRequest, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) UpdateBrandFactoryStatus(ctx context.Context, in *BrandStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/UpdateBrandFactoryStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -114,8 +114,8 @@ func (c *productServicesClient) UpdateBrandFactoryStatus(ctx context.Context, in
 	return out, nil
 }
 
-func (c *productServicesClient) DeleteBrand(ctx context.Context, in *BrandRequest, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) DeleteBrand(ctx context.Context, in *BrandRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/DeleteBrand", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -123,8 +123,8 @@ func (c *productServicesClient) DeleteBrand(ctx context.Context, in *BrandReques
 	return out, nil
 }
 
-func (c *productServicesClient) UpdateBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) UpdateBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/UpdateBrand", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -132,8 +132,8 @@ func (c *productServicesClient) UpdateBrand(ctx context.Context, in *Brand, opts
 	return out, nil
 }
 
-func (c *productServicesClient) AddBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) AddBrand(ctx context.Context, in *Brand, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/AddBrand", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -159,8 +159,8 @@ func (c *productServicesClient) GetCategoryAttributeInfo(ctx context.Context, in
 	return out, nil
 }
 
-func (c *productServicesClient) EditCategoryAttribute(ctx context.Context, in *CategoryAttribute, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) EditCategoryAttribute(ctx context.Context, in *CategoryAttribute, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/EditCategoryAttribute", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -168,8 +168,8 @@ func (c *productServicesClient) EditCategoryAttribute(ctx context.Context, in *C
 	return out, nil
 }
 
-func (c *productServicesClient) DelCategoryAttribute(ctx context.Context, in *CategoryAttribute, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) DelCategoryAttribute(ctx context.Context, in *CategoryAttribute, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/DelCategoryAttribute", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -177,7 +177,7 @@ func (c *productServicesClient) DelCategoryAttribute(ctx context.Context, in *Ca
 	return out, nil
 }
 
-func (c *productServicesClient) GetCategoryAttributeAndProductAttribute(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*CategoryAttrAndProductAttrListResponse, error) {
+func (c *productServicesClient) GetCategoryAttributeAndProductAttribute(ctx context.Context, in *ProductEmptyRequest, opts ...grpc.CallOption) (*CategoryAttrAndProductAttrListResponse, error) {
 	out := new(CategoryAttrAndProductAttrListResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/GetCategoryAttributeAndProductAttribute", in, out, opts...)
 	if err != nil {
@@ -204,8 +204,8 @@ func (c *productServicesClient) GetCategoryInfo(ctx context.Context, in *Categor
 	return out, nil
 }
 
-func (c *productServicesClient) CreateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) CreateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/CreateCategory", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -213,8 +213,8 @@ func (c *productServicesClient) CreateCategory(ctx context.Context, in *Category
 	return out, nil
 }
 
-func (c *productServicesClient) UpdateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) UpdateCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/UpdateCategory", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -222,8 +222,8 @@ func (c *productServicesClient) UpdateCategory(ctx context.Context, in *Category
 	return out, nil
 }
 
-func (c *productServicesClient) DelCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) DelCategory(ctx context.Context, in *Category, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/DelCategory", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -231,8 +231,8 @@ func (c *productServicesClient) DelCategory(ctx context.Context, in *Category, o
 	return out, nil
 }
 
-func (c *productServicesClient) ChangeCategoryNavStatus(ctx context.Context, in *CategoryChangeStatus, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) ChangeCategoryNavStatus(ctx context.Context, in *CategoryChangeStatus, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/ChangeCategoryNavStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -240,8 +240,8 @@ func (c *productServicesClient) ChangeCategoryNavStatus(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *productServicesClient) ChangeCategoryShowStatus(ctx context.Context, in *CategoryChangeStatus, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) ChangeCategoryShowStatus(ctx context.Context, in *CategoryChangeStatus, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/ChangeCategoryShowStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -249,7 +249,7 @@ func (c *productServicesClient) ChangeCategoryShowStatus(ctx context.Context, in
 	return out, nil
 }
 
-func (c *productServicesClient) GetCategoryListWithChildren(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*CategoryResponse, error) {
+func (c *productServicesClient) GetCategoryListWithChildren(ctx context.Context, in *ProductEmptyRequest, opts ...grpc.CallOption) (*CategoryResponse, error) {
 	out := new(CategoryResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/GetCategoryListWithChildren", in, out, opts...)
 	if err != nil {
@@ -267,8 +267,8 @@ func (c *productServicesClient) GetProductAttributeList(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *productServicesClient) AddProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) AddProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/AddProductAttribute", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -276,8 +276,8 @@ func (c *productServicesClient) AddProductAttribute(ctx context.Context, in *Pro
 	return out, nil
 }
 
-func (c *productServicesClient) UpdateProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) UpdateProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/UpdateProductAttribute", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -285,8 +285,8 @@ func (c *productServicesClient) UpdateProductAttribute(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *productServicesClient) DeleteProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) DeleteProductAttribute(ctx context.Context, in *ProductAttribute, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/DeleteProductAttribute", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -321,8 +321,8 @@ func (c *productServicesClient) GetProductInfo(ctx context.Context, in *ProductI
 	return out, nil
 }
 
-func (c *productServicesClient) ChangeProductPublishStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) ChangeProductPublishStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/ChangeProductPublishStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -330,8 +330,8 @@ func (c *productServicesClient) ChangeProductPublishStatus(ctx context.Context, 
 	return out, nil
 }
 
-func (c *productServicesClient) ChangeProductVerifyStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) ChangeProductVerifyStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/ChangeProductVerifyStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -339,8 +339,8 @@ func (c *productServicesClient) ChangeProductVerifyStatus(ctx context.Context, i
 	return out, nil
 }
 
-func (c *productServicesClient) ChangeProductNewStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) ChangeProductNewStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/ChangeProductNewStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -348,8 +348,8 @@ func (c *productServicesClient) ChangeProductNewStatus(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *productServicesClient) ChangeProductRecommendStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) ChangeProductRecommendStatus(ctx context.Context, in *ProductChangeStatusRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/ChangeProductRecommendStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -357,8 +357,8 @@ func (c *productServicesClient) ChangeProductRecommendStatus(ctx context.Context
 	return out, nil
 }
 
-func (c *productServicesClient) AddProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) AddProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/AddProduct", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -366,8 +366,8 @@ func (c *productServicesClient) AddProduct(ctx context.Context, in *Product, opt
 	return out, nil
 }
 
-func (c *productServicesClient) UpdateProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) UpdateProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/UpdateProduct", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -375,8 +375,8 @@ func (c *productServicesClient) UpdateProduct(ctx context.Context, in *Product, 
 	return out, nil
 }
 
-func (c *productServicesClient) DeleteProduct(ctx context.Context, in *ProductInfoRequest, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) DeleteProduct(ctx context.Context, in *ProductInfoRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/DeleteProduct", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -393,8 +393,8 @@ func (c *productServicesClient) GetProductApiList(ctx context.Context, in *Produ
 	return out, nil
 }
 
-func (c *productServicesClient) UpdateSku(ctx context.Context, in *SkuStockListRequest, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) UpdateSku(ctx context.Context, in *SkuStockListRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/UpdateSku", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -429,8 +429,8 @@ func (c *productServicesClient) GetRecommendList(ctx context.Context, in *Produc
 	return out, nil
 }
 
-func (c *productServicesClient) SetRecommendSort(ctx context.Context, in *RecommendSetSortRequest, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) SetRecommendSort(ctx context.Context, in *RecommendSetSortRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/SetRecommendSort", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -438,8 +438,8 @@ func (c *productServicesClient) SetRecommendSort(ctx context.Context, in *Recomm
 	return out, nil
 }
 
-func (c *productServicesClient) AddRecommend(ctx context.Context, in *RecommendRequest, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) AddRecommend(ctx context.Context, in *RecommendRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/AddRecommend", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -447,8 +447,8 @@ func (c *productServicesClient) AddRecommend(ctx context.Context, in *RecommendR
 	return out, nil
 }
 
-func (c *productServicesClient) DeleteRecommend(ctx context.Context, in *RecommendRequest, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *productServicesClient) DeleteRecommend(ctx context.Context, in *RecommendRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
+	out := new(ProductResponse)
 	err := c.cc.Invoke(ctx, "/pb.ProductServices/DeleteRecommend", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -463,53 +463,53 @@ type ProductServicesServer interface {
 	//Brand
 	GetBrandList(context.Context, *BrandRequest) (*BrandListResponse, error)
 	GetBrandInfo(context.Context, *BrandRequest) (*BrandOneResponse, error)
-	UpdateBrandShowStatus(context.Context, *BrandStatusRequest) (*Response, error)
-	UpdateBrandFactoryStatus(context.Context, *BrandStatusRequest) (*Response, error)
-	DeleteBrand(context.Context, *BrandRequest) (*Response, error)
-	UpdateBrand(context.Context, *Brand) (*Response, error)
-	AddBrand(context.Context, *Brand) (*Response, error)
+	UpdateBrandShowStatus(context.Context, *BrandStatusRequest) (*ProductResponse, error)
+	UpdateBrandFactoryStatus(context.Context, *BrandStatusRequest) (*ProductResponse, error)
+	DeleteBrand(context.Context, *BrandRequest) (*ProductResponse, error)
+	UpdateBrand(context.Context, *Brand) (*ProductResponse, error)
+	AddBrand(context.Context, *Brand) (*ProductResponse, error)
 	//CategoryAttribute
 	//---------------------分类属性-------------------------------------------------
 	GetCategoryAttributeList(context.Context, *ListRequest) (*CategoryAttributeListResponse, error)
 	GetCategoryAttributeInfo(context.Context, *CategoryAttribute) (*CategoryAttributeInfoResponse, error)
-	EditCategoryAttribute(context.Context, *CategoryAttribute) (*Response, error)
-	DelCategoryAttribute(context.Context, *CategoryAttribute) (*Response, error)
-	GetCategoryAttributeAndProductAttribute(context.Context, *EmptyRequest) (*CategoryAttrAndProductAttrListResponse, error)
+	EditCategoryAttribute(context.Context, *CategoryAttribute) (*ProductResponse, error)
+	DelCategoryAttribute(context.Context, *CategoryAttribute) (*ProductResponse, error)
+	GetCategoryAttributeAndProductAttribute(context.Context, *ProductEmptyRequest) (*CategoryAttrAndProductAttrListResponse, error)
 	//Category
 	GetCategoryList(context.Context, *ListRequest) (*CategoryResponse, error)
 	GetCategoryInfo(context.Context, *Category) (*CategoryInfoResponse, error)
-	CreateCategory(context.Context, *Category) (*Response, error)
-	UpdateCategory(context.Context, *Category) (*Response, error)
-	DelCategory(context.Context, *Category) (*Response, error)
-	ChangeCategoryNavStatus(context.Context, *CategoryChangeStatus) (*Response, error)
-	ChangeCategoryShowStatus(context.Context, *CategoryChangeStatus) (*Response, error)
-	GetCategoryListWithChildren(context.Context, *EmptyRequest) (*CategoryResponse, error)
+	CreateCategory(context.Context, *Category) (*ProductResponse, error)
+	UpdateCategory(context.Context, *Category) (*ProductResponse, error)
+	DelCategory(context.Context, *Category) (*ProductResponse, error)
+	ChangeCategoryNavStatus(context.Context, *CategoryChangeStatus) (*ProductResponse, error)
+	ChangeCategoryShowStatus(context.Context, *CategoryChangeStatus) (*ProductResponse, error)
+	GetCategoryListWithChildren(context.Context, *ProductEmptyRequest) (*CategoryResponse, error)
 	//ProductAttribute
 	GetProductAttributeList(context.Context, *AttrRequest) (*ProductAttributeListResponse, error)
-	AddProductAttribute(context.Context, *ProductAttribute) (*Response, error)
-	UpdateProductAttribute(context.Context, *ProductAttribute) (*Response, error)
-	DeleteProductAttribute(context.Context, *ProductAttribute) (*Response, error)
+	AddProductAttribute(context.Context, *ProductAttribute) (*ProductResponse, error)
+	UpdateProductAttribute(context.Context, *ProductAttribute) (*ProductResponse, error)
+	DeleteProductAttribute(context.Context, *ProductAttribute) (*ProductResponse, error)
 	GetProductAttributeInfo(context.Context, *ProductAttribute) (*ProductAttributeInfoResponse, error)
 	//Product
 	GetProductList(context.Context, *ProductListRequest) (*ProductListRespone, error)
 	GetProductInfo(context.Context, *ProductInfoRequest) (*ProductInfoResponse, error)
-	ChangeProductPublishStatus(context.Context, *ProductChangeStatusRequest) (*Response, error)
-	ChangeProductVerifyStatus(context.Context, *ProductChangeStatusRequest) (*Response, error)
-	ChangeProductNewStatus(context.Context, *ProductChangeStatusRequest) (*Response, error)
-	ChangeProductRecommendStatus(context.Context, *ProductChangeStatusRequest) (*Response, error)
-	AddProduct(context.Context, *Product) (*Response, error)
-	UpdateProduct(context.Context, *Product) (*Response, error)
-	DeleteProduct(context.Context, *ProductInfoRequest) (*Response, error)
+	ChangeProductPublishStatus(context.Context, *ProductChangeStatusRequest) (*ProductResponse, error)
+	ChangeProductVerifyStatus(context.Context, *ProductChangeStatusRequest) (*ProductResponse, error)
+	ChangeProductNewStatus(context.Context, *ProductChangeStatusRequest) (*ProductResponse, error)
+	ChangeProductRecommendStatus(context.Context, *ProductChangeStatusRequest) (*ProductResponse, error)
+	AddProduct(context.Context, *Product) (*ProductResponse, error)
+	UpdateProduct(context.Context, *Product) (*ProductResponse, error)
+	DeleteProduct(context.Context, *ProductInfoRequest) (*ProductResponse, error)
 	GetProductApiList(context.Context, *ProductApiRequest) (*ProductListRespone, error)
 	//sku
-	UpdateSku(context.Context, *SkuStockListRequest) (*Response, error)
+	UpdateSku(context.Context, *SkuStockListRequest) (*ProductResponse, error)
 	GetSku(context.Context, *SkuStockRequest) (*SkuStockListResponse, error)
 	// product recommend
 	GetApiRecommendList(context.Context, *ProductListRequest) (*ProductListRespone, error)
 	GetRecommendList(context.Context, *ProductListRequest) (*RecommendListResponse, error)
-	SetRecommendSort(context.Context, *RecommendSetSortRequest) (*Response, error)
-	AddRecommend(context.Context, *RecommendRequest) (*Response, error)
-	DeleteRecommend(context.Context, *RecommendRequest) (*Response, error)
+	SetRecommendSort(context.Context, *RecommendSetSortRequest) (*ProductResponse, error)
+	AddRecommend(context.Context, *RecommendRequest) (*ProductResponse, error)
+	DeleteRecommend(context.Context, *RecommendRequest) (*ProductResponse, error)
 	mustEmbedUnimplementedProductServicesServer()
 }
 
@@ -523,19 +523,19 @@ func (UnimplementedProductServicesServer) GetBrandList(context.Context, *BrandRe
 func (UnimplementedProductServicesServer) GetBrandInfo(context.Context, *BrandRequest) (*BrandOneResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBrandInfo not implemented")
 }
-func (UnimplementedProductServicesServer) UpdateBrandShowStatus(context.Context, *BrandStatusRequest) (*Response, error) {
+func (UnimplementedProductServicesServer) UpdateBrandShowStatus(context.Context, *BrandStatusRequest) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateBrandShowStatus not implemented")
 }
-func (UnimplementedProductServicesServer) UpdateBrandFactoryStatus(context.Context, *BrandStatusRequest) (*Response, error) {
+func (UnimplementedProductServicesServer) UpdateBrandFactoryStatus(context.Context, *BrandStatusRequest) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateBrandFactoryStatus not implemented")
 }
-func (UnimplementedProductServicesServer) DeleteBrand(context.Context, *BrandRequest) (*Response, error) {
+func (UnimplementedProductServicesServer) DeleteBrand(context.Context, *BrandRequest) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteBrand not implemented")
 }
-func (UnimplementedProductServicesServer) UpdateBrand(context.Context, *Brand) (*Response, error) {
+func (UnimplementedProductServicesServer) UpdateBrand(context.Context, *Brand) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateBrand not implemented")
 }
-func (UnimplementedProductServicesServer) AddBrand(context.Context, *Brand) (*Response, error) {
+func (UnimplementedProductServicesServer) AddBrand(context.Context, *Brand) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddBrand not implemented")
 }
 func (UnimplementedProductServicesServer) GetCategoryAttributeList(context.Context, *ListRequest) (*CategoryAttributeListResponse, error) {
@@ -544,13 +544,13 @@ func (UnimplementedProductServicesServer) GetCategoryAttributeList(context.Conte
 func (UnimplementedProductServicesServer) GetCategoryAttributeInfo(context.Context, *CategoryAttribute) (*CategoryAttributeInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCategoryAttributeInfo not implemented")
 }
-func (UnimplementedProductServicesServer) EditCategoryAttribute(context.Context, *CategoryAttribute) (*Response, error) {
+func (UnimplementedProductServicesServer) EditCategoryAttribute(context.Context, *CategoryAttribute) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EditCategoryAttribute not implemented")
 }
-func (UnimplementedProductServicesServer) DelCategoryAttribute(context.Context, *CategoryAttribute) (*Response, error) {
+func (UnimplementedProductServicesServer) DelCategoryAttribute(context.Context, *CategoryAttribute) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DelCategoryAttribute not implemented")
 }
-func (UnimplementedProductServicesServer) GetCategoryAttributeAndProductAttribute(context.Context, *EmptyRequest) (*CategoryAttrAndProductAttrListResponse, error) {
+func (UnimplementedProductServicesServer) GetCategoryAttributeAndProductAttribute(context.Context, *ProductEmptyRequest) (*CategoryAttrAndProductAttrListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCategoryAttributeAndProductAttribute not implemented")
 }
 func (UnimplementedProductServicesServer) GetCategoryList(context.Context, *ListRequest) (*CategoryResponse, error) {
@@ -559,34 +559,34 @@ func (UnimplementedProductServicesServer) GetCategoryList(context.Context, *List
 func (UnimplementedProductServicesServer) GetCategoryInfo(context.Context, *Category) (*CategoryInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCategoryInfo not implemented")
 }
-func (UnimplementedProductServicesServer) CreateCategory(context.Context, *Category) (*Response, error) {
+func (UnimplementedProductServicesServer) CreateCategory(context.Context, *Category) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCategory not implemented")
 }
-func (UnimplementedProductServicesServer) UpdateCategory(context.Context, *Category) (*Response, error) {
+func (UnimplementedProductServicesServer) UpdateCategory(context.Context, *Category) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateCategory not implemented")
 }
-func (UnimplementedProductServicesServer) DelCategory(context.Context, *Category) (*Response, error) {
+func (UnimplementedProductServicesServer) DelCategory(context.Context, *Category) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DelCategory not implemented")
 }
-func (UnimplementedProductServicesServer) ChangeCategoryNavStatus(context.Context, *CategoryChangeStatus) (*Response, error) {
+func (UnimplementedProductServicesServer) ChangeCategoryNavStatus(context.Context, *CategoryChangeStatus) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeCategoryNavStatus not implemented")
 }
-func (UnimplementedProductServicesServer) ChangeCategoryShowStatus(context.Context, *CategoryChangeStatus) (*Response, error) {
+func (UnimplementedProductServicesServer) ChangeCategoryShowStatus(context.Context, *CategoryChangeStatus) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeCategoryShowStatus not implemented")
 }
-func (UnimplementedProductServicesServer) GetCategoryListWithChildren(context.Context, *EmptyRequest) (*CategoryResponse, error) {
+func (UnimplementedProductServicesServer) GetCategoryListWithChildren(context.Context, *ProductEmptyRequest) (*CategoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCategoryListWithChildren not implemented")
 }
 func (UnimplementedProductServicesServer) GetProductAttributeList(context.Context, *AttrRequest) (*ProductAttributeListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProductAttributeList not implemented")
 }
-func (UnimplementedProductServicesServer) AddProductAttribute(context.Context, *ProductAttribute) (*Response, error) {
+func (UnimplementedProductServicesServer) AddProductAttribute(context.Context, *ProductAttribute) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddProductAttribute not implemented")
 }
-func (UnimplementedProductServicesServer) UpdateProductAttribute(context.Context, *ProductAttribute) (*Response, error) {
+func (UnimplementedProductServicesServer) UpdateProductAttribute(context.Context, *ProductAttribute) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateProductAttribute not implemented")
 }
-func (UnimplementedProductServicesServer) DeleteProductAttribute(context.Context, *ProductAttribute) (*Response, error) {
+func (UnimplementedProductServicesServer) DeleteProductAttribute(context.Context, *ProductAttribute) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteProductAttribute not implemented")
 }
 func (UnimplementedProductServicesServer) GetProductAttributeInfo(context.Context, *ProductAttribute) (*ProductAttributeInfoResponse, error) {
@@ -598,31 +598,31 @@ func (UnimplementedProductServicesServer) GetProductList(context.Context, *Produ
 func (UnimplementedProductServicesServer) GetProductInfo(context.Context, *ProductInfoRequest) (*ProductInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProductInfo not implemented")
 }
-func (UnimplementedProductServicesServer) ChangeProductPublishStatus(context.Context, *ProductChangeStatusRequest) (*Response, error) {
+func (UnimplementedProductServicesServer) ChangeProductPublishStatus(context.Context, *ProductChangeStatusRequest) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeProductPublishStatus not implemented")
 }
-func (UnimplementedProductServicesServer) ChangeProductVerifyStatus(context.Context, *ProductChangeStatusRequest) (*Response, error) {
+func (UnimplementedProductServicesServer) ChangeProductVerifyStatus(context.Context, *ProductChangeStatusRequest) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeProductVerifyStatus not implemented")
 }
-func (UnimplementedProductServicesServer) ChangeProductNewStatus(context.Context, *ProductChangeStatusRequest) (*Response, error) {
+func (UnimplementedProductServicesServer) ChangeProductNewStatus(context.Context, *ProductChangeStatusRequest) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeProductNewStatus not implemented")
 }
-func (UnimplementedProductServicesServer) ChangeProductRecommendStatus(context.Context, *ProductChangeStatusRequest) (*Response, error) {
+func (UnimplementedProductServicesServer) ChangeProductRecommendStatus(context.Context, *ProductChangeStatusRequest) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeProductRecommendStatus not implemented")
 }
-func (UnimplementedProductServicesServer) AddProduct(context.Context, *Product) (*Response, error) {
+func (UnimplementedProductServicesServer) AddProduct(context.Context, *Product) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddProduct not implemented")
 }
-func (UnimplementedProductServicesServer) UpdateProduct(context.Context, *Product) (*Response, error) {
+func (UnimplementedProductServicesServer) UpdateProduct(context.Context, *Product) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateProduct not implemented")
 }
-func (UnimplementedProductServicesServer) DeleteProduct(context.Context, *ProductInfoRequest) (*Response, error) {
+func (UnimplementedProductServicesServer) DeleteProduct(context.Context, *ProductInfoRequest) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteProduct not implemented")
 }
 func (UnimplementedProductServicesServer) GetProductApiList(context.Context, *ProductApiRequest) (*ProductListRespone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProductApiList not implemented")
 }
-func (UnimplementedProductServicesServer) UpdateSku(context.Context, *SkuStockListRequest) (*Response, error) {
+func (UnimplementedProductServicesServer) UpdateSku(context.Context, *SkuStockListRequest) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateSku not implemented")
 }
 func (UnimplementedProductServicesServer) GetSku(context.Context, *SkuStockRequest) (*SkuStockListResponse, error) {
@@ -634,13 +634,13 @@ func (UnimplementedProductServicesServer) GetApiRecommendList(context.Context, *
 func (UnimplementedProductServicesServer) GetRecommendList(context.Context, *ProductListRequest) (*RecommendListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRecommendList not implemented")
 }
-func (UnimplementedProductServicesServer) SetRecommendSort(context.Context, *RecommendSetSortRequest) (*Response, error) {
+func (UnimplementedProductServicesServer) SetRecommendSort(context.Context, *RecommendSetSortRequest) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetRecommendSort not implemented")
 }
-func (UnimplementedProductServicesServer) AddRecommend(context.Context, *RecommendRequest) (*Response, error) {
+func (UnimplementedProductServicesServer) AddRecommend(context.Context, *RecommendRequest) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddRecommend not implemented")
 }
-func (UnimplementedProductServicesServer) DeleteRecommend(context.Context, *RecommendRequest) (*Response, error) {
+func (UnimplementedProductServicesServer) DeleteRecommend(context.Context, *RecommendRequest) (*ProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRecommend not implemented")
 }
 func (UnimplementedProductServicesServer) mustEmbedUnimplementedProductServicesServer() {}
@@ -855,7 +855,7 @@ func _ProductServices_DelCategoryAttribute_Handler(srv interface{}, ctx context.
 }
 
 func _ProductServices_GetCategoryAttributeAndProductAttribute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EmptyRequest)
+	in := new(ProductEmptyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -867,7 +867,7 @@ func _ProductServices_GetCategoryAttributeAndProductAttribute_Handler(srv interf
 		FullMethod: "/pb.ProductServices/GetCategoryAttributeAndProductAttribute",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductServicesServer).GetCategoryAttributeAndProductAttribute(ctx, req.(*EmptyRequest))
+		return srv.(ProductServicesServer).GetCategoryAttributeAndProductAttribute(ctx, req.(*ProductEmptyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -999,7 +999,7 @@ func _ProductServices_ChangeCategoryShowStatus_Handler(srv interface{}, ctx cont
 }
 
 func _ProductServices_GetCategoryListWithChildren_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EmptyRequest)
+	in := new(ProductEmptyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1011,7 +1011,7 @@ func _ProductServices_GetCategoryListWithChildren_Handler(srv interface{}, ctx c
 		FullMethod: "/pb.ProductServices/GetCategoryListWithChildren",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductServicesServer).GetCategoryListWithChildren(ctx, req.(*EmptyRequest))
+		return srv.(ProductServicesServer).GetCategoryListWithChildren(ctx, req.(*ProductEmptyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

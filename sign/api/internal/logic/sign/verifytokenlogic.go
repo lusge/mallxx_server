@@ -3,7 +3,6 @@ package sign
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"mallxx_server/common/merrorx"
@@ -42,8 +41,6 @@ func (l *VerifyTokenLogic) VerifyToken(r *http.Request) (int64, error) {
 
 		if ok {
 			userId, err := claims["uid"].(json.Number).Int64()
-
-			fmt.Println(userId, claims)
 
 			if err != nil {
 				return 0, merrorx.NewCodeError(500, err.Error())

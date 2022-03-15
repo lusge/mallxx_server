@@ -3,15 +3,15 @@ syntax = "v1"
 
 type ReceiveAddress {
 	// @inject_tag: json:"id"
-	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,optional"`
 	// @inject_tag: json:"member_id"
-	MemberId int64 `protobuf:"varint,2,opt,name=member_id,json=memberId,proto3" json:"member_id"`
+	MemberId int64 `protobuf:"varint,2,opt,name=member_id,json=memberId,proto3" json:"member_id,optional"`
 	// @inject_tag: json:"phone"
 	Phone string `protobuf:"bytes,3,opt,name=phone,proto3" json:"phone"`
 	// @inject_tag: json:"default_status"
-	DefaultStatus int32 `protobuf:"varint,4,opt,name=default_status,json=defaultStatus,proto3" json:"default_status"`
+	DefaultStatus int32 `protobuf:"varint,4,opt,name=default_status,json=defaultStatus,proto3" json:"default_status,optional"`
 	// @inject_tag: json:"post_code"
-	PostCode string `protobuf:"bytes,5,opt,name=post_code,json=postCode,proto3" json:"post_code"`
+	PostCode string `protobuf:"bytes,5,opt,name=post_code,json=postCode,proto3" json:"post_code,optional"`
 	// @inject_tag: json:"province"
 	Province string `protobuf:"bytes,6,opt,name=province,proto3" json:"province"`
 	// @inject_tag: json:"city"
@@ -48,5 +48,5 @@ type ReceiveAddressListResponse {
 
 type ReceiveAddressRequest {
 	// @inject_tag: json:"member_id"
-	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"member_id"`
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
 }

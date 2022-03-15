@@ -24,11 +24,11 @@ func NewEditCategoryAttributeLogic(ctx context.Context, svcCtx *svc.ServiceConte
 	}
 }
 
-func (l *EditCategoryAttributeLogic) EditCategoryAttribute(in *pb.CategoryAttribute) (*pb.Response, error) {
+func (l *EditCategoryAttributeLogic) EditCategoryAttribute(in *pb.CategoryAttribute) (*pb.ProductResponse, error) {
 	if !l.svcCtx.CategoryAttributeModel.Insert(in) {
 		return nil, merrorx.NewCodeError(500, "新增失败")
 	}
-	return &pb.Response{
+	return &pb.ProductResponse{
 		Code:   200,
 		Detail: "新增成功",
 	}, nil

@@ -24,12 +24,12 @@ func NewDeleteBrandLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Delet
 	}
 }
 
-func (l *DeleteBrandLogic) DeleteBrand(in *pb.BrandRequest) (*pb.Response, error) {
+func (l *DeleteBrandLogic) DeleteBrand(in *pb.BrandRequest) (*pb.ProductResponse, error) {
 	if l.svcCtx.BrandModel.Delete(in.Id) == false {
 		return nil, merrorx.NewCodeError(500, "新增失败")
 	}
 
-	return &pb.Response{
+	return &pb.ProductResponse{
 		Code:   200,
 		Detail: "新增成功",
 	}, nil

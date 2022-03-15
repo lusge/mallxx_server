@@ -1,0 +1,10 @@
+Name: cart-api
+Host: 0.0.0.0
+Port: 8888
+
+
+CartRpc:
+  Etcd:
+    Hosts:
+      - etcd-server:2379
+    Key: cart.rpc

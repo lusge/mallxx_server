@@ -58,7 +58,7 @@ message MemberData {
     MemberLevel member_level =2;
 }
 
-message MemberResponse {
+message MemberInfoResponse {
     // @inject_tag: json:"code"
     int32 code = 1;
     // @inject_tag: json:"data"
@@ -179,10 +179,11 @@ message ReceiveAddressListResponse {
 message ReceiveAddressRequest {
     // @inject_tag: json:"member_id" 
     int64 id = 1;
+    int64 member_id = 2;
 }
 
 
-message ListRequest {
+message MemberListRequest {
     // @inject_tag: form:"pageNum"
     int32 page_num = 1;
     // @inject_tag: form:"pageSize"
@@ -193,23 +194,25 @@ message ListRequest {
     int64 pid = 4;
 }
 
-message Response {
+message MemberResponse {
     int32 code = 1;
     string detail = 2;
 }
 
-message EmptyRequest {
+message MemberEmptyRequest {
 }
 
 service MemberService {
-    rpc GetMemverLevelList (EmptyRequest) returns (MemverLeveListResponse);
+    rpc GetMemverLevelList (MemberEmptyRequest) returns (MemverLeveListResponse);
 
-    rpc GetMemberInfo(MemberRequest) returns (MemberResponse);
-    rpc GetMemberList (EmptyRequest) returns (MemberListResponse);
+    rpc GetMemberInfo(MemberRequest) returns (MemberInfoResponse);
+    rpc GetMemberList (MemberEmptyRequest) returns (MemberListResponse);
 
     rpc GetAddress (MemberRequest) returns (ReceiveAddressListResponse);
     rpc AddAddress (ReceiveAddress) returns (ReceiveAddressResponse);
-    rpc DelAddress (ReceiveAddressRequest) returns (Response);
+    rpc DelAddress (ReceiveAddressRequest) returns (MemberResponse);
+    rpc SetDefaultAddress (ReceiveAddressRequest) returns (MemberResponse);
+    rpc UpdateAddress (ReceiveAddress) returns (MemberResponse);
 
     rpc GetFollower (MemberRequest) returns (FollowerResponse);
 }

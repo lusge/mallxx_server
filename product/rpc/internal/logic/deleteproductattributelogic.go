@@ -24,11 +24,11 @@ func NewDeleteProductAttributeLogic(ctx context.Context, svcCtx *svc.ServiceCont
 	}
 }
 
-func (l *DeleteProductAttributeLogic) DeleteProductAttribute(in *pb.ProductAttribute) (*pb.Response, error) {
+func (l *DeleteProductAttributeLogic) DeleteProductAttribute(in *pb.ProductAttribute) (*pb.ProductResponse, error) {
 	if l.svcCtx.ProductAttributeModel.DeleteById(in.Id) == false {
 		return nil, merrorx.NewCodeError(500, "删除失败")
 	}
-	return &pb.Response{
+	return &pb.ProductResponse{
 		Code:   200,
 		Detail: "删除成功",
 	}, nil

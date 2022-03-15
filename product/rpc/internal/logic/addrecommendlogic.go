@@ -24,11 +24,11 @@ func NewAddRecommendLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AddR
 	}
 }
 
-func (l *AddRecommendLogic) AddRecommend(in *pb.RecommendRequest) (*pb.Response, error) {
+func (l *AddRecommendLogic) AddRecommend(in *pb.RecommendRequest) (*pb.ProductResponse, error) {
 	if l.svcCtx.ProductRecommendModel.Insert(in.ProductIds) == false {
 		return nil, merrorx.NewCodeError(500, "新增失败")
 	}
-	return &pb.Response{
+	return &pb.ProductResponse{
 		Code:   200,
 		Detail: "新增成功",
 	}, nil

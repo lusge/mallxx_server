@@ -24,12 +24,12 @@ func NewUpdateBrandFactoryStatusLogic(ctx context.Context, svcCtx *svc.ServiceCo
 	}
 }
 
-func (l *UpdateBrandFactoryStatusLogic) UpdateBrandFactoryStatus(in *pb.BrandStatusRequest) (*pb.Response, error) {
+func (l *UpdateBrandFactoryStatusLogic) UpdateBrandFactoryStatus(in *pb.BrandStatusRequest) (*pb.ProductResponse, error) {
 	if l.svcCtx.BrandModel.UpdateFactoryStatus(in.Id, in.Status) == false {
 		return nil, merrorx.NewCodeError(500, "更新失败")
 	}
 
-	return &pb.Response{
+	return &pb.ProductResponse{
 		Code:   200,
 		Detail: "更新成功",
 	}, nil

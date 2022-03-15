@@ -22,17 +22,17 @@ func NewMemberServiceServer(svcCtx *svc.ServiceContext) *MemberServiceServer {
 	}
 }
 
-func (s *MemberServiceServer) GetMemverLevelList(ctx context.Context, in *pb.EmptyRequest) (*pb.MemverLeveListResponse, error) {
+func (s *MemberServiceServer) GetMemverLevelList(ctx context.Context, in *pb.MemberEmptyRequest) (*pb.MemverLeveListResponse, error) {
 	l := logic.NewGetMemverLevelListLogic(ctx, s.svcCtx)
 	return l.GetMemverLevelList(in)
 }
 
-func (s *MemberServiceServer) GetMemberInfo(ctx context.Context, in *pb.MemberRequest) (*pb.MemberResponse, error) {
+func (s *MemberServiceServer) GetMemberInfo(ctx context.Context, in *pb.MemberRequest) (*pb.MemberInfoResponse, error) {
 	l := logic.NewGetMemberInfoLogic(ctx, s.svcCtx)
 	return l.GetMemberInfo(in)
 }
 
-func (s *MemberServiceServer) GetMemberList(ctx context.Context, in *pb.EmptyRequest) (*pb.MemberListResponse, error) {
+func (s *MemberServiceServer) GetMemberList(ctx context.Context, in *pb.MemberEmptyRequest) (*pb.MemberListResponse, error) {
 	l := logic.NewGetMemberListLogic(ctx, s.svcCtx)
 	return l.GetMemberList(in)
 }
@@ -47,9 +47,19 @@ func (s *MemberServiceServer) AddAddress(ctx context.Context, in *pb.ReceiveAddr
 	return l.AddAddress(in)
 }
 
-func (s *MemberServiceServer) DelAddress(ctx context.Context, in *pb.ReceiveAddressRequest) (*pb.Response, error) {
+func (s *MemberServiceServer) DelAddress(ctx context.Context, in *pb.ReceiveAddressRequest) (*pb.MemberResponse, error) {
 	l := logic.NewDelAddressLogic(ctx, s.svcCtx)
 	return l.DelAddress(in)
+}
+
+func (s *MemberServiceServer) SetDefaultAddress(ctx context.Context, in *pb.ReceiveAddressRequest) (*pb.MemberResponse, error) {
+	l := logic.NewSetDefaultAddressLogic(ctx, s.svcCtx)
+	return l.SetDefaultAddress(in)
+}
+
+func (s *MemberServiceServer) UpdateAddress(ctx context.Context, in *pb.ReceiveAddress) (*pb.MemberResponse, error) {
+	l := logic.NewUpdateAddressLogic(ctx, s.svcCtx)
+	return l.UpdateAddress(in)
 }
 
 func (s *MemberServiceServer) GetFollower(ctx context.Context, in *pb.MemberRequest) (*pb.FollowerResponse, error) {

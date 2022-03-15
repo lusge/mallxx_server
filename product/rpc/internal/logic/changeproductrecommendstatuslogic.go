@@ -24,13 +24,13 @@ func NewChangeProductRecommendStatusLogic(ctx context.Context, svcCtx *svc.Servi
 	}
 }
 
-func (l *ChangeProductRecommendStatusLogic) ChangeProductRecommendStatus(in *pb.ProductChangeStatusRequest) (*pb.Response, error) {
+func (l *ChangeProductRecommendStatusLogic) ChangeProductRecommendStatus(in *pb.ProductChangeStatusRequest) (*pb.ProductResponse, error) {
 	if l.svcCtx.ProductModel.ChangeStatus(in.Id, map[string]interface{}{
 		"recommend_status": in.Status,
 	}) == false {
 		return nil, merrorx.NewCodeError(500, "更新失败")
 	}
-	return &pb.Response{
+	return &pb.ProductResponse{
 		Code:   200,
 		Detail: "更新成功",
 	}, nil

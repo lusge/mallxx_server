@@ -49,7 +49,7 @@ service member-api {
 	get /list (MemberRequest) returns (ReceiveAddressListResponse)
 	
 	@handler AddAddress
-	post /add  (ReceiveAddress) returns (Response)
+	post /add  (ReceiveAddress) returns (ReceiveAddressResponse)
 	
 	@handler DelAddress
 	post /del (ReceiveAddressRequest) returns (Response)

@@ -3,8 +3,10 @@ package address
 import (
 	"context"
 
+	"mallxx_server/common/merrorx"
 	"mallxx_server/member/api/internal/svc"
 	"mallxx_server/member/api/internal/types"
+	"mallxx_server/member/rpc/memberservice"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -23,8 +25,23 @@ func NewSetDefaultLogic(ctx context.Context, svcCtx *svc.ServiceContext) SetDefa
 	}
 }
 
-func (l *SetDefaultLogic) SetDefault(req types.ReceiveAddressRequest) (resp *types.Response, err error) {
-	// todo: add your logic here and delete this line
+func (l *SetDefaultLogic) SetDefault(req types.ReceiveAddressRequest) (*types.Response, error) {
+	userId := l.ctx.Value("uid").(int64)
+	if userId <= 0 {
+		return nil, merrorx.NewCodeError(500, "参数错误")
+	}
 
-	return
+	resp, err := l.svcCtx.MemberRpc.SetDefaultAddress(l.ctx, &memberservice.ReceiveAddressRequest{
+		Id:       req.Id,
+		MemberId: userId,
+	})
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &types.Response{
+		Code:   resp.Code,
+		Detail: resp.Detail,
+	}, nil
 }

@@ -26,7 +26,7 @@ func NewGetMemverLevelListLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 }
 
 func (l *GetMemverLevelListLogic) GetMemverLevelList(req types.EmptyRequest) (*types.MemverLeveListResponse, error) {
-	resp, err := l.svcCtx.MemberRpc.GetMemverLevelList(l.ctx, &memberservice.EmptyRequest{})
+	resp, err := l.svcCtx.MemberRpc.GetMemverLevelList(l.ctx, &memberservice.MemberEmptyRequest{})
 
 	if err != nil {
 		return nil, err

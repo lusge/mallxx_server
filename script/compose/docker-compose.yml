@@ -260,6 +260,50 @@ services:
     networks:
       - mallxx_net
 
+  cart-rpc:
+    image: cosmtrek/air:latest
+    container_name: cart-rpc
+    environment:
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /go/src/mallxx_server/cart/rpc
+    volumes:
+      - ./../../:/go/src/mallxx_server
+    privileged: true
+    restart: always
+    links:
+      - db
+      - etcd-server
+      - redis
+    depends_on:
+      - db
+      - etcd-server
+      - redis
+      - member-rpc
+      - product-rpc
+    networks:
+      - mallxx_net
+
+  cart-api:
+    image: cosmtrek/air:latest
+    container_name: cart-api
+    environment:
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /go/src/mallxx_server/cart/api
+    volumes:
+      - ./../../:/go/src/mallxx_server
+    privileged: true
+    restart: always
+    ports:
+      - 8894:8888
+    links:
+      - etcd-server
+    depends_on:
+      - cart-rpc
+    networks:
+      - mallxx_net
+
 networks:
   mallxx_net:
     driver: bridge

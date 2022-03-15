@@ -2,10 +2,13 @@
 advertise/advertise
 advertise/rpc/tmp
 advertise/api/tmp
+
 admin/rpc/tmp
 admin/api/tmp
+
 product/rpc/tmp
 product/api/tmp
+
 member/rpc/tmp
 member/api/tmp
 
@@ -14,3 +17,9 @@ upload/api/tmp
 
 sign/rpc/tmp
 sign/api/tmp
+
+cart/rpc/tmp
+cart/api/tmp
+
+order/rpc/tmp
+order/api/tmp

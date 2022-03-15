@@ -18,12 +18,14 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MemberServiceClient interface {
-	GetMemverLevelList(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*MemverLeveListResponse, error)
-	GetMemberInfo(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*MemberResponse, error)
-	GetMemberList(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*MemberListResponse, error)
+	GetMemverLevelList(ctx context.Context, in *MemberEmptyRequest, opts ...grpc.CallOption) (*MemverLeveListResponse, error)
+	GetMemberInfo(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*MemberInfoResponse, error)
+	GetMemberList(ctx context.Context, in *MemberEmptyRequest, opts ...grpc.CallOption) (*MemberListResponse, error)
 	GetAddress(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*ReceiveAddressListResponse, error)
 	AddAddress(ctx context.Context, in *ReceiveAddress, opts ...grpc.CallOption) (*ReceiveAddressResponse, error)
-	DelAddress(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*Response, error)
+	DelAddress(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*MemberResponse, error)
+	SetDefaultAddress(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*MemberResponse, error)
+	UpdateAddress(ctx context.Context, in *ReceiveAddress, opts ...grpc.CallOption) (*MemberResponse, error)
 	GetFollower(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*FollowerResponse, error)
 }
 
@@ -35,7 +37,7 @@ func NewMemberServiceClient(cc grpc.ClientConnInterface) MemberServiceClient {
 	return &memberServiceClient{cc}
 }
 
-func (c *memberServiceClient) GetMemverLevelList(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*MemverLeveListResponse, error) {
+func (c *memberServiceClient) GetMemverLevelList(ctx context.Context, in *MemberEmptyRequest, opts ...grpc.CallOption) (*MemverLeveListResponse, error) {
 	out := new(MemverLeveListResponse)
 	err := c.cc.Invoke(ctx, "/pb.MemberService/GetMemverLevelList", in, out, opts...)
 	if err != nil {
@@ -44,8 +46,8 @@ func (c *memberServiceClient) GetMemverLevelList(ctx context.Context, in *EmptyR
 	return out, nil
 }
 
-func (c *memberServiceClient) GetMemberInfo(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*MemberResponse, error) {
-	out := new(MemberResponse)
+func (c *memberServiceClient) GetMemberInfo(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*MemberInfoResponse, error) {
+	out := new(MemberInfoResponse)
 	err := c.cc.Invoke(ctx, "/pb.MemberService/GetMemberInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -53,7 +55,7 @@ func (c *memberServiceClient) GetMemberInfo(ctx context.Context, in *MemberReque
 	return out, nil
 }
 
-func (c *memberServiceClient) GetMemberList(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*MemberListResponse, error) {
+func (c *memberServiceClient) GetMemberList(ctx context.Context, in *MemberEmptyRequest, opts ...grpc.CallOption) (*MemberListResponse, error) {
 	out := new(MemberListResponse)
 	err := c.cc.Invoke(ctx, "/pb.MemberService/GetMemberList", in, out, opts...)
 	if err != nil {
@@ -80,9 +82,27 @@ func (c *memberServiceClient) AddAddress(ctx context.Context, in *ReceiveAddress
 	return out, nil
 }
 
-func (c *memberServiceClient) DelAddress(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
+func (c *memberServiceClient) DelAddress(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*MemberResponse, error) {
+	out := new(MemberResponse)
 	err := c.cc.Invoke(ctx, "/pb.MemberService/DelAddress", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *memberServiceClient) SetDefaultAddress(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*MemberResponse, error) {
+	out := new(MemberResponse)
+	err := c.cc.Invoke(ctx, "/pb.MemberService/SetDefaultAddress", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *memberServiceClient) UpdateAddress(ctx context.Context, in *ReceiveAddress, opts ...grpc.CallOption) (*MemberResponse, error) {
+	out := new(MemberResponse)
+	err := c.cc.Invoke(ctx, "/pb.MemberService/UpdateAddress", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -102,12 +122,14 @@ func (c *memberServiceClient) GetFollower(ctx context.Context, in *MemberRequest
 // All implementations must embed UnimplementedMemberServiceServer
 // for forward compatibility
 type MemberServiceServer interface {
-	GetMemverLevelList(context.Context, *EmptyRequest) (*MemverLeveListResponse, error)
-	GetMemberInfo(context.Context, *MemberRequest) (*MemberResponse, error)
-	GetMemberList(context.Context, *EmptyRequest) (*MemberListResponse, error)
+	GetMemverLevelList(context.Context, *MemberEmptyRequest) (*MemverLeveListResponse, error)
+	GetMemberInfo(context.Context, *MemberRequest) (*MemberInfoResponse, error)
+	GetMemberList(context.Context, *MemberEmptyRequest) (*MemberListResponse, error)
 	GetAddress(context.Context, *MemberRequest) (*ReceiveAddressListResponse, error)
 	AddAddress(context.Context, *ReceiveAddress) (*ReceiveAddressResponse, error)
-	DelAddress(context.Context, *ReceiveAddressRequest) (*Response, error)
+	DelAddress(context.Context, *ReceiveAddressRequest) (*MemberResponse, error)
+	SetDefaultAddress(context.Context, *ReceiveAddressRequest) (*MemberResponse, error)
+	UpdateAddress(context.Context, *ReceiveAddress) (*MemberResponse, error)
 	GetFollower(context.Context, *MemberRequest) (*FollowerResponse, error)
 	mustEmbedUnimplementedMemberServiceServer()
 }
@@ -116,13 +138,13 @@ type MemberServiceServer interface {
 type UnimplementedMemberServiceServer struct {
 }
 
-func (UnimplementedMemberServiceServer) GetMemverLevelList(context.Context, *EmptyRequest) (*MemverLeveListResponse, error) {
+func (UnimplementedMemberServiceServer) GetMemverLevelList(context.Context, *MemberEmptyRequest) (*MemverLeveListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMemverLevelList not implemented")
 }
-func (UnimplementedMemberServiceServer) GetMemberInfo(context.Context, *MemberRequest) (*MemberResponse, error) {
+func (UnimplementedMemberServiceServer) GetMemberInfo(context.Context, *MemberRequest) (*MemberInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMemberInfo not implemented")
 }
-func (UnimplementedMemberServiceServer) GetMemberList(context.Context, *EmptyRequest) (*MemberListResponse, error) {
+func (UnimplementedMemberServiceServer) GetMemberList(context.Context, *MemberEmptyRequest) (*MemberListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMemberList not implemented")
 }
 func (UnimplementedMemberServiceServer) GetAddress(context.Context, *MemberRequest) (*ReceiveAddressListResponse, error) {
@@ -131,8 +153,14 @@ func (UnimplementedMemberServiceServer) GetAddress(context.Context, *MemberReque
 func (UnimplementedMemberServiceServer) AddAddress(context.Context, *ReceiveAddress) (*ReceiveAddressResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddAddress not implemented")
 }
-func (UnimplementedMemberServiceServer) DelAddress(context.Context, *ReceiveAddressRequest) (*Response, error) {
+func (UnimplementedMemberServiceServer) DelAddress(context.Context, *ReceiveAddressRequest) (*MemberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DelAddress not implemented")
+}
+func (UnimplementedMemberServiceServer) SetDefaultAddress(context.Context, *ReceiveAddressRequest) (*MemberResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetDefaultAddress not implemented")
+}
+func (UnimplementedMemberServiceServer) UpdateAddress(context.Context, *ReceiveAddress) (*MemberResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateAddress not implemented")
 }
 func (UnimplementedMemberServiceServer) GetFollower(context.Context, *MemberRequest) (*FollowerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFollower not implemented")
@@ -151,7 +179,7 @@ func RegisterMemberServiceServer(s grpc.ServiceRegistrar, srv MemberServiceServe
 }
 
 func _MemberService_GetMemverLevelList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EmptyRequest)
+	in := new(MemberEmptyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -163,7 +191,7 @@ func _MemberService_GetMemverLevelList_Handler(srv interface{}, ctx context.Cont
 		FullMethod: "/pb.MemberService/GetMemverLevelList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MemberServiceServer).GetMemverLevelList(ctx, req.(*EmptyRequest))
+		return srv.(MemberServiceServer).GetMemverLevelList(ctx, req.(*MemberEmptyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -187,7 +215,7 @@ func _MemberService_GetMemberInfo_Handler(srv interface{}, ctx context.Context, 
 }
 
 func _MemberService_GetMemberList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EmptyRequest)
+	in := new(MemberEmptyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -199,7 +227,7 @@ func _MemberService_GetMemberList_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: "/pb.MemberService/GetMemberList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MemberServiceServer).GetMemberList(ctx, req.(*EmptyRequest))
+		return srv.(MemberServiceServer).GetMemberList(ctx, req.(*MemberEmptyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -258,6 +286,42 @@ func _MemberService_DelAddress_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MemberService_SetDefaultAddress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReceiveAddressRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MemberServiceServer).SetDefaultAddress(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.MemberService/SetDefaultAddress",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MemberServiceServer).SetDefaultAddress(ctx, req.(*ReceiveAddressRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MemberService_UpdateAddress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReceiveAddress)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MemberServiceServer).UpdateAddress(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.MemberService/UpdateAddress",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MemberServiceServer).UpdateAddress(ctx, req.(*ReceiveAddress))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MemberService_GetFollower_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MemberRequest)
 	if err := dec(in); err != nil {
@@ -308,10 +372,18 @@ var MemberService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MemberService_DelAddress_Handler,
 		},
 		{
+			MethodName: "SetDefaultAddress",
+			Handler:    _MemberService_SetDefaultAddress_Handler,
+		},
+		{
+			MethodName: "UpdateAddress",
+			Handler:    _MemberService_UpdateAddress_Handler,
+		},
+		{
 			MethodName: "GetFollower",
 			Handler:    _MemberService_GetFollower_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "member.proto",
+	Metadata: "member/rpc/member.proto",
 }

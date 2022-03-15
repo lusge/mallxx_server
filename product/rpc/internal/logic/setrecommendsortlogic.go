@@ -24,12 +24,12 @@ func NewSetRecommendSortLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 	}
 }
 
-func (l *SetRecommendSortLogic) SetRecommendSort(in *pb.RecommendSetSortRequest) (*pb.Response, error) {
+func (l *SetRecommendSortLogic) SetRecommendSort(in *pb.RecommendSetSortRequest) (*pb.ProductResponse, error) {
 	if l.svcCtx.ProductRecommendModel.SetSort(in.Id, int(in.Sort)) == false {
 		return nil, merrorx.NewCodeError(500, "设置失败")
 	}
 
-	return &pb.Response{
+	return &pb.ProductResponse{
 		Code:   200,
 		Detail: "设置成功",
 	}, nil

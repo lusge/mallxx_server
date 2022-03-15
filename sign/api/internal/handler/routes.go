@@ -24,6 +24,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: sign.RegisterHandler(serverCtx),
 			},
 			{
+				Method:  http.MethodPost,
+				Path:    "/signout",
+				Handler: sign.SignOutHandler(serverCtx),
+			},
+			{
 				Method:  http.MethodGet,
 				Path:    "/verify/token",
 				Handler: sign.VerifyTokenHandler(serverCtx),

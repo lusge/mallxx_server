@@ -553,70 +553,70 @@ message SkuStockListRequest {
     repeated SkuStock list = 1;
 }
 
-message Response {
+message ProductResponse {
     int32 code = 1;
     string detail = 2;
 }
 
-message EmptyRequest {
+message ProductEmptyRequest {
 }
 
 service ProductServices {
     //Brand
     rpc GetBrandList (BrandRequest) returns (BrandListResponse);
     rpc GetBrandInfo (BrandRequest) returns (BrandOneResponse);
-    rpc UpdateBrandShowStatus(BrandStatusRequest) returns (Response);
-    rpc UpdateBrandFactoryStatus(BrandStatusRequest) returns (Response);
-    rpc DeleteBrand(BrandRequest) returns (Response);
-    rpc UpdateBrand(Brand) returns (Response);
-    rpc AddBrand(Brand) returns (Response);
+    rpc UpdateBrandShowStatus(BrandStatusRequest) returns (ProductResponse);
+    rpc UpdateBrandFactoryStatus(BrandStatusRequest) returns (ProductResponse);
+    rpc DeleteBrand(BrandRequest) returns (ProductResponse);
+    rpc UpdateBrand(Brand) returns (ProductResponse);
+    rpc AddBrand(Brand) returns (ProductResponse);
 
     //CategoryAttribute
     //---------------------分类属性-------------------------------------------------
     rpc GetCategoryAttributeList (ListRequest) returns (CategoryAttributeListResponse);
     rpc GetCategoryAttributeInfo (CategoryAttribute) returns (CategoryAttributeInfoResponse);
-    rpc EditCategoryAttribute (CategoryAttribute) returns (Response);
-    rpc DelCategoryAttribute(CategoryAttribute) returns (Response);
-    rpc GetCategoryAttributeAndProductAttribute (EmptyRequest) returns (CategoryAttrAndProductAttrListResponse);
+    rpc EditCategoryAttribute (CategoryAttribute) returns (ProductResponse);
+    rpc DelCategoryAttribute(CategoryAttribute) returns (ProductResponse);
+    rpc GetCategoryAttributeAndProductAttribute (ProductEmptyRequest) returns (CategoryAttrAndProductAttrListResponse);
     //---------------------end------------------------------------------------------
 
     //Category
     rpc GetCategoryList (ListRequest) returns (CategoryResponse);
     rpc GetCategoryInfo (Category) returns (CategoryInfoResponse);
-    rpc CreateCategory (Category) returns (Response);
-    rpc UpdateCategory (Category) returns (Response);
-    rpc DelCategory (Category) returns (Response);
-    rpc ChangeCategoryNavStatus (CategoryChangeStatus) returns (Response);
-    rpc ChangeCategoryShowStatus (CategoryChangeStatus) returns (Response);
-    rpc GetCategoryListWithChildren (EmptyRequest) returns (CategoryResponse);
+    rpc CreateCategory (Category) returns (ProductResponse);
+    rpc UpdateCategory (Category) returns (ProductResponse);
+    rpc DelCategory (Category) returns (ProductResponse);
+    rpc ChangeCategoryNavStatus (CategoryChangeStatus) returns (ProductResponse);
+    rpc ChangeCategoryShowStatus (CategoryChangeStatus) returns (ProductResponse);
+    rpc GetCategoryListWithChildren (ProductEmptyRequest) returns (CategoryResponse);
 
     //ProductAttribute
     rpc GetProductAttributeList (AttrRequest) returns (ProductAttributeListResponse);
-    rpc AddProductAttribute (ProductAttribute) returns (Response);
-    rpc UpdateProductAttribute (ProductAttribute) returns (Response);
-    rpc DeleteProductAttribute (ProductAttribute) returns (Response);
+    rpc AddProductAttribute (ProductAttribute) returns (ProductResponse);
+    rpc UpdateProductAttribute (ProductAttribute) returns (ProductResponse);
+    rpc DeleteProductAttribute (ProductAttribute) returns (ProductResponse);
     rpc GetProductAttributeInfo (ProductAttribute) returns (ProductAttributeInfoResponse);
 
     //Product
     rpc GetProductList (ProductListRequest) returns (ProductListRespone);
     rpc GetProductInfo (ProductInfoRequest) returns (ProductInfoResponse);
-    rpc ChangeProductPublishStatus (ProductChangeStatusRequest) returns (Response);
-    rpc ChangeProductVerifyStatus (ProductChangeStatusRequest) returns (Response);
-    rpc ChangeProductNewStatus (ProductChangeStatusRequest) returns (Response);
-    rpc ChangeProductRecommendStatus (ProductChangeStatusRequest) returns (Response);
-    rpc AddProduct (Product) returns (Response);
-    rpc UpdateProduct (Product) returns (Response);
-    rpc DeleteProduct (ProductInfoRequest) returns (Response);
+    rpc ChangeProductPublishStatus (ProductChangeStatusRequest) returns (ProductResponse);
+    rpc ChangeProductVerifyStatus (ProductChangeStatusRequest) returns (ProductResponse);
+    rpc ChangeProductNewStatus (ProductChangeStatusRequest) returns (ProductResponse);
+    rpc ChangeProductRecommendStatus (ProductChangeStatusRequest) returns (ProductResponse);
+    rpc AddProduct (Product) returns (ProductResponse);
+    rpc UpdateProduct (Product) returns (ProductResponse);
+    rpc DeleteProduct (ProductInfoRequest) returns (ProductResponse);
     rpc GetProductApiList(ProductApiRequest) returns (ProductListRespone);
 
     //sku
-    rpc UpdateSku (SkuStockListRequest) returns (Response);
+    rpc UpdateSku (SkuStockListRequest) returns (ProductResponse);
     rpc GetSku (SkuStockRequest) returns (SkuStockListResponse);
     
     // product recommend
     rpc GetApiRecommendList(ProductListRequest) returns (ProductListRespone);
     rpc GetRecommendList(ProductListRequest) returns (RecommendListResponse);
-    rpc SetRecommendSort(RecommendSetSortRequest) returns (Response);
-    rpc AddRecommend(RecommendRequest) returns (Response);
-    rpc DeleteRecommend(RecommendRequest) returns (Response);
+    rpc SetRecommendSort(RecommendSetSortRequest) returns (ProductResponse);
+    rpc AddRecommend(RecommendRequest) returns (ProductResponse);
+    rpc DeleteRecommend(RecommendRequest) returns (ProductResponse);
 }

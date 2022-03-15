@@ -23,7 +23,7 @@ func NewGetCategoryAttributeAndProductAttributeLogic(ctx context.Context, svcCtx
 	}
 }
 
-func (l *GetCategoryAttributeAndProductAttributeLogic) GetCategoryAttributeAndProductAttribute(in *pb.EmptyRequest) (*pb.CategoryAttrAndProductAttrListResponse, error) {
+func (l *GetCategoryAttributeAndProductAttributeLogic) GetCategoryAttributeAndProductAttribute(in *pb.ProductEmptyRequest) (*pb.CategoryAttrAndProductAttrListResponse, error) {
 	categoryAttrList := l.svcCtx.CategoryAttributeModel.FindAll()
 
 	data := make([]*pb.CategoryAttrAndProductAttr, 0)

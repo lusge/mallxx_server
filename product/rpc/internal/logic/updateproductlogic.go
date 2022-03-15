@@ -24,12 +24,12 @@ func NewUpdateProductLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Upd
 	}
 }
 
-func (l *UpdateProductLogic) UpdateProduct(in *pb.Product) (*pb.Response, error) {
+func (l *UpdateProductLogic) UpdateProduct(in *pb.Product) (*pb.ProductResponse, error) {
 	isOk := l.svcCtx.ProductModel.Update(in)
 	if !isOk {
 		return nil, merrorx.NewCodeError(500, "更改失败")
 	}
-	return &pb.Response{
+	return &pb.ProductResponse{
 		Code:   200,
 		Detail: "更新成功",
 	}, nil

@@ -33,27 +33,27 @@ func (s *ProductServicesServer) GetBrandInfo(ctx context.Context, in *pb.BrandRe
 	return l.GetBrandInfo(in)
 }
 
-func (s *ProductServicesServer) UpdateBrandShowStatus(ctx context.Context, in *pb.BrandStatusRequest) (*pb.Response, error) {
+func (s *ProductServicesServer) UpdateBrandShowStatus(ctx context.Context, in *pb.BrandStatusRequest) (*pb.ProductResponse, error) {
 	l := logic.NewUpdateBrandShowStatusLogic(ctx, s.svcCtx)
 	return l.UpdateBrandShowStatus(in)
 }
 
-func (s *ProductServicesServer) UpdateBrandFactoryStatus(ctx context.Context, in *pb.BrandStatusRequest) (*pb.Response, error) {
+func (s *ProductServicesServer) UpdateBrandFactoryStatus(ctx context.Context, in *pb.BrandStatusRequest) (*pb.ProductResponse, error) {
 	l := logic.NewUpdateBrandFactoryStatusLogic(ctx, s.svcCtx)
 	return l.UpdateBrandFactoryStatus(in)
 }
 
-func (s *ProductServicesServer) DeleteBrand(ctx context.Context, in *pb.BrandRequest) (*pb.Response, error) {
+func (s *ProductServicesServer) DeleteBrand(ctx context.Context, in *pb.BrandRequest) (*pb.ProductResponse, error) {
 	l := logic.NewDeleteBrandLogic(ctx, s.svcCtx)
 	return l.DeleteBrand(in)
 }
 
-func (s *ProductServicesServer) UpdateBrand(ctx context.Context, in *pb.Brand) (*pb.Response, error) {
+func (s *ProductServicesServer) UpdateBrand(ctx context.Context, in *pb.Brand) (*pb.ProductResponse, error) {
 	l := logic.NewUpdateBrandLogic(ctx, s.svcCtx)
 	return l.UpdateBrand(in)
 }
 
-func (s *ProductServicesServer) AddBrand(ctx context.Context, in *pb.Brand) (*pb.Response, error) {
+func (s *ProductServicesServer) AddBrand(ctx context.Context, in *pb.Brand) (*pb.ProductResponse, error) {
 	l := logic.NewAddBrandLogic(ctx, s.svcCtx)
 	return l.AddBrand(in)
 }
@@ -69,17 +69,17 @@ func (s *ProductServicesServer) GetCategoryAttributeInfo(ctx context.Context, in
 	return l.GetCategoryAttributeInfo(in)
 }
 
-func (s *ProductServicesServer) EditCategoryAttribute(ctx context.Context, in *pb.CategoryAttribute) (*pb.Response, error) {
+func (s *ProductServicesServer) EditCategoryAttribute(ctx context.Context, in *pb.CategoryAttribute) (*pb.ProductResponse, error) {
 	l := logic.NewEditCategoryAttributeLogic(ctx, s.svcCtx)
 	return l.EditCategoryAttribute(in)
 }
 
-func (s *ProductServicesServer) DelCategoryAttribute(ctx context.Context, in *pb.CategoryAttribute) (*pb.Response, error) {
+func (s *ProductServicesServer) DelCategoryAttribute(ctx context.Context, in *pb.CategoryAttribute) (*pb.ProductResponse, error) {
 	l := logic.NewDelCategoryAttributeLogic(ctx, s.svcCtx)
 	return l.DelCategoryAttribute(in)
 }
 
-func (s *ProductServicesServer) GetCategoryAttributeAndProductAttribute(ctx context.Context, in *pb.EmptyRequest) (*pb.CategoryAttrAndProductAttrListResponse, error) {
+func (s *ProductServicesServer) GetCategoryAttributeAndProductAttribute(ctx context.Context, in *pb.ProductEmptyRequest) (*pb.CategoryAttrAndProductAttrListResponse, error) {
 	l := logic.NewGetCategoryAttributeAndProductAttributeLogic(ctx, s.svcCtx)
 	return l.GetCategoryAttributeAndProductAttribute(in)
 }
@@ -95,32 +95,32 @@ func (s *ProductServicesServer) GetCategoryInfo(ctx context.Context, in *pb.Cate
 	return l.GetCategoryInfo(in)
 }
 
-func (s *ProductServicesServer) CreateCategory(ctx context.Context, in *pb.Category) (*pb.Response, error) {
+func (s *ProductServicesServer) CreateCategory(ctx context.Context, in *pb.Category) (*pb.ProductResponse, error) {
 	l := logic.NewCreateCategoryLogic(ctx, s.svcCtx)
 	return l.CreateCategory(in)
 }
 
-func (s *ProductServicesServer) UpdateCategory(ctx context.Context, in *pb.Category) (*pb.Response, error) {
+func (s *ProductServicesServer) UpdateCategory(ctx context.Context, in *pb.Category) (*pb.ProductResponse, error) {
 	l := logic.NewUpdateCategoryLogic(ctx, s.svcCtx)
 	return l.UpdateCategory(in)
 }
 
-func (s *ProductServicesServer) DelCategory(ctx context.Context, in *pb.Category) (*pb.Response, error) {
+func (s *ProductServicesServer) DelCategory(ctx context.Context, in *pb.Category) (*pb.ProductResponse, error) {
 	l := logic.NewDelCategoryLogic(ctx, s.svcCtx)
 	return l.DelCategory(in)
 }
 
-func (s *ProductServicesServer) ChangeCategoryNavStatus(ctx context.Context, in *pb.CategoryChangeStatus) (*pb.Response, error) {
+func (s *ProductServicesServer) ChangeCategoryNavStatus(ctx context.Context, in *pb.CategoryChangeStatus) (*pb.ProductResponse, error) {
 	l := logic.NewChangeCategoryNavStatusLogic(ctx, s.svcCtx)
 	return l.ChangeCategoryNavStatus(in)
 }
 
-func (s *ProductServicesServer) ChangeCategoryShowStatus(ctx context.Context, in *pb.CategoryChangeStatus) (*pb.Response, error) {
+func (s *ProductServicesServer) ChangeCategoryShowStatus(ctx context.Context, in *pb.CategoryChangeStatus) (*pb.ProductResponse, error) {
 	l := logic.NewChangeCategoryShowStatusLogic(ctx, s.svcCtx)
 	return l.ChangeCategoryShowStatus(in)
 }
 
-func (s *ProductServicesServer) GetCategoryListWithChildren(ctx context.Context, in *pb.EmptyRequest) (*pb.CategoryResponse, error) {
+func (s *ProductServicesServer) GetCategoryListWithChildren(ctx context.Context, in *pb.ProductEmptyRequest) (*pb.CategoryResponse, error) {
 	l := logic.NewGetCategoryListWithChildrenLogic(ctx, s.svcCtx)
 	return l.GetCategoryListWithChildren(in)
 }
@@ -131,17 +131,17 @@ func (s *ProductServicesServer) GetProductAttributeList(ctx context.Context, in 
 	return l.GetProductAttributeList(in)
 }
 
-func (s *ProductServicesServer) AddProductAttribute(ctx context.Context, in *pb.ProductAttribute) (*pb.Response, error) {
+func (s *ProductServicesServer) AddProductAttribute(ctx context.Context, in *pb.ProductAttribute) (*pb.ProductResponse, error) {
 	l := logic.NewAddProductAttributeLogic(ctx, s.svcCtx)
 	return l.AddProductAttribute(in)
 }
 
-func (s *ProductServicesServer) UpdateProductAttribute(ctx context.Context, in *pb.ProductAttribute) (*pb.Response, error) {
+func (s *ProductServicesServer) UpdateProductAttribute(ctx context.Context, in *pb.ProductAttribute) (*pb.ProductResponse, error) {
 	l := logic.NewUpdateProductAttributeLogic(ctx, s.svcCtx)
 	return l.UpdateProductAttribute(in)
 }
 
-func (s *ProductServicesServer) DeleteProductAttribute(ctx context.Context, in *pb.ProductAttribute) (*pb.Response, error) {
+func (s *ProductServicesServer) DeleteProductAttribute(ctx context.Context, in *pb.ProductAttribute) (*pb.ProductResponse, error) {
 	l := logic.NewDeleteProductAttributeLogic(ctx, s.svcCtx)
 	return l.DeleteProductAttribute(in)
 }
@@ -162,37 +162,37 @@ func (s *ProductServicesServer) GetProductInfo(ctx context.Context, in *pb.Produ
 	return l.GetProductInfo(in)
 }
 
-func (s *ProductServicesServer) ChangeProductPublishStatus(ctx context.Context, in *pb.ProductChangeStatusRequest) (*pb.Response, error) {
+func (s *ProductServicesServer) ChangeProductPublishStatus(ctx context.Context, in *pb.ProductChangeStatusRequest) (*pb.ProductResponse, error) {
 	l := logic.NewChangeProductPublishStatusLogic(ctx, s.svcCtx)
 	return l.ChangeProductPublishStatus(in)
 }
 
-func (s *ProductServicesServer) ChangeProductVerifyStatus(ctx context.Context, in *pb.ProductChangeStatusRequest) (*pb.Response, error) {
+func (s *ProductServicesServer) ChangeProductVerifyStatus(ctx context.Context, in *pb.ProductChangeStatusRequest) (*pb.ProductResponse, error) {
 	l := logic.NewChangeProductVerifyStatusLogic(ctx, s.svcCtx)
 	return l.ChangeProductVerifyStatus(in)
 }
 
-func (s *ProductServicesServer) ChangeProductNewStatus(ctx context.Context, in *pb.ProductChangeStatusRequest) (*pb.Response, error) {
+func (s *ProductServicesServer) ChangeProductNewStatus(ctx context.Context, in *pb.ProductChangeStatusRequest) (*pb.ProductResponse, error) {
 	l := logic.NewChangeProductNewStatusLogic(ctx, s.svcCtx)
 	return l.ChangeProductNewStatus(in)
 }
 
-func (s *ProductServicesServer) ChangeProductRecommendStatus(ctx context.Context, in *pb.ProductChangeStatusRequest) (*pb.Response, error) {
+func (s *ProductServicesServer) ChangeProductRecommendStatus(ctx context.Context, in *pb.ProductChangeStatusRequest) (*pb.ProductResponse, error) {
 	l := logic.NewChangeProductRecommendStatusLogic(ctx, s.svcCtx)
 	return l.ChangeProductRecommendStatus(in)
 }
 
-func (s *ProductServicesServer) AddProduct(ctx context.Context, in *pb.Product) (*pb.Response, error) {
+func (s *ProductServicesServer) AddProduct(ctx context.Context, in *pb.Product) (*pb.ProductResponse, error) {
 	l := logic.NewAddProductLogic(ctx, s.svcCtx)
 	return l.AddProduct(in)
 }
 
-func (s *ProductServicesServer) UpdateProduct(ctx context.Context, in *pb.Product) (*pb.Response, error) {
+func (s *ProductServicesServer) UpdateProduct(ctx context.Context, in *pb.Product) (*pb.ProductResponse, error) {
 	l := logic.NewUpdateProductLogic(ctx, s.svcCtx)
 	return l.UpdateProduct(in)
 }
 
-func (s *ProductServicesServer) DeleteProduct(ctx context.Context, in *pb.ProductInfoRequest) (*pb.Response, error) {
+func (s *ProductServicesServer) DeleteProduct(ctx context.Context, in *pb.ProductInfoRequest) (*pb.ProductResponse, error) {
 	l := logic.NewDeleteProductLogic(ctx, s.svcCtx)
 	return l.DeleteProduct(in)
 }
@@ -203,7 +203,7 @@ func (s *ProductServicesServer) GetProductApiList(ctx context.Context, in *pb.Pr
 }
 
 // sku
-func (s *ProductServicesServer) UpdateSku(ctx context.Context, in *pb.SkuStockListRequest) (*pb.Response, error) {
+func (s *ProductServicesServer) UpdateSku(ctx context.Context, in *pb.SkuStockListRequest) (*pb.ProductResponse, error) {
 	l := logic.NewUpdateSkuLogic(ctx, s.svcCtx)
 	return l.UpdateSku(in)
 }
@@ -224,17 +224,17 @@ func (s *ProductServicesServer) GetRecommendList(ctx context.Context, in *pb.Pro
 	return l.GetRecommendList(in)
 }
 
-func (s *ProductServicesServer) SetRecommendSort(ctx context.Context, in *pb.RecommendSetSortRequest) (*pb.Response, error) {
+func (s *ProductServicesServer) SetRecommendSort(ctx context.Context, in *pb.RecommendSetSortRequest) (*pb.ProductResponse, error) {
 	l := logic.NewSetRecommendSortLogic(ctx, s.svcCtx)
 	return l.SetRecommendSort(in)
 }
 
-func (s *ProductServicesServer) AddRecommend(ctx context.Context, in *pb.RecommendRequest) (*pb.Response, error) {
+func (s *ProductServicesServer) AddRecommend(ctx context.Context, in *pb.RecommendRequest) (*pb.ProductResponse, error) {
 	l := logic.NewAddRecommendLogic(ctx, s.svcCtx)
 	return l.AddRecommend(in)
 }
 
-func (s *ProductServicesServer) DeleteRecommend(ctx context.Context, in *pb.RecommendRequest) (*pb.Response, error) {
+func (s *ProductServicesServer) DeleteRecommend(ctx context.Context, in *pb.RecommendRequest) (*pb.ProductResponse, error) {
 	l := logic.NewDeleteRecommendLogic(ctx, s.svcCtx)
 	return l.DeleteRecommend(in)
 }

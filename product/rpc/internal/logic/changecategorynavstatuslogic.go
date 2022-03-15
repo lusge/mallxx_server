@@ -23,15 +23,15 @@ func NewChangeCategoryNavStatusLogic(ctx context.Context, svcCtx *svc.ServiceCon
 	}
 }
 
-func (l *ChangeCategoryNavStatusLogic) ChangeCategoryNavStatus(in *pb.CategoryChangeStatus) (*pb.Response, error) {
+func (l *ChangeCategoryNavStatusLogic) ChangeCategoryNavStatus(in *pb.CategoryChangeStatus) (*pb.ProductResponse, error) {
 	if l.svcCtx.CategoryModel.ChangeCategoryNavStatus(in.Id, in.Status) {
-		return &pb.Response{
+		return &pb.ProductResponse{
 			Code:   200,
 			Detail: "更改成功",
 		}, nil
 	}
 
-	return &pb.Response{
+	return &pb.ProductResponse{
 		Code:   500,
 		Detail: "更新失败",
 	}, nil

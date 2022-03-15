@@ -24,7 +24,7 @@ func NewCreateCategoryLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Cr
 	}
 }
 
-func (l *CreateCategoryLogic) CreateCategory(in *pb.Category) (*pb.Response, error) {
+func (l *CreateCategoryLogic) CreateCategory(in *pb.Category) (*pb.ProductResponse, error) {
 	if in.Name == "" {
 		return nil, merrorx.NewCodeError(500, "名称不能为空")
 	}
@@ -34,7 +34,7 @@ func (l *CreateCategoryLogic) CreateCategory(in *pb.Category) (*pb.Response, err
 		return nil, merrorx.NewCodeError(500, "新增失败")
 	}
 
-	return &pb.Response{
+	return &pb.ProductResponse{
 		Code:   200,
 		Detail: "ok",
 	}, nil

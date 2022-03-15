@@ -27,7 +27,7 @@ func NewGetCategoryListWithChildrenLogic(ctx context.Context, svcCtx *svc.Servic
 }
 
 func (l *GetCategoryListWithChildrenLogic) GetCategoryListWithChildren() (*types.CategoryResponse, error) {
-	resp, err := l.svcCtx.ProductRpc.GetCategoryListWithChildren(l.ctx, &productservices.EmptyRequest{})
+	resp, err := l.svcCtx.ProductRpc.GetCategoryListWithChildren(l.ctx, &productservices.ProductEmptyRequest{})
 	if err != nil {
 		return nil, merrorx.NewCodeError(500, "")
 	}
