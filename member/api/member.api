@@ -59,6 +59,9 @@ service member-api {
 	
 	@handler Update
 	post /update (ReceiveAddress) returns (Response)
+	
+	@handler getAddressInfo
+	get /info (ReceiveAddressRequest) returns (ReceiveAddressResponse)
 }
 
 @server(

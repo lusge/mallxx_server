@@ -50,6 +50,17 @@ func (m *ReceiveAddress) FindOneByMemberId(memberId, id int64) *pb.ReceiveAddres
 	return info
 }
 
+func (m *ReceiveAddress) FindOneByMemberIdWithDefault(memberId int64) *pb.ReceiveAddress {
+	info := new(pb.ReceiveAddress)
+
+	_, err := m.engine.Where("member_id = ?", memberId).And("default_status = ?", 1).Get(info)
+	if err != nil {
+		logx.Error(err)
+		return nil
+	}
+	return info
+}
+
 func (m *ReceiveAddress) FindOneById(id int64) *pb.ReceiveAddress {
 	info := new(pb.ReceiveAddress)
 	_, err := m.engine.Where("id = ?", id).Get(info)

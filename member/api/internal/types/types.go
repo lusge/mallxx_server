@@ -90,22 +90,22 @@ type MemberRequest struct {
 }
 
 type MemberLoginRequest struct {
-	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,optional"`
-	Password string `protobuf:"bytes,2,opt,name=password,proto3" json:"password,optional"`
-	Phone    string `protobuf:"bytes,3,opt,name=phone,proto3" json:"phone,optional"`
-	Email    string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,optional"`
+	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username"`
+	Password string `protobuf:"bytes,2,opt,name=password,proto3" json:"password"`
+	Phone    string `protobuf:"bytes,3,opt,name=phone,proto3" json:"phone"`
+	Email    string `protobuf:"bytes,4,opt,name=email,proto3" json:"email"`
 }
 
 type ReceiveAddress struct {
 	Id            int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,optional"`
 	MemberId      int64  `protobuf:"varint,2,opt,name=member_id,json=memberId,proto3" json:"member_id,optional"`
-	Phone         string `protobuf:"bytes,3,opt,name=phone,proto3" json:"phone,optional"`
+	Phone         string `protobuf:"bytes,3,opt,name=phone,proto3" json:"phone"`
 	DefaultStatus int32  `protobuf:"varint,4,opt,name=default_status,json=defaultStatus,proto3" json:"default_status,optional"`
 	PostCode      string `protobuf:"bytes,5,opt,name=post_code,json=postCode,proto3" json:"post_code,optional"`
-	Province      string `protobuf:"bytes,6,opt,name=province,proto3" json:"province,optional"`
-	City          string `protobuf:"bytes,7,opt,name=city,proto3" json:"city,optional"`
-	Region        string `protobuf:"bytes,8,opt,name=region,proto3" json:"region,optional"`
-	Detail        string `protobuf:"bytes,9,opt,name=detail,proto3" json:"detail,optional"`
+	Province      string `protobuf:"bytes,6,opt,name=province,proto3" json:"province"`
+	City          string `protobuf:"bytes,7,opt,name=city,proto3" json:"city"`
+	Region        string `protobuf:"bytes,8,opt,name=region,proto3" json:"region"`
+	Detail        string `protobuf:"bytes,9,opt,name=detail,proto3" json:"detail"`
 	Name          string `json:"name"`
 }
 

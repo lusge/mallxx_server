@@ -56,8 +56,8 @@ message CartAddRequest {
 }
 
 message CartDelRequest {
-    // @inject_tag: json:"id"
-    int64 id = 1;
+    // @inject_tag: json:"ids"
+    repeated int64 ids = 1;
     // @inject_tag: json:"member_id"
     int64 member_id = 2;
 }

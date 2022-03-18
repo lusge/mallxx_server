@@ -31,7 +31,7 @@ type CartAddRequest struct {
 }
 
 type CartDelRequest struct {
-	Id int64 `json:"id"`
+	Ids []int64 `json:"ids"`
 }
 
 type CartModiyRequest struct {

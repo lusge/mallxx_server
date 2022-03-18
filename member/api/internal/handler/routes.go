@@ -57,6 +57,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/update",
 				Handler: address.UpdateHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/info",
+				Handler: address.GetAddressInfoHandler(serverCtx),
+			},
 		},
 		rest.WithPrefix("/member/address"),
 	)

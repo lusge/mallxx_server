@@ -51,7 +51,7 @@ type CartAddRequest {
 }
 
 type CartDelRequest {
-	Id int64 `json:"id"`
+	Ids []int64 `json:"ids"`
 }
 
 type CartModiyRequest {

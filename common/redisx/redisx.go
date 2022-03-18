@@ -2,7 +2,6 @@ package redisx
 
 import (
 	"encoding/json"
-	"errors"
 
 	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/core/stores/redis"
@@ -17,7 +16,7 @@ func GetAndJsonToObject(redis *redis.Redis, key string, res interface{}) error {
 	}
 
 	if len(cartString) <= 0 {
-		return errors.New("key shi null")
+		return nil
 	}
 
 	err = json.Unmarshal([]byte(cartString), res)

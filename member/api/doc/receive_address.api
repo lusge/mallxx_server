@@ -47,6 +47,6 @@ type ReceiveAddressListResponse {
 
 
 type ReceiveAddressRequest {
-	// @inject_tag: json:"member_id"
+	// @inject_tag: json:"id"
 	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
 }

@@ -1,0 +1,181 @@
+syntax = "proto3";
+
+package pb;
+option go_package = "./pb";
+
+message CompanyAddress {
+    int64 id = 1;
+    string address_name = 2;
+    int32 send_status = 3;
+    int32 receive_status = 4;
+    string name = 5;
+    string phone = 6;
+    string province = 7;
+    string city = 8;
+    string region = 9;
+    string detail_address = 10;
+}
+
+message Order {
+    int64 id = 1;
+    int64 member_id = 2;
+    int64 coupon_id = 3;
+    string order_sn = 4;
+    string create_time = 5;
+    string member_username = 6;
+    double total_amount = 7;
+    double pay_amount = 8;
+    double freight_amount = 9;
+    double promotion_amount = 10;
+    double integration_amount = 11;
+    double coupon_amount = 12;
+    double discount_amount = 13;
+    int32 pay_type = 14;
+    int32 source_type = 15;
+    int32 status = 16;
+    int32 order_type = 17;
+    string delivery_company = 18;
+    string delivery_sn = 19;
+    int32 auto_confirm_day = 20;
+    int32 integration = 21;
+    int32 growth = 22;
+    string promotion_info = 23;
+    int32 bill_type = 24;
+    string bill_header = 25;
+    string bill_content = 26;
+    string bill_receiver_phone = 27;
+    string bill_receiver_email = 28;
+    string receiver_name = 29;
+    string receiver_phone = 30;
+    string receiver_post_code = 31;
+    string receiver_province = 32;
+    string receiver_city = 33;
+    string receiver_region = 34;
+    string receiver_detail_address = 35;
+    string note = 36;
+    int32 confirm_status = 37;
+    int32 delete_status = 38;
+    int32 use_integration = 39;
+    string payment_time = 40;
+    string delivery_time = 41;
+    string receive_time = 42;
+    string comment_time = 43;
+    string modify_time = 44;
+}
+
+message OrderPayRequest {
+    string type = 1;
+    int64 product_id = 2;
+    int64 sku_id = 3;
+    int32 quantity = 4;
+    repeated int64 cart_ids = 5;
+}
+
+message OrderInfoRequest {
+    int64 order_id = 1;
+}
+
+
+message OrderInfoRsponse {
+    int32 code = 1;
+    string detail = 2;
+    Order data = 3;
+}
+
+message OrderListRequest {
+    int32 start_page = 1;
+    int32 size_page = 2;
+    string type = 3;
+}
+
+message OrderListResponse {
+    int32 code = 1;
+    string detail = 2;
+    repeated Order data = 3;
+}
+
+message OrderOperateHistory {
+    int64 id = 1;
+    int64 order_id = 2;
+    string operate_man = 3;
+    string create_time = 4;
+    int32 order_status = 5;
+    string note = 6;
+}
+
+message OrderProduct {
+    int64 id = 1;
+    int64 order_id = 2;
+    string order_sn = 3;
+    int64 product_id = 4;
+    string product_pic = 5;
+    string product_name = 6;
+    string product_brand = 7;
+    string product_sn = 8;
+    double product_price = 9;
+    int32 product_quantity = 10;
+    int64 product_sku_id = 11;
+    string product_sku_code = 12;
+    int64 product_category_id = 13;
+    string promotion_name = 14;
+    double promotion_amount = 15;
+    double coupon_amount = 16;
+    double integration_amount = 17;
+    double real_amount = 18;
+    int32 gift_integration = 19;
+    int32 gift_growth = 20;
+    string product_attr = 21;
+}
+
+message OrderReturnApply {
+    int64 id = 1;
+    int64 order_id = 2;
+    int64 company_address_id = 3;
+    int64 product_id = 4;
+    string order_sn = 5;
+    string create_time = 6;
+    string member_username = 7;
+    double return_amount = 8;
+    string return_name = 9;
+    string return_phone = 10;
+    int32 status = 11;
+    string handle_time = 12;
+    string product_pic = 13;
+    string product_name = 14;
+    string product_brand = 15;
+    string product_attr = 16;
+    int32 product_count = 17;
+    double product_price = 18;
+    double product_real_price = 19;
+    string reason = 20;
+    string description = 21;
+    string proof_pics = 22;
+    string handle_note = 23;
+    string handle_man = 24;
+    string receive_man = 25;
+    string receive_time = 26;
+    string receive_note = 27;
+}
+
+message OrderReturnReason {
+    int64 id = 1;
+    string name = 2;
+    int32 sort = 3;
+    int32 status = 4;
+    string create_time = 5;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -26,6 +26,7 @@ type MemberServiceClient interface {
 	DelAddress(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*MemberResponse, error)
 	SetDefaultAddress(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*MemberResponse, error)
 	UpdateAddress(ctx context.Context, in *ReceiveAddress, opts ...grpc.CallOption) (*MemberResponse, error)
+	GetAddressInfo(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*ReceiveAddressResponse, error)
 	GetFollower(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*FollowerResponse, error)
 }
 
@@ -109,6 +110,15 @@ func (c *memberServiceClient) UpdateAddress(ctx context.Context, in *ReceiveAddr
 	return out, nil
 }
 
+func (c *memberServiceClient) GetAddressInfo(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*ReceiveAddressResponse, error) {
+	out := new(ReceiveAddressResponse)
+	err := c.cc.Invoke(ctx, "/pb.MemberService/GetAddressInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *memberServiceClient) GetFollower(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*FollowerResponse, error) {
 	out := new(FollowerResponse)
 	err := c.cc.Invoke(ctx, "/pb.MemberService/GetFollower", in, out, opts...)
@@ -130,6 +140,7 @@ type MemberServiceServer interface {
 	DelAddress(context.Context, *ReceiveAddressRequest) (*MemberResponse, error)
 	SetDefaultAddress(context.Context, *ReceiveAddressRequest) (*MemberResponse, error)
 	UpdateAddress(context.Context, *ReceiveAddress) (*MemberResponse, error)
+	GetAddressInfo(context.Context, *ReceiveAddressRequest) (*ReceiveAddressResponse, error)
 	GetFollower(context.Context, *MemberRequest) (*FollowerResponse, error)
 	mustEmbedUnimplementedMemberServiceServer()
 }
@@ -161,6 +172,9 @@ func (UnimplementedMemberServiceServer) SetDefaultAddress(context.Context, *Rece
 }
 func (UnimplementedMemberServiceServer) UpdateAddress(context.Context, *ReceiveAddress) (*MemberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAddress not implemented")
+}
+func (UnimplementedMemberServiceServer) GetAddressInfo(context.Context, *ReceiveAddressRequest) (*ReceiveAddressResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAddressInfo not implemented")
 }
 func (UnimplementedMemberServiceServer) GetFollower(context.Context, *MemberRequest) (*FollowerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFollower not implemented")
@@ -322,6 +336,24 @@ func _MemberService_UpdateAddress_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MemberService_GetAddressInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReceiveAddressRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MemberServiceServer).GetAddressInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.MemberService/GetAddressInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MemberServiceServer).GetAddressInfo(ctx, req.(*ReceiveAddressRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MemberService_GetFollower_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MemberRequest)
 	if err := dec(in); err != nil {
@@ -378,6 +410,10 @@ var MemberService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateAddress",
 			Handler:    _MemberService_UpdateAddress_Handler,
+		},
+		{
+			MethodName: "GetAddressInfo",
+			Handler:    _MemberService_GetAddressInfo_Handler,
 		},
 		{
 			MethodName: "GetFollower",

@@ -34,34 +34,6 @@ func (m *Cart) Insert(in *pb.Cart) bool {
 }
 
 func (m *Cart) Modify(in *pb.CartModiyRequest, memberId int64) bool {
-	// key := fmt.Sprintf(RedisCacheKeyPrefix, memberId)
-	// fmt.Println(key, "cart model")
-	// cartString, err := m.redis.Get(key)
-
-	// if err != nil {
-	// 	logx.Error(err)
-	// 	return false
-	// }
-
-	// list := make([]*pb.Cart, 0)
-
-	// if len(cartString) > 0 {
-	// 	err = json.Unmarshal([]byte(cartString), &list)
-	// 	if err != nil {
-	// 		logx.Error(err)
-	// 		return false
-	// 	}
-
-	// 	for _, value := range list {
-	// 		if value.Id == in.Id {
-	// 			value.Quantity += in.Quantity
-	// 			m.ModifyQuantity(value.Id, value.Quantity)
-	// 		}
-	// 	}
-
-	// 	js, _ := json.Marshal(list)
-	// 	m.redis.Set(key, string(js))
-	// }
 	return true
 }
 

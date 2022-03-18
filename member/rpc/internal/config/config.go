@@ -7,4 +7,11 @@ type Config struct {
 	Mysql struct {
 		DataSource string
 	}
+
+	CachePreifx struct {
+		Address  string
+		Member   string
+		Follower string
+		Level    string
+	}
 }

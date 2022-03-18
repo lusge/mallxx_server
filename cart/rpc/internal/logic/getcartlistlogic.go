@@ -38,7 +38,8 @@ func (l *GetCartListLogic) GetCartList(in *pb.CartListRequest) (*pb.CartListResp
 	if len(list) <= 0 {
 		list = l.svcCtx.CartModel.FindAllByMemberId(in.MemberId)
 		js, _ := json.Marshal(list)
-		l.svcCtx.Redis.Set(key, string(js))
+		err := l.svcCtx.Redis.Set(key, string(js))
+		fmt.Println(err, key, list)
 	}
 
 	return &pb.CartListResponse{

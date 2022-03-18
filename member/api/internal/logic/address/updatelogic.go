@@ -40,7 +40,7 @@ func (l *UpdateLogic) Update(req types.ReceiveAddress) (*types.Response, error) 
 
 	rpcReq.MemberId = userId
 
-	resp, err := l.svcCtx.MemberRpc.AddAddress(l.ctx, &rpcReq)
+	resp, err := l.svcCtx.MemberRpc.UpdateAddress(l.ctx, &rpcReq)
 
 	if err != nil {
 		return nil, err

@@ -40,6 +40,7 @@ type (
 		DelAddress(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*MemberResponse, error)
 		SetDefaultAddress(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*MemberResponse, error)
 		UpdateAddress(ctx context.Context, in *ReceiveAddress, opts ...grpc.CallOption) (*MemberResponse, error)
+		GetAddressInfo(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*ReceiveAddressResponse, error)
 		GetFollower(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*FollowerResponse, error)
 	}
 
@@ -92,6 +93,11 @@ func (m *defaultMemberService) SetDefaultAddress(ctx context.Context, in *Receiv
 func (m *defaultMemberService) UpdateAddress(ctx context.Context, in *ReceiveAddress, opts ...grpc.CallOption) (*MemberResponse, error) {
 	client := pb.NewMemberServiceClient(m.cli.Conn())
 	return client.UpdateAddress(ctx, in, opts...)
+}
+
+func (m *defaultMemberService) GetAddressInfo(ctx context.Context, in *ReceiveAddressRequest, opts ...grpc.CallOption) (*ReceiveAddressResponse, error) {
+	client := pb.NewMemberServiceClient(m.cli.Conn())
+	return client.GetAddressInfo(ctx, in, opts...)
 }
 
 func (m *defaultMemberService) GetFollower(ctx context.Context, in *MemberRequest, opts ...grpc.CallOption) (*FollowerResponse, error) {

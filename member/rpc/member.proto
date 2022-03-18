@@ -213,6 +213,7 @@ service MemberService {
     rpc DelAddress (ReceiveAddressRequest) returns (MemberResponse);
     rpc SetDefaultAddress (ReceiveAddressRequest) returns (MemberResponse);
     rpc UpdateAddress (ReceiveAddress) returns (MemberResponse);
+    rpc GetAddressInfo (ReceiveAddressRequest) returns (ReceiveAddressResponse);
 
     rpc GetFollower (MemberRequest) returns (FollowerResponse);
 }

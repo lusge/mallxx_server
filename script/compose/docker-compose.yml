@@ -25,7 +25,7 @@ services:
       - mallxx_net
 
   redis:
-    image: redis
+    image: redislabs/rejson:latest
     container_name: redis
     restart: always
     ports:

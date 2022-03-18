@@ -62,6 +62,11 @@ func (s *MemberServiceServer) UpdateAddress(ctx context.Context, in *pb.ReceiveA
 	return l.UpdateAddress(in)
 }
 
+func (s *MemberServiceServer) GetAddressInfo(ctx context.Context, in *pb.ReceiveAddressRequest) (*pb.ReceiveAddressResponse, error) {
+	l := logic.NewGetAddressInfoLogic(ctx, s.svcCtx)
+	return l.GetAddressInfo(in)
+}
+
 func (s *MemberServiceServer) GetFollower(ctx context.Context, in *pb.MemberRequest) (*pb.FollowerResponse, error) {
 	l := logic.NewGetFollowerLogic(ctx, s.svcCtx)
 	return l.GetFollower(in)
