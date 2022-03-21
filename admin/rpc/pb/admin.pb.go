@@ -25,8 +25,8 @@ type Response struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Code   int32  `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
-	Detail string `protobuf:"bytes,2,opt,name=detail,proto3" json:"detail,omitempty"`
+	Code   int32  `json:"code,omitempty"`
+	Detail string `json:"detail,omitempty"`
 }
 
 func (x *Response) Reset() {
@@ -119,21 +119,21 @@ type AdminInfo struct {
 	unknownFields protoimpl.UnknownFields
 
 	// @inject_tag: json:"roles" db:"roles"
-	Roles string `protobuf:"bytes,1,opt,name=roles,proto3" json:"roles" db:"roles"`
+	Roles string `json:"roles" db:"roles"`
 	// @inject_tag: json:"introduction" db:"introduction"
-	Introduction string `protobuf:"bytes,2,opt,name=introduction,proto3" json:"introduction" db:"introduction"`
+	Introduction string `json:"introduction" db:"introduction"`
 	// @inject_tag: json:"avatar" db:"avatar"
-	Avatar string `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar" db:"avatar"`
+	Avatar string `json:"avatar" db:"avatar"`
 	// @inject_tag: json:"name" db:"name"
-	Name string `protobuf:"bytes,4,opt,name=name,proto3" json:"name" db:"name"`
+	Name string `json:"name" db:"name"`
 	// @inject_tag: json:"id" db:"id"
-	Id int64 `protobuf:"varint,5,opt,name=id,proto3" json:"id" db:"id"`
+	Id int64 `json:"id" db:"id"`
 	// @inject_tag: json:"username" db:"username"
-	Username string `protobuf:"bytes,6,opt,name=username,proto3" json:"username" db:"username"`
+	Username string `json:"username" db:"username"`
 	// @inject_tag: json:"password" db:"password"
-	Password string `protobuf:"bytes,7,opt,name=password,proto3" json:"password" db:"password"`
+	Password string `json:"password" db:"password"`
 	// @inject_tag: json:"token" xorm:"-"
-	Token string `protobuf:"bytes,8,opt,name=token,proto3" json:"token" xorm:"-"`
+	Token string `json:"token" xorm:"-"`
 }
 
 func (x *AdminInfo) Reset() {
@@ -229,9 +229,9 @@ type AdminInfoResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Code   int32      `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
-	Data   *AdminInfo `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
-	Detail string     `protobuf:"bytes,3,opt,name=detail,proto3" json:"detail,omitempty"`
+	Code   int32      `json:"code,omitempty"`
+	Data   *AdminInfo `json:"data,omitempty"`
+	Detail string     `json:"detail,omitempty"`
 }
 
 func (x *AdminInfoResponse) Reset() {
@@ -292,8 +292,8 @@ type AdminTokenRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Token string `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	Id    int64  `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+	Token string `json:"token,omitempty"`
+	Id    int64  `json:"id,omitempty"`
 }
 
 func (x *AdminTokenRequest) Reset() {

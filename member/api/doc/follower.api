@@ -1,8 +1,8 @@
 syntax = "v1"
 
 type FollowerResponse  {
-	Code int32 `protobuf:"varint,1,opt,name=code,proto3" json:"code"`
-	Data []*Member `protobuf:"bytes,2,rep,name=data,proto3" json:"data"`
-	Detail string `protobuf:"bytes,3,opt,name=detail,proto3" json:"detail"`
-	Total int32 `protobuf:"varint,4,opt,name=total,proto3" json:"total"`
+	Code int32 `json:"code"`
+	Data []*Member `json:"data"`
+	Detail string `json:"detail"`
+	Total int32 `json:"total"`
 }

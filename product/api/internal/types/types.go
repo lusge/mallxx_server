@@ -153,16 +153,16 @@ type ProductAttribute struct {
 }
 
 type ProductAttributeListResponse struct {
-	Code   int32               `protobuf:"varint,1,opt,name=code,proto3" json:"code"`
-	Data   []*ProductAttribute `protobuf:"bytes,2,rep,name=data,proto3" json:"data"`
-	Detail string              `protobuf:"bytes,4,opt,name=detail,proto3" json:"detail"`
-	Total  int64               `protobuf:"varint,5,opt,name=total,proto3" json:"total"`
+	Code   int32               `json:"code"`
+	Data   []*ProductAttribute `json:"data"`
+	Detail string              `json:"detail"`
+	Total  int64               `json:"total"`
 }
 
 type ProductAttributeInfoResponse struct {
-	Code   int32             `protobuf:"varint,1,opt,name=code,proto3" json:"code"`
-	Data   *ProductAttribute `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
-	Detail string            `protobuf:"bytes,4,opt,name=detail,proto3" json:"detail"`
+	Code   int32             `json:"code"`
+	Data   *ProductAttribute `json:"data"`
+	Detail string            `json:"detail"`
 }
 
 type AttrRequest struct {
@@ -175,41 +175,41 @@ type AttrRequest struct {
 }
 
 type ProductFullReduction struct {
-	Id          int64   `protobuf:"varint,1,opt,name=id,proto3" json:"id,optional"`
-	ProductId   int64   `protobuf:"varint,2,opt,name=product_id,json=productId,proto3" json:"product_id,optional"`
-	FullPrice   float32 `protobuf:"fixed32,3,opt,name=full_price,json=fullPrice,proto3" json:"full_price,optional"`
-	ReducePrice float32 `protobuf:"fixed32,4,opt,name=reduce_price,json=reducePrice,proto3" json:"reduce_price,optional"`
+	Id          int64   `json:"id,optional"`
+	ProductId   int64   `json:"product_id,optional"`
+	FullPrice   float32 `json:"full_price,optional"`
+	ReducePrice float32 `json:"reduce_price,optional"`
 }
 
 type ProductLadder struct {
-	Id        int64   `protobuf:"varint,1,opt,name=id,proto3" json:"id,optional"`
-	ProductId int64   `protobuf:"varint,2,opt,name=product_id,json=productId,proto3" json:"product_id,optional"`
-	Count     int32   `protobuf:"varint,3,opt,name=count,proto3" json:"count,optional"`
-	Discount  float32 `protobuf:"fixed32,4,opt,name=discount,proto3" json:"discount,optional"`
-	Price     float32 `protobuf:"fixed32,5,opt,name=price,proto3" json:"price,optional"`
+	Id        int64   `json:"id,optional"`
+	ProductId int64   `json:"product_id,optional"`
+	Count     int32   `json:"count,optional"`
+	Discount  float32 `json:"discount,optional"`
+	Price     float32 `json:"price,optional"`
 }
 
 type ProductRecommend struct {
 	Id          int64  `json:"id,optional"`
-	ProductId   int64  `protobuf:"varint,2,opt,name=product_id,json=productId,proto3" json:"product_id,optional"`
-	ProductName string `protobuf:"bytes,3,opt,name=product_name,json=productName,proto3" json:"product_name,optional"`
-	Sort        int32  `protobuf:"varint,4,opt,name=sort,proto3" json:"sort,optional"`
+	ProductId   int64  `json:"product_id,optional"`
+	ProductName string `json:"product_name,optional"`
+	Sort        int32  `json:"sort,optional"`
 }
 
 type RecommendRequest struct {
-	ProductIds []int64 `protobuf:"varint,1,rep,packed,name=product_ids,json=productIds,proto3" json:"product_ids,optional"`
+	ProductIds []int64 `json:"product_ids,optional"`
 }
 
 type RecommendSetSortRequest struct {
 	Id   int64 `json:"id,optional"`
-	Sort int32 `protobuf:"varint,2,opt,name=sort,proto3" json:"sort,optional"`
+	Sort int32 `json:"sort,optional"`
 }
 
 type RecommendListResponse struct {
-	Code   int32               `protobuf:"varint,1,opt,name=code,proto3" json:"code"`
-	Data   []*ProductRecommend `protobuf:"bytes,2,rep,name=data,proto3" json:"data"`
-	Total  int64               `protobuf:"varint,3,opt,name=total,proto3" json:"total"`
-	Detail string              `protobuf:"bytes,4,opt,name=detail,proto3" json:"detail"`
+	Code   int32               `json:"code"`
+	Data   []*ProductRecommend `json:"data"`
+	Total  int64               `json:"total"`
+	Detail string              `json:"detail"`
 }
 
 type Product struct {
@@ -221,48 +221,48 @@ type Product struct {
 	ProductSn                  string                   `json:"product_sn,optional"`
 	DeleteStatus               int32                    `json:"delete_status,optional"`
 	PublishStatus              int32                    `json:"publish_status,optional"`
-	NewStatus                  int32                    `protobuf:"varint,9,opt,name=new_status,json=newStatus,proto3" json:"new_status"`
-	RecommendStatus            int32                    `protobuf:"varint,10,opt,name=recommend_status,json=recommendStatus,proto3" json:"recommend_status,optional"`
-	VerifyStatus               int32                    `protobuf:"varint,11,opt,name=verify_status,json=verifyStatus,proto3" json:"verify_status,optional"`
-	Sort                       int32                    `protobuf:"varint,12,opt,name=sort,proto3" json:"sort,optional"`
-	Sale                       int64                    `protobuf:"varint,13,opt,name=sale,proto3" json:"sale,optional"`
-	Price                      float64                  `protobuf:"fixed64,14,opt,name=price,proto3" json:"price,optional"`
-	PromotionPrice             float64                  `protobuf:"fixed64,15,opt,name=promotion_price,json=promotionPrice,proto3" json:"promotion_price,optional"`
-	GiftGrowth                 int64                    `protobuf:"varint,16,opt,name=gift_growth,json=giftGrowth,proto3" json:"gift_growth,optional"`
-	GiftPoint                  int64                    `protobuf:"varint,17,opt,name=gift_point,json=giftPoint,proto3" json:"gift_point,optional"`
-	UsePointLimit              int64                    `protobuf:"varint,18,opt,name=use_point_limit,json=usePointLimit,proto3" json:"use_point_limit,optional"`
-	OriginalPrice              float64                  `protobuf:"fixed64,19,opt,name=original_price,json=originalPrice,proto3" json:"original_price,optional"`
-	Stock                      int64                    `protobuf:"varint,20,opt,name=stock,proto3" json:"stock,optional"`
-	LowStock                   int64                    `protobuf:"varint,21,opt,name=low_stock,json=lowStock,proto3" json:"low_stock,optional"`
-	Unit                       string                   `protobuf:"bytes,22,opt,name=unit,proto3" json:"unit,optional"`
-	Weight                     float64                  `protobuf:"fixed64,23,opt,name=weight,proto3" json:"weight,optional"`
-	PreviewStatus              int32                    `protobuf:"varint,24,opt,name=preview_status,json=previewStatus,proto3" json:"preview_status,optional"`
-	ServiceIds                 string                   `protobuf:"bytes,25,opt,name=service_ids,json=serviceIds,proto3" json:"service_ids,optional"`
-	Pic                        string                   `protobuf:"bytes,26,opt,name=pic,proto3" json:"pic,optional"`
-	AlbumPics                  string                   `protobuf:"bytes,27,opt,name=album_pics,json=albumPics,proto3" json:"album_pics,optional"`
-	PromotionStartTime         string                   `protobuf:"bytes,28,opt,name=promotion_start_time,json=promotionStartTime,proto3" json:"promotion_start_time,optional"`
-	PromotionEndTime           string                   `protobuf:"bytes,29,opt,name=promotion_end_time,json=promotionEndTime,proto3" json:"promotion_end_time,optional"`
-	PromotionPerLimit          int32                    `protobuf:"varint,30,opt,name=promotion_per_limit,json=promotionPerLimit,proto3" json:"promotion_per_limit,optional"`
-	PromotionType              int32                    `protobuf:"varint,31,opt,name=promotion_type,json=promotionType,proto3" json:"promotion_type,optional"`
-	Name                       string                   `protobuf:"bytes,32,opt,name=name,proto3" json:"name,optional"`
-	SubTitle                   string                   `protobuf:"bytes,33,opt,name=sub_title,json=subTitle,proto3" json:"sub_title,optional"`
-	Description                string                   `protobuf:"bytes,34,opt,name=description,proto3" json:"description,optional"`
-	Keywords                   string                   `protobuf:"bytes,35,opt,name=keywords,proto3" json:"keywords,optional"`
-	Note                       string                   `protobuf:"bytes,36,opt,name=note,proto3" json:"note,optional"`
-	DetailTitle                string                   `protobuf:"bytes,37,opt,name=detail_title,json=detailTitle,proto3" json:"detail_title,optional"`
-	DetailDesc                 string                   `protobuf:"bytes,38,opt,name=detail_desc,json=detailDesc,proto3" json:"detail_desc,optional"`
-	DetailHtml                 string                   `protobuf:"bytes,39,opt,name=detail_html,json=detailHtml,proto3" json:"detail_html,optional"`
-	DetailMobileHtml           string                   `protobuf:"bytes,40,opt,name=detail_mobile_html,json=detailMobileHtml,proto3" json:"detail_mobile_html,optional"`
-	ProductCategoryName        string                   `protobuf:"bytes,41,opt,name=product_category_name,json=productCategoryName,proto3" json:"product_category_name,optional"`
-	BrandName                  string                   `protobuf:"bytes,42,opt,name=brand_name,json=brandName,proto3" json:"brand_name,optional"`
-	SkuStock                   []*SkuStock              `protobuf:"bytes,43,rep,name=sku_stock,json=skuStock,proto3" json:"sku_stock,optional"`
-	ProductLadder              []*ProductLadder         `protobuf:"bytes,44,rep,name=product_ladder,json=productLadder,proto3" json:"product_ladder,optional"`
-	ProductFullReduction       []*ProductFullReduction  `protobuf:"bytes,45,rep,name=product_full_reduction,json=productFullReduction,proto3" json:"product_full_reduction,optional"`
-	ProductAttrValue           []*ProductAttributeValue `protobuf:"bytes,46,rep,name=product_attr_value,json=productAttrValue,proto3" json:"product_attr_value,optional"`
-	MemberPrice                []*MemberPrice           `protobuf:"bytes,47,rep,name=member_price,json=memberPrice,proto3" json:"member_price,optional"`
-	ProductAttribute           []*ProductAttribute      `protobuf:"bytes,48,rep,name=product_attribute,json=productAttribute,proto3" json:"product_attribute,optional"`
-	CommentNumber              int64                    `protobuf:"varint,49,opt,name=comment_number,json=commentNumber,proto3" json:"comment_number,optional"`
-	Parameters                 []*ProductParameters     `protobuf:"bytes,50,rep,name=parameters,proto3" json:"parameters,optional"`
+	NewStatus                  int32                    `json:"new_status"`
+	RecommendStatus            int32                    `json:"recommend_status,optional"`
+	VerifyStatus               int32                    `json:"verify_status,optional"`
+	Sort                       int32                    `json:"sort,optional"`
+	Sale                       int64                    `json:"sale,optional"`
+	Price                      float64                  `json:"price,optional"`
+	PromotionPrice             float64                  `json:"promotion_price,optional"`
+	GiftGrowth                 int64                    `json:"gift_growth,optional"`
+	GiftPoint                  int64                    `json:"gift_point,optional"`
+	UsePointLimit              int64                    `json:"use_point_limit,optional"`
+	OriginalPrice              float64                  `json:"original_price,optional"`
+	Stock                      int64                    `json:"stock,optional"`
+	LowStock                   int64                    `json:"low_stock,optional"`
+	Unit                       string                   `json:"unit,optional"`
+	Weight                     float64                  `json:"weight,optional"`
+	PreviewStatus              int32                    `json:"preview_status,optional"`
+	ServiceIds                 string                   `json:"service_ids,optional"`
+	Pic                        string                   `json:"pic,optional"`
+	AlbumPics                  string                   `json:"album_pics,optional"`
+	PromotionStartTime         string                   `json:"promotion_start_time,optional"`
+	PromotionEndTime           string                   `json:"promotion_end_time,optional"`
+	PromotionPerLimit          int32                    `json:"promotion_per_limit,optional"`
+	PromotionType              int32                    `json:"promotion_type,optional"`
+	Name                       string                   `json:"name,optional"`
+	SubTitle                   string                   `json:"sub_title,optional"`
+	Description                string                   `json:"description,optional"`
+	Keywords                   string                   `json:"keywords,optional"`
+	Note                       string                   `json:"note,optional"`
+	DetailTitle                string                   `json:"detail_title,optional"`
+	DetailDesc                 string                   `json:"detail_desc,optional"`
+	DetailHtml                 string                   `json:"detail_html,optional"`
+	DetailMobileHtml           string                   `json:"detail_mobile_html,optional"`
+	ProductCategoryName        string                   `json:"product_category_name,optional"`
+	BrandName                  string                   `json:"brand_name,optional"`
+	SkuStock                   []*SkuStock              `json:"sku_stock,optional"`
+	ProductLadder              []*ProductLadder         `json:"product_ladder,optional"`
+	ProductFullReduction       []*ProductFullReduction  `json:"product_full_reduction,optional"`
+	ProductAttrValue           []*ProductAttributeValue `json:"product_attr_value,optional"`
+	MemberPrice                []*MemberPrice           `json:"member_price,optional"`
+	ProductAttribute           []*ProductAttribute      `json:"product_attribute,optional"`
+	CommentNumber              int64                    `json:"comment_number,optional"`
+	Parameters                 []*ProductParameters     `json:"parameters,optional"`
 }
 
 type ProductInfoRequest struct {
@@ -284,54 +284,54 @@ type ProductListRequest struct {
 
 type ProductChangeStatusRequest struct {
 	Id     int64 `json:"id"`
-	Status int32 `protobuf:"varint,2,opt,name=status,proto3" json:"status"`
+	Status int32 `json:"status"`
 }
 
 type ProductInfoResponse struct {
-	Code   int32    `protobuf:"varint,1,opt,name=code,proto3" json:"code"`
-	Data   *Product `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
-	Detail string   `protobuf:"bytes,8,opt,name=detail,proto3" json:"detail"`
+	Code   int32    `json:"code"`
+	Data   *Product `json:"data"`
+	Detail string   `json:"detail"`
 }
 
 type ProductListRespone struct {
-	Code   int32      `protobuf:"varint,1,opt,name=code,proto3" json:"code"`
-	Data   []*Product `protobuf:"bytes,2,rep,name=data,proto3" json:"data"`
-	Detail string     `protobuf:"bytes,3,opt,name=detail,proto3" json:"detail"`
-	Total  int64      `protobuf:"varint,4,opt,name=total,proto3" json:"total"`
+	Code   int32      `json:"code"`
+	Data   []*Product `json:"data"`
+	Detail string     `json:"detail"`
+	Total  int64      `json:"total"`
 }
 
 type ProductApiRequest struct {
-	CategoryIds []int64 `protobuf:"varint,1,rep,packed,name=category_ids,json=categoryIds,proto3" json:"category_ids,optional"`
-	Sort        string  `protobuf:"bytes,2,opt,name=sort,proto3" json:"sort,optional"`
-	BrandIds    []int64 `protobuf:"varint,3,rep,packed,name=brand_ids,json=brandIds,proto3" json:"brand_ids,optional"`
-	MinPrice    float64 `protobuf:"fixed64,4,opt,name=min_price,json=minPrice,proto3" json:"min_price,optional"`
-	MixPrice    float64 `protobuf:"fixed64,5,opt,name=mix_price,json=mixPrice,proto3" json:"mix_price,optional"`
-	PageNum     int32   `protobuf:"varint,6,opt,name=page_num,json=pageNum,proto3" json:"page_num,optional"`
-	PageSize    int32   `protobuf:"varint,7,opt,name=page_size,json=pageSize,proto3" json:"page_size,optional"`
+	CategoryIds []int64 `json:"category_ids,optional"`
+	Sort        string  `json:"sort,optional"`
+	BrandIds    []int64 `json:"brand_ids,optional"`
+	MinPrice    float64 `json:"min_price,optional"`
+	MixPrice    float64 `json:"mix_price,optional"`
+	PageNum     int32   `json:"page_num,optional"`
+	PageSize    int32   `json:"page_size,optional"`
 }
 
 type ProductParameters struct {
-	Key   string `protobuf:"bytes,1,opt,name=key,proto3" json:"key"`
-	Value string `protobuf:"bytes,2,opt,name=value,proto3" json:"value"`
+	Key   string `json:"key"`
+	Value string `json:"value"`
 }
 
 type SkuStock struct {
 	Id             int64   `json:"id,optional"`
-	ProductId      int64   `protobuf:"varint,2,opt,name=product_id,json=productId,proto3" json:"product_id,optional"`
-	SkuCode        string  `protobuf:"bytes,3,opt,name=sku_code,json=skuCode,proto3" json:"sku_code,optional"`
-	Price          float32 `protobuf:"fixed32,4,opt,name=price,proto3" json:"price,optional"`
-	Stock          int32   `protobuf:"varint,5,opt,name=stock,proto3" json:"stock,optional"`
-	LowStock       int32   `protobuf:"varint,6,opt,name=low_stock,json=lowStock,proto3" json:"low_stock,optional"`
-	SpData         string  `protobuf:"bytes,7,opt,name=sp_data,json=spData,proto3" json:"sp_data,optional"`
-	Pic            string  `protobuf:"bytes,8,opt,name=pic,proto3" json:"pic,optional"`
-	Sale           int32   `protobuf:"varint,9,opt,name=sale,proto3" json:"sale,optional"`
+	ProductId      int64   `json:"product_id,optional"`
+	SkuCode        string  `json:"sku_code,optional"`
+	Price          float32 `json:"price,optional"`
+	Stock          int32   `json:"stock,optional"`
+	LowStock       int32   `json:"low_stock,optional"`
+	SpData         string  `json:"sp_data,optional"`
+	Pic            string  `json:"pic,optional"`
+	Sale           int32   `json:"sale,optional"`
 	LockStock      int32   `json:"lock_stock,optional"`
 }
 
 type SkuStockListResponse struct {
-	Code   int32       `protobuf:"varint,1,opt,name=code,proto3" json:"code"`
-	Data   []*SkuStock `protobuf:"bytes,2,rep,name=data,proto3" json:"data"`
-	Detail string      `protobuf:"bytes,3,opt,name=detail,proto3" json:"detail"`
+	Code   int32       `json:"code"`
+	Data   []*SkuStock `json:"data"`
+	Detail string      `json:"detail"`
 }
 
 type SkuStockRequest struct {

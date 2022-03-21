@@ -9,18 +9,18 @@ import (
 
 type ListRequest {
 	// @inject_tag: form:"pageNum"
-	PageNum int32 `protobuf:"varint,1,opt,name=page_num,json=pageNum,proto3" json:"page_num,omitempty" form:"pageNum"`
+	PageNum int32 `json:"page_num,omitempty" form:"pageNum"`
 	// @inject_tag: form:"pageSize"
-	PageSize int32 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty" form:"pageSize"`
+	PageSize int32 `json:"page_size,omitempty" form:"pageSize"`
 	// @inject_tag: form:"keyword"
-	Keyword string `protobuf:"bytes,3,opt,name=keyword,proto3" json:"keyword,omitempty" form:"keyword"`
+	Keyword string `json:"keyword,omitempty" form:"keyword"`
 	// @inject_tag: form:"pid"
-	Pid int64 `protobuf:"varint,4,opt,name=pid,proto3" json:"pid,omitempty" form:"pid"`
+	Pid int64 `json:"pid,omitempty" form:"pid"`
 }
 
 type Response {
-	Code   int32  `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
-	Detail string `protobuf:"bytes,2,opt,name=detail,proto3" json:"detail,omitempty"`
+	Code   int32  `json:"code,omitempty"`
+	Detail string `json:"detail,omitempty"`
 }
 
 type EmptyRequest {

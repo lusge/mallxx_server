@@ -36,6 +36,10 @@ func (l *GetAddressLogic) GetAddress(in *pb.MemberRequest) (*pb.ReceiveAddressLi
 
 	if len(list) <= 0 {
 		list = l.svcCtx.ReceiveAddressModel.FindAllByMemberId(in.Uid)
+		if !l.isThereDefault(list) && len(list) > 0 {
+			list[0].DefaultStatus = 1
+		}
+
 		js, _ := json.Marshal(list)
 		err := l.svcCtx.Redis.Set(key, string(js))
 
@@ -49,4 +53,13 @@ func (l *GetAddressLogic) GetAddress(in *pb.MemberRequest) (*pb.ReceiveAddressLi
 		Code:   200,
 		Detail: "ok",
 	}, nil
+}
+
+func (l *GetAddressLogic) isThereDefault(list []*pb.ReceiveAddress) bool {
+	for _, value := range list {
+		if value.DefaultStatus == 1 {
+			return true
+		}
+	}
+	return false
 }

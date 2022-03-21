@@ -8,10 +8,6 @@ import (
 	"xorm.io/xorm"
 )
 
-var (
-	RedisCacheKeyPrefix = "mallxx:cart:memberid:%d"
-)
-
 type Cart struct {
 	engine *xorm.Engine
 	table  string

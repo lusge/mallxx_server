@@ -3,12 +3,12 @@ syntax = "v1"
 
 type ProductFullReduction {
 	// @inject_tag: json:"id" db:"id"
-	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,optional"`
+	Id int64 `json:"id,optional"`
 	// @inject_tag: json:"product_id" db:"product_id"
-	ProductId int64 `protobuf:"varint,2,opt,name=product_id,json=productId,proto3" json:"product_id,optional"`
+	ProductId int64 `json:"product_id,optional"`
 	// @inject_tag: json:"full_price" db:"full_price"
-	FullPrice float32 `protobuf:"fixed32,3,opt,name=full_price,json=fullPrice,proto3" json:"full_price,optional"`
+	FullPrice float32 `json:"full_price,optional"`
 	// @inject_tag: json:"reduce_price" db:"reduce_price"
-	ReducePrice float32 `protobuf:"fixed32,4,opt,name=reduce_price,json=reducePrice,proto3" json:"reduce_price,optional"`
+	ReducePrice float32 `json:"reduce_price,optional"`
 }
 

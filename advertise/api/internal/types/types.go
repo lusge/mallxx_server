@@ -2,18 +2,18 @@
 package types
 
 type Advertise struct {
-	Id         int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,optional" db:"id"`
-	Name       string `protobuf:"bytes,2,opt,name=name,proto3" json:"name" db:"name"`
-	Img        string `protobuf:"bytes,3,opt,name=img,proto3" json:"img" db:"img"`
-	Pos        int32  `protobuf:"varint,4,opt,name=pos,proto3" json:"pos" db:"pos"`
-	CategoryId int64  `protobuf:"varint,5,opt,name=category_id,json=categoryId,proto3" json:"category_id" db:"category_id"`
-	Type       int32  `protobuf:"varint,6,opt,name=type,proto3" json:"type" db:"type"`
-	Url        string `protobuf:"bytes,7,opt,name=url,proto3" json:"url" db:"url"`
-	GoId       int32  `protobuf:"varint,8,opt,name=go_id,json=goId,proto3" json:"go_id" db:"go_id"`
-	Status     int32  `protobuf:"varint,9,opt,name=status,proto3" json:"status" db:"status"`
-	StartTime  string `protobuf:"bytes,10,opt,name=start_time,json=startTime,proto3" json:"start_time" db:"start_time"`
-	EndTime    string `protobuf:"bytes,11,opt,name=end_time,json=endTime,proto3" json:"end_time" db:"end_time"`
-	AddTime    string `protobuf:"bytes,12,opt,name=add_time,json=addTime,proto3" json:"add_time" db:"add_time"`
+	Id         int64  `json:"id,optional" db:"id"`
+	Name       string `json:"name" db:"name"`
+	Img        string `json:"img" db:"img"`
+	Pos        int32  `json:"pos" db:"pos"`
+	CategoryId int64  `json:"category_id" db:"category_id"`
+	Type       int32  `json:"type" db:"type"`
+	Url        string `json:"url" db:"url"`
+	GoId       int32  `json:"go_id" db:"go_id"`
+	Status     int32  `json:"status" db:"status"`
+	StartTime  string `json:"start_time" db:"start_time"`
+	EndTime    string `json:"end_time" db:"end_time"`
+	AddTime    string `json:"add_time" db:"add_time"`
 }
 
 type AdRequest struct {
@@ -28,23 +28,23 @@ type AdRequest struct {
 }
 
 type AdOneRequest struct {
-	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id" form:"id"`
+	Id int64 `json:"id" form:"id"`
 }
 
 type AdResponse struct {
-	Code   int32        `protobuf:"varint,1,opt,name=code,proto3" json:"code"`
-	Data   []*Advertise `protobuf:"bytes,2,rep,name=data,proto3" json:"data"`
-	Total  int64        `protobuf:"varint,3,opt,name=total,proto3" json:"total"`
-	Detail string       `protobuf:"bytes,4,opt,name=detail,proto3" json:"detail"`
+	Code   int32        `json:"code"`
+	Data   []*Advertise `json:"data"`
+	Total  int64        `json:"total"`
+	Detail string       `json:"detail"`
 }
 
 type AdInfoResponse struct {
-	Code   int32      `protobuf:"varint,1,opt,name=code,proto3" json:"code"`
-	Data   *Advertise `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
-	Detail string     `protobuf:"bytes,3,opt,name=detail,proto3" json:"detail"`
+	Code   int32      `json:"code"`
+	Data   *Advertise `json:"data"`
+	Detail string     `json:"detail"`
 }
 
 type Response struct {
-	Code   int32  `protobuf:"varint,1,opt,name=code,proto3" json:"code"`
-	Detail string `protobuf:"bytes,3,opt,name=detail,proto3" json:"detail"`
+	Code   int32  `json:"code"`
+	Detail string `json:"detail"`
 }

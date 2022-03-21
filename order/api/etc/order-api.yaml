@@ -1,0 +1,9 @@
+Name: order-api
+Host: 0.0.0.0
+Port: 8888
+
+OrderRpc:
+  Etcd:
+    Hosts:
+      - etcd-server:2379
+    Key: order.rpc

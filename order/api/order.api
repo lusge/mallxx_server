@@ -1,6 +1,234 @@
 syntax = "v1"
 
+type CompanyAddress {
+	Id            int64  `json:"id"`
+	AddressName   string `json:"address_name"`
+	SendStatus    int32  `json:"send_status"`
+	ReceiveStatus int32  `json:"receive_status"`
+	Name          string `json:"name"`
+	Phone         string `json:"phone"`
+	Province      string `json:"province"`
+	City          string `json:"city"`
+	Region        string `json:"region"`
+	DetailAddress string `json:"detail_address"`
+}
+
+type Order {
+	Id                    int64   `json:"id"`
+	MemberId              int64   `json:"member_id"`
+	CouponId              int64   `json:"coupon_id"`
+	OrderSn               string  `json:"order_sn"`
+	CreateTime            string  `json:"create_time"`
+	MemberUsername        string  `json:"member_username"`
+	TotalAmount           float64 `json:"total_amount"`
+	PayAmount             float64 `json:"pay_amount"`
+	FreightAmount         float64 `json:"freight_amount"`
+	PromotionAmount       float64 `json:"promotion_amount"`
+	IntegrationAmount     float64 `json:"integration_amount"`
+	CouponAmount          float64 `json:"coupon_amount"`
+	DiscountAmount        float64 `json:"discount_amount"`
+	PayType               int32   `json:"pay_type"`
+	SourceType            int32   `json:"source_type"`
+	Status                int32   `json:"status"`
+	OrderType             int32   `json:"order_type"`
+	DeliveryCompany       string  `json:"delivery_company"`
+	DeliverySn            string  `json:"delivery_sn"`
+	AutoConfirmDay        int32   `json:"auto_confirm_day"`
+	Integration           int32   `json:"integration"`
+	Growth                int32   `json:"growth"`
+	PromotionInfo         string  `json:"promotion_info"`
+	BillType              int32   `json:"bill_type"`
+	BillHeader            string  `json:"bill_header"`
+	BillContent           string  `json:"bill_content"`
+	BillReceiverPhone     string  `json:"bill_receiver_phone"`
+	BillReceiverEmail     string  `json:"bill_receiver_email"`
+	ReceiverName          string  `json:"receiver_name"`
+	ReceiverPhone         string  `json:"receiver_phone"`
+	ReceiverPostCode      string  `json:"receiver_post_code"`
+	ReceiverProvince      string  `json:"receiver_province"`
+	ReceiverCity          string  `json:"receiver_city"`
+	ReceiverRegion        string  `json:"receiver_region"`
+	ReceiverDetailAddress string  `json:"receiver_detail_address"`
+	Note                  string  `json:"note"`
+	ConfirmStatus         int32   `json:"confirm_status"`
+	DeleteStatus          int32   `json:"delete_status"`
+	UseIntegration        int32   `json:"use_integration"`
+	PaymentTime           string  `json:"payment_time"`
+	DeliveryTime          string  `json:"delivery_time"`
+	ReceiveTime           string  `json:"receive_time"`
+	CommentTime           string  `json:"comment_time"`
+	ModifyTime            string  `json:"modify_time"`
+}
+
+type OrderFirm {
+	ProductId   int64   `json:"product_id"`
+	SkuId       int64   `json:"sku_id"`
+	ProductPic  string  `json:"product_pic"`
+	ProductName string  `json:"product_name"`
+	Quantity    int32   `json:"quantity"`
+	Attr        string  `json:"attr"`
+	Price       float64 `json:"price"`
+	//优惠了多少钱
+	DiscountPrice float64 `json:"discount_price"`
+	//优惠说明
+	DiscountNote string `json:"discount_note"`
+}
+
+type OrderFirmRequest {
+	Type      string  `json:"type"`
+	ProductId int64   `json:"product_id"`
+	SkuId     int64   `json:"sku_id"`
+	Quantity  int32   `json:"quantity"`
+	CartIds   []int64 `json:"cart_ids"`
+}
+
+type OrderFirmResponse {
+	Code   int32        `json:"code"`
+	Detail string       `json:"detail"`
+	Data   []*OrderFirm `json:"data"`
+}
+
+type OrderInfoRequest {
+	OrderId int64 `json:"order_id"`
+}
+
+//单订单
+type OrderInfoRsponse {
+	Code   int32  `json:"code"`
+	Detail string `json:"detail"`
+	Data   *Order `json:"data"`
+}
+
+type OrderListRequest {
+	PageNum  int32  `json:"page_num"`
+	PageSize int32  `json:"page_size"`
+	Type     string `json:"type"`
+}
+
+//订单列表
+type OrderListResponse {
+	Code   int32    `json:"code"`
+	Detail string   `json:"detail"`
+	Data   []*Order `json:"data"`
+}
+
+//生成订单请求信息
+type GenerateOrderRequest {
+	AddressId  int64   `json:"address_id"`
+	CouponId   int64   `json:"coupon_id"`  //使用优惠券ID
+	IsIntegral bool    `json:"isIntegral"` //是否使用优惠券
+	PayMethod  int32   `json:"payMethod"`  //支付方式
+	CartIds    []int64 `json:"cart_ids"`   //购物车中的Id
+}
+
+//订单返回信息
+type GenerateOrderResponse {
+	AddressId int64        `json:"address_id"`
+	Firm      []*OrderFirm `json:"firm"` //选择的都买的商品
+	Item      *Order       `json:"item"` //订单内容,包含需要支付的总价格
+	Code      int32        `json:"code"`
+	Detail    string       `json:"detail"`
+}
+
+type OrderOperateHistory {
+	Id          int64  `json:"id"`
+	OrderId     int64  `json:"order_id"`
+	OperateMan  string `json:"operate_man"`
+	CreateTime  string `json:"create_time"`
+	OrderStatus int32  `json:"order_status"`
+	Note        string `json:"note"`
+}
+
+type OrderProduct {
+	Id                int64   `json:"id"`
+	OrderId           int64   `json:"order_id"`
+	OrderSn           string  `json:"order_sn"`
+	ProductId         int64   `json:"product_id"`
+	ProductPic        string  `json:"product_pic"`
+	ProductName       string  `json:"product_name"`
+	ProductBrand      string  `json:"product_brand"`
+	ProductSn         string  `json:"product_sn"`
+	ProductPrice      float64 `json:"product_price"`
+	ProductQuantity   int32   `json:"product_quantity"`
+	ProductSkuId      int64   `json:"product_sku_id"`
+	ProductSkuCode    string  `json:"product_sku_code"`
+	ProductCategoryId int64   `json:"product_category_id"`
+	PromotionName     string  `json:"promotion_name"`
+	PromotionAmount   float64 `json:"promotion_amount"`
+	CouponAmount      float64 `json:"coupon_amount"`
+	IntegrationAmount float64 `json:"integration_amount"`
+	RealAmount        float64 `json:"real_amount"`
+	GiftIntegration   int32   `json:"gift_integration"`
+	GiftGrowth        int32   `json:"gift_growth"`
+	ProductAttr       string  `json:"product_attr"`
+}
+
+//退款
+type OrderReturnApply {
+	Id               int64   `json:"id"`
+	OrderId          int64   `json:"order_id"`
+	CompanyAddressId int64   `json:"company_address_id"`
+	ProductId        int64   `json:"product_id"`
+	OrderSn          string  `json:"order_sn"`
+	CreateTime       string  `json:"create_time"`
+	MemberUsername   string  `json:"member_username"`
+	ReturnAmount     float64 `json:"return_amount"`
+	ReturnName       string  `json:"return_name"`
+	ReturnPhone      string  `json:"return_phone"`
+	Status           int32   `json:"status"`
+	HandleTime       string  `json:"handle_time"`
+	ProductPic       string  `json:"product_pic"`
+	ProductName      string  `json:"product_name"`
+	ProductBrand     string  `json:"product_brand"`
+	ProductAttr      string  `json:"product_attr"`
+	ProductCount     int32   `json:"product_count"`
+	ProductPrice     float64 `json:"product_price"`
+	ProductRealPrice float64 `json:"product_real_price"`
+	Reason           string  `json:"reason"`
+	Description      string  `json:"description"`
+	ProofPics        string  `json:"proof_pics"`
+	HandleNote       string  `json:"handle_note"`
+	HandleMan        string  `json:"handle_man"`
+	ReceiveMan       string  `json:"receive_man"`
+	ReceiveTime      string  `json:"receive_time"`
+	ReceiveNote      string  `json:"receive_note"`
+}
+
+type OrderReturnReason {
+	Id         int64  `json:"id"`
+	Name       string `json:"name"`
+	Sort       int32  `json:"sort"`
+	Status     int32  `json:"status"`
+	CreateTime string `json:"create_time"`
+}
+
+type OrderMemberRequest {
+	MemberId int64 `json:"member_id"`
+	Type     int32 `json:"type"`
+	PageNum  int32 `json:"page_num"`
+	PageSize int32 `json:"page_size"`
+}
+
+type OrderResponse {
+	Code   int32  `json:"code"`
+	Detail string `json:"detail"`
+}
+
 @server(
-	group: cart
-	prefix: /cart
+	group: order
+	prefix: /order
 )
+service order-api {
+	@handler OrderFrim
+	post /frim (OrderFirmRequest) returns (OrderFirmResponse);
+	@handler OrderGenerate
+	post /generate (GenerateOrderRequest) returns (GenerateOrderResponse);
+	@handler OrderMemberList
+	post /member/list (OrderMemberRequest) returns (OrderListResponse);
+	@handler OrderInfo
+	post /info (OrderInfoRequest) returns (OrderInfoRsponse);
+	@handler OrderCancel
+	post /cancel (OrderInfoRequest) returns (OrderResponse);
+	@handler OrderDelete
+	post /delete (OrderInfoRequest) returns (OrderResponse);
+}

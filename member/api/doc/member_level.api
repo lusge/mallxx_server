@@ -3,31 +3,31 @@ syntax = "v1"
 
 type MemberLevel {
 	// @inject_tag: json:"id" db:"id"
-	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id" db:"id"`
+	Id int64 `json:"id" db:"id"`
 	// @inject_tag: json:"growth_point" db:"growth_point"
-	GrowthPoint int32 `protobuf:"varint,2,opt,name=growth_point,json=growthPoint,proto3" json:"growth_point" db:"growth_point"`
+	GrowthPoint int32 `json:"growth_point" db:"growth_point"`
 	// @inject_tag: json:"default_status" db:"default_status"
-	DefaultStatus int32 `protobuf:"varint,3,opt,name=default_status,json=defaultStatus,proto3" json:"default_status" db:"default_status"`
+	DefaultStatus int32 `json:"default_status" db:"default_status"`
 	// @inject_tag: json:"free_freight_point" db:"free_freight_point"
-	FreeFreightPoint float32 `protobuf:"fixed32,4,opt,name=free_freight_point,json=freeFreightPoint,proto3" json:"free_freight_point" db:"free_freight_point"`
+	FreeFreightPoint float32 `json:"free_freight_point" db:"free_freight_point"`
 	// @inject_tag: json:"comment_growth_point" db:"comment_growth_point"
-	CommentGrowthPoint int32 `protobuf:"varint,5,opt,name=comment_growth_point,json=commentGrowthPoint,proto3" json:"comment_growth_point" db:"comment_growth_point"`
+	CommentGrowthPoint int32 `json:"comment_growth_point" db:"comment_growth_point"`
 	// @inject_tag: json:"priviledge_free_freight" db:"priviledge_free_freight"
-	PriviledgeFreeFreight int32 `protobuf:"varint,6,opt,name=priviledge_free_freight,json=priviledgeFreeFreight,proto3" json:"priviledge_free_freight" db:"priviledge_free_freight"`
+	PriviledgeFreeFreight int32 `json:"priviledge_free_freight" db:"priviledge_free_freight"`
 	// @inject_tag: json:"priviledge_sign_in" db:"priviledge_sign_in"
-	PriviledgeSignIn int32 `protobuf:"varint,7,opt,name=priviledge_sign_in,json=priviledgeSignIn,proto3" json:"priviledge_sign_in" db:"priviledge_sign_in"`
+	PriviledgeSignIn int32 `json:"priviledge_sign_in" db:"priviledge_sign_in"`
 	// @inject_tag: json:"priviledge_comment" db:"priviledge_comment"
-	PriviledgeComment int32 `protobuf:"varint,8,opt,name=priviledge_comment,json=priviledgeComment,proto3" json:"priviledge_comment" db:"priviledge_comment"`
+	PriviledgeComment int32 `json:"priviledge_comment" db:"priviledge_comment"`
 	// @inject_tag: json:"priviledge_promotion" db:"priviledge_promotion"
-	PriviledgePromotion int32 `protobuf:"varint,9,opt,name=priviledge_promotion,json=priviledgePromotion,proto3" json:"priviledge_promotion" db:"priviledge_promotion"`
+	PriviledgePromotion int32 `json:"priviledge_promotion" db:"priviledge_promotion"`
 	// @inject_tag: json:"priviledge_member_price" db:"priviledge_member_price"
-	PriviledgeMemberPrice int32 `protobuf:"varint,10,opt,name=priviledge_member_price,json=priviledgeMemberPrice,proto3" json:"priviledge_member_price" db:"priviledge_member_price"`
+	PriviledgeMemberPrice int32 `json:"priviledge_member_price" db:"priviledge_member_price"`
 	// @inject_tag: json:"priviledge_birthday" db:"priviledge_birthday"
-	PriviledgeBirthday int32 `protobuf:"varint,11,opt,name=priviledge_birthday,json=priviledgeBirthday,proto3" json:"priviledge_birthday" db:"priviledge_birthday"`
+	PriviledgeBirthday int32 `json:"priviledge_birthday" db:"priviledge_birthday"`
 	// @inject_tag: json:"note" db:"note"
-	Note string `protobuf:"bytes,12,opt,name=note,proto3" json:"note" db:"note"`
+	Note string `json:"note" db:"note"`
 	// @inject_tag: json:"name" db:"name"
-	Name string `protobuf:"bytes,13,opt,name=name,proto3" json:"name" db:"name"`
+	Name string `json:"name" db:"name"`
 }
 
 
@@ -36,7 +36,7 @@ type MemverLevelInfoRequest {
 
 
 type MemverLeveListResponse  {
-	Code   int32          `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
-	Data   []*MemberLevel `protobuf:"bytes,2,rep,name=data,proto3" json:"data,omitempty"`
-	Detail string         `protobuf:"bytes,3,opt,name=detail,proto3" json:"detail,omitempty"`
+	Code   int32          `json:"code,omitempty"`
+	Data   []*MemberLevel `json:"data,omitempty"`
+	Detail string         `json:"detail,omitempty"`
 }

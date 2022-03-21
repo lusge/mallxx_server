@@ -16,13 +16,13 @@ Mysql:
 ProductRpc:
   Etcd:
     Hosts:
-    - etcd-server:2379
+      - etcd-server:2379
     Key: product.rpc
 
 MemberRpc:
   Etcd:
     Hosts:
-    - etcd-server:2379
+      - etcd-server:2379
     Key: member.rpc
 
 CachePreifx:

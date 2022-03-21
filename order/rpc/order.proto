@@ -63,7 +63,21 @@ message Order {
     string modify_time = 44;
 }
 
-message OrderPayRequest {
+message OrderFirm {
+    int64 product_id = 1;
+    int64 sku_id = 2;
+    string product_pic = 3;
+    string product_name = 4;
+    int32 quantity = 5;
+    string attr = 6;
+    double price = 7;
+    //优惠了多少钱
+    double discount_price = 8;
+    //优惠说明
+    string discount_note = 9;
+}
+
+message OrderFirmRequest {
     string type = 1;
     int64 product_id = 2;
     int64 sku_id = 3;
@@ -71,11 +85,17 @@ message OrderPayRequest {
     repeated int64 cart_ids = 5;
 }
 
+message OrderFirmResponse {
+    int32 code = 1;
+    string detail = 2;
+    repeated OrderFirm data = 3;
+}
+
 message OrderInfoRequest {
     int64 order_id = 1;
 }
 
-
+//单订单
 message OrderInfoRsponse {
     int32 code = 1;
     string detail = 2;
@@ -83,15 +103,34 @@ message OrderInfoRsponse {
 }
 
 message OrderListRequest {
-    int32 start_page = 1;
-    int32 size_page = 2;
+    int32 page_num = 1;
+    int32 page_size = 2;
     string type = 3;
 }
 
+//订单列表
 message OrderListResponse {
     int32 code = 1;
     string detail = 2;
     repeated Order data = 3;
+}
+
+//生成订单请求信息
+message GenerateOrderRequest {
+    int64 address_id = 1;
+    int64 coupon_id = 2; //使用优惠券ID
+    bool isIntegral = 3; //是否使用优惠券
+    int32 payMethod = 4; //支付方式
+    repeated int64 cart_ids = 5; //购物车中的Id
+}
+
+//订单返回信息
+message GenerateOrderResponse {
+    int64 address_id = 1;
+    repeated OrderFirm firm = 2; //选择的都买的商品
+    Order item = 4;//订单内容,包含需要支付的总价格
+    int32 code = 5;
+    string detail = 6;
 }
 
 message OrderOperateHistory {
@@ -127,6 +166,7 @@ message OrderProduct {
     string product_attr = 21;
 }
 
+//退款
 message OrderReturnApply {
     int64 id = 1;
     int64 order_id = 2;
@@ -165,8 +205,27 @@ message OrderReturnReason {
     string create_time = 5;
 }
 
+message OrderMemberRequest {
+    int64 member_id = 1;
+    int32 type = 2;
+    int32 page_num = 3;
+    int32 page_size = 4;
+}
+
+message OrderResponse {
+    int32 code = 1;
+    string detail = 2;
+}
 
 
+service Orderservice {
+    rpc OrderFrim (OrderFirmRequest) returns (OrderFirmResponse);
+    rpc OrderGenerate (GenerateOrderRequest) returns (GenerateOrderResponse);
+    rpc OrderMemberList (OrderMemberRequest) returns (OrderListResponse);
+    rpc OrderInfo (OrderInfoRequest) returns (OrderInfoRsponse);
+    rpc OrderCancel (OrderInfoRequest) returns (OrderResponse);
+    rpc OrderDelete (OrderInfoRequest) returns (OrderResponse);
+}
 
 
 

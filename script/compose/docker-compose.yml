@@ -304,6 +304,51 @@ services:
     networks:
       - mallxx_net
 
+  order-rpc:
+    image: cosmtrek/air:latest
+    container_name: order-rpc
+    environment:
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /go/src/mallxx_server/order/rpc
+    volumes:
+      - ./../../:/go/src/mallxx_server
+    privileged: true
+    restart: always
+    links:
+      - db
+      - etcd-server
+      - redis
+    depends_on:
+      - db
+      - etcd-server
+      - redis
+      - member-rpc
+      - product-rpc
+      - cart-rpc
+    networks:
+      - mallxx_net
+
+  order-api:
+    image: cosmtrek/air:latest
+    container_name: order-api
+    environment:
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /go/src/mallxx_server/order/api
+    volumes:
+      - ./../../:/go/src/mallxx_server
+    privileged: true
+    restart: always
+    ports:
+      - 8895:8888
+    links:
+      - etcd-server
+    depends_on:
+      - order-rpc
+    networks:
+      - mallxx_net
+
 networks:
   mallxx_net:
     driver: bridge

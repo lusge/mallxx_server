@@ -5,30 +5,30 @@ type SkuStock {
 	// @inject_tag: json:"id" db:"id"
 	Id int64 `json:"id,optional"`
 	// @inject_tag: json:"product_id" db:"product_id"
-	ProductId int64 `protobuf:"varint,2,opt,name=product_id,json=productId,proto3" json:"product_id,optional"`
+	ProductId int64 `json:"product_id,optional"`
 	// @inject_tag: json:"sku_code" db:"sku_code"
-	SkuCode string `protobuf:"bytes,3,opt,name=sku_code,json=skuCode,proto3" json:"sku_code,optional"`
+	SkuCode string `json:"sku_code,optional"`
 	// @inject_tag: json:"price" db:"price"
-	Price float32 `protobuf:"fixed32,4,opt,name=price,proto3" json:"price,optional"`
+	Price float32 `json:"price,optional"`
 	// @inject_tag: json:"stock" db:"stock"
-	Stock int32 `protobuf:"varint,5,opt,name=stock,proto3" json:"stock,optional"`
+	Stock int32 `json:"stock,optional"`
 	// @inject_tag: json:"low_stock" db:"low_stock"
-	LowStock int32 `protobuf:"varint,6,opt,name=low_stock,json=lowStock,proto3" json:"low_stock,optional"`
+	LowStock int32 `json:"low_stock,optional"`
 	// @inject_tag: json:"sp_data" db:"sp_data"
-	SpData string `protobuf:"bytes,7,opt,name=sp_data,json=spData,proto3" json:"sp_data,optional"`
+	SpData string `json:"sp_data,optional"`
 	// @inject_tag: json:"pic" db:"pic"
-	Pic string `protobuf:"bytes,8,opt,name=pic,proto3" json:"pic,optional"`
+	Pic string `json:"pic,optional"`
 	// @inject_tag: json:"sale" db:"sale"
-	Sale int32 `protobuf:"varint,9,opt,name=sale,proto3" json:"sale,optional"`
+	Sale int32 `json:"sale,optional"`
     
 	LockStock int32 `json:"lock_stock,optional"`
 }
 
 
 type SkuStockListResponse {
-	Code   int32       `protobuf:"varint,1,opt,name=code,proto3" json:"code"`
-	Data   []*SkuStock `protobuf:"bytes,2,rep,name=data,proto3" json:"data"`
-	Detail string      `protobuf:"bytes,3,opt,name=detail,proto3" json:"detail"`
+	Code   int32       `json:"code"`
+	Data   []*SkuStock `json:"data"`
+	Detail string      `json:"detail"`
 }
 
 type SkuStockRequest {

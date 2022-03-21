@@ -11,4 +11,4 @@ build:
 proto:
 	goctl rpc protoc $(basedir)/order/rpc/order.proto --proto_path=$(basedir) --go_out=./ --go-grpc_out=./ --zrpc_out=.
 	protoc-go-inject-tag -input=./pb/* -XXX_skip=xorm
-
+	sed -i "" 's/,omitempty//g'  ./pb/*.pb.go
